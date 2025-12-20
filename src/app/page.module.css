@@ -1,3 +1,4 @@
+
 .page {
   --background: #fafafa;
   --foreground: #fff;
@@ -43,7 +44,7 @@
   font-weight: 600;
   line-height: 48px;
   letter-spacing: -2.4px;
-  text-wrap: balance;
+  word-wrap: balance;
   color: var(--text-primary);
 }
 
@@ -51,7 +52,7 @@
   max-width: 440px;
   font-size: 18px;
   line-height: 32px;
-  text-wrap: balance;
+  word-wrap: balance;
   color: var(--text-secondary);
 }
 
