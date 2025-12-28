@@ -1,7 +1,21 @@
+"use client"
+import Link from "next/link"
 
 const Navbar = () => {
   return (
-    <div className="w-full h-[20em] bg-pink-300">navbar</div>
+    <nav className="w-full h-[4.25em] p-2 bg-white flex justify-center items-center text">
+      {/* Inner Content */}
+      <div className="w-full flex max-[768px]:hidden">
+        {/* Main Link Wrap */}
+        <div className="flex items-center justify-start w-full gap-[15%] pl-[20%]">
+            <Link href="/">Home</Link>
+            <Link href="/services">Services</Link>
+            <Link href="/about">About</Link>
+        </div>
+        <Link className="w-[8em] rounded-sm bg-black cursor-pointer hover:scale-102 active:scale-100 text-white text-center p-2" href="/contact">Contact Us</Link>
+      </div>
+        
+    </nav>
   )
 }
 
