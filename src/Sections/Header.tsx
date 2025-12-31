@@ -9,7 +9,7 @@ const Header = () => {
       <div className="w-full h-[3em] bg-black flex justify-end items-center p-4">
         <Link
           href="tel: 815-751-7039"
-          className="flex items-center text-white gap-2"
+          className="flex items-center text-white gap-2 mr-9 max-[768px]:mr-1"
         >
           <Image
             alt="phone icon"
@@ -24,6 +24,7 @@ const Header = () => {
       </div>
       {/* Header Bottom -> Navigation Bar */}
       <Navbar />
+      
       {/* LOGO */}
       <Link href="/">
         <Image

@@ -39,7 +39,7 @@ const page = () => {
             <a href="https://www.google.com/maps/place/KB's+Kustomz/@41.388281,-89.5942745,1350m/data=!3m1!1e3!4m6!3m5!1s0x88098fe3e725c8bf:0x2ae78e393bcc4d23!8m2!3d41.3879585!4d-89.5909702!16s%2Fg%2F11y522h0mc?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"><h4 className="text-sm font-extralight cursor-pointer">13845 1650 North Ave Wyanet, IL 61379</h4></a>
           </div>
           <br></br>
-          <a href="https://www.google.com/maps/place/KB's+Kustomz/@41.388281,-89.5942745,1350m/data=!3m1!1e3!4m6!3m5!1s0x88098fe3e725c8bf:0x2ae78e393bcc4d23!8m2!3d41.3879585!4d-89.5909702!16s%2Fg%2F11y522h0mc?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"><Image fetchPriority="high" className="grayscale-100 rounded-sm " width={500} height={500} alt="KB's Kustomz Map" src="/images/map.png"/></a>
+          <a href="https://www.google.com/maps/place/KB's+Kustomz/@41.388281,-89.5942745,1350m/data=!3m1!1e3!4m6!3m5!1s0x88098fe3e725c8bf:0x2ae78e393bcc4d23!8m2!3d41.3879585!4d-89.5909702!16s%2Fg%2F11y522h0mc?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D" className="max-[768px]:hidden"><Image fetchPriority="high" className="grayscale-100 rounded-sm " width={500} height={500} alt="KB's Kustomz Map" loading="eager" src="/images/map.jpg"/></a>
         </div>
       </div> 
     </div>
