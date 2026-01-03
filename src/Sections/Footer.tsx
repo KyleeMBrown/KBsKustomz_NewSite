@@ -1,8 +1,16 @@
+"use client"
+import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 const Footer = () => {
+  const pathname = usePathname();
+  const protectedRoutes = ["/auth", "/dashboard"]
+  const hideFooter = protectedRoutes.some(path =>
+    pathname.startsWith(path)
+  )
   return (
-      <div className='w-full p-[2em] text-white max-[768px]:h-[9.5em] h-[8em] flex flex-col items-center justify-center  gap-1 border-t border-white'>
+    <div className={cn('w-full p-[2em] text-white max-[768px]:h-[9.5em] h-[8em] flex flex-col items-center justify-center  gap-1 border-t border-white', hideFooter && 'hidden')}>
       <p className="font-extralight max-[350px]:text-[0.85em] max-[380px]:text-[0.85em] max-[768px]:text-center text-[1.05em]"><a target="_blank" href="https://www.google.com/maps/place/KB's+Kustomz/@41.388281,-89.5942745,1350m/data=!3m1!1e3!4m6!3m5!1s0x88098fe3e725c8bf:0x2ae78e393bcc4d23!8m2!3d41.3879585!4d-89.5909702!16s%2Fg%2F11y522h0mc?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D">13845 County Rd 1650 N, Wyanet, IL 61379</a> | korybrown24@gmail.com | <Link href="tel:815-751-7039">815-751-7039</Link>
  </p>
           <div className='h-full flex items-center justify-center gap-4 max-[350px]:text-[0.85em]'>

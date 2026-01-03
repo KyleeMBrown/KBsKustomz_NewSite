@@ -9,6 +9,7 @@ const workSans = Work_Sans({
   subsets: ["latin"],
 });
 
+
 export const metadata = {
   title: "KB's Kustomz | Custom Paint and Body Shop| Wyanet, IL",
   description: `KB’s Kustomz is a locally owned custom paint and body shop in Wyanet, IL, 
@@ -18,6 +19,8 @@ export const metadata = {
                 bodywork repairs, or a complete vehicle transformation, KB’s Kustomz delivers high-quality 
                 craftsmanship and attention to detail you can trust.`,
 };
+
+
 
 export default function RootLayout({ children }) {
   return (

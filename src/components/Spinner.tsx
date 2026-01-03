@@ -1,7 +1,9 @@
+import { cn } from "@/lib/utils"
+import { ComponentProps } from "react"
 
-const Spinner = () => {
+const Spinner = ({className}:React.ComponentProps<"div">):React.ReactElement => {
   return (
-    <div className='loader'></div>
+    <div className={cn(className, 'loader')}></div>
   )
 }
 

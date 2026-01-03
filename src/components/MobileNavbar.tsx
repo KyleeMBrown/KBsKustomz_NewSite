@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu"
   
 
-const MobileNavbar = () => {
+const MobileNavbar = (): React.ReactElement => {
   return (
       <>
         <DropdownMenu>

@@ -2,7 +2,7 @@
 import Link from "next/link"
 import MobileNavbar from "./MobileNavbar"
 
-const Navbar = () => {
+const Navbar = ():React.ReactElement => {
   return (
     <nav className="w-full h-[4.25em] p-2 bg-white flex max-[768px]:justify-end justify-center items-center text">
       { /* Mobile Navbar*/}

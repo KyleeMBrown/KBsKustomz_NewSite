@@ -1,10 +1,21 @@
+"use client"
 import Link from "next/link";
 import Navbar from "../components/Navbar";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+
 
 const Header = () => {
+  const pathname = usePathname();
+  const protectedRoutes = ["/auth", "/dashboard"]
+  const hideHeader = protectedRoutes.some(path =>
+    pathname.startsWith(path)
+  )
+  
+
   return (
-    <header>
+    <header className={cn(hideHeader && "hidden")}>
       {/* Header Top */}
       <div className="w-full h-[3em] bg-black flex justify-end items-center p-4">
         <Link
