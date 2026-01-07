@@ -53,7 +53,7 @@ const data = {
       items: [
         {
           title: "Create New User",
-          url: "#",
+          url: "/dashboard/users/create",
         },
         {
           title: "Edit Users",

@@ -7,6 +7,8 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+
+import { cn } from "@/lib/utils"
   
 import { usePathname } from "next/navigation"
 
@@ -16,7 +18,11 @@ const DynamicBreadcrumbs = () => {
 
   const nameMap = {
         "/dashboard": ["Dashboard"],
-        "/dashboard/manage/images": ["Dashboard", "Manage", "Image"]
+        "/dashboard/manage/images": ["Dashboard", "Manage", "Image"],
+        "/dashboard/settings/general": ["Dashboard, Settings, General"],
+        "/dashboard/users/create": ["Dashboard", "Manage Users", "Create a New User"],
+        "/dashboard/users/edit": ["Dashboard", "Manage Users", "Edit Users"],
+        "/dashboard/analytics/general":["Dashboard", "Site Analytics", "General"]
     }
   return (
     <Breadcrumb >
@@ -27,7 +33,7 @@ const DynamicBreadcrumbs = () => {
             {index === 1 ?
               <BreadcrumbPage >{name}</BreadcrumbPage>
               :
-              <BreadcrumbLink className="text-black" href={index===0?"/dashboard":path}>{name}</BreadcrumbLink>
+                <BreadcrumbLink className={cn(index === nameMap[path].length - 1 && "underline", "text-black")} href={index===0?"/dashboard":path}>{name}</BreadcrumbLink>
             }
           </BreadcrumbItem>
           {!(index === nameMap[path].length - 1) ? <BreadcrumbSeparator /> : null}
