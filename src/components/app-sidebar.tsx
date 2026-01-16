@@ -26,13 +26,16 @@ import {
 const data = {
   navMain: [
     {
-      title: "Manage",
+      title: "Images",
       url: "#",
       items: [
         {
-          title: "Images",
-          url: "/dashboard/manage/images",
-          isActive:true
+          title: "Upload",
+          url: "/dashboard/images/upload",
+        },
+        {
+          title: "Manage",
+          url: "/dashboard/images/manage",
         }
       ],
     },
@@ -78,9 +81,9 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
-    <Sidebar {...props} >
-      <SidebarHeader>
-        <SidebarMenu>
+    <Sidebar {...props}  >
+      <SidebarHeader className="bg-amber-950 text-white">
+        <SidebarMenu >
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <div>
@@ -97,7 +100,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
         <SearchForm />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="bg-amber-950 text-white">
         <SidebarGroup>
           <SidebarMenu>
             {data.navMain.map((item, index) => (
@@ -115,7 +118,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     </SidebarMenuButton>
                   </CollapsibleTrigger>
                   {item.items?.length ? (
-                    <CollapsibleContent>
+                    <CollapsibleContent className="text-white">
                       <SidebarMenuSub>
                         {item.items.map((item) => (
                           <SidebarMenuSubItem key={item.title}>
@@ -123,7 +126,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                               asChild
                               isActive={null}
                             >
-                              <a href={item.url}>{item.title}</a>
+                              <a className="text-white" href={item.url}>{item.title}</a>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
                         ))}

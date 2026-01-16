@@ -1,4 +1,9 @@
 import Image from "next/image"
+
+/**
+ * The Contact page for KB's Kustomz
+ */
+
 const page = () => {
   return (
     <div className="w-full text-white h-[85vh] max-[768px]:h-auto max-[768px]:mt-8 max-[768px]:mb-8 max-[768px]:flex-col flex items-center justify-center bg-black">

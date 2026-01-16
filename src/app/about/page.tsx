@@ -1,12 +1,20 @@
 import Image from "next/image"
+
+/**
+ * The About page for KB's Kustomz
+ */
+
 const page = () => {
   return (
       <div className="h-[85vh] w-full max-[768px]:flex-col flex text-white bg-linear-to-t from-gray-900">
           <div className="w-[50%] max-[768px]:w-full h-full flex flex-col items-center justify-center p-4 max-[768px]:pb-0">
             <h1 className="w-[80%] max-[768px]:mb-0 mb-[0.75em] text-4xl font-bold max-[768px]:text-2xl">About KB's Kustomz <br></br>Wyanet, IL</h1>
-            <p className="text-left w-[80%] font-light text-lg"><strong>KB's Kustomz</strong> is a shop owned by Kory Brown that is located at <a target="_blank" className="underline" href="https://www.google.com/maps/place/KB's+Kustomz/@41.388281,-89.5942745,1350m/data=!3m1!1e3!4m6!3m5!1s0x88098fe3e725c8bf:0x2ae78e393bcc4d23!8m2!3d41.3879585!4d-89.5909702!16s%2Fg%2F11y522h0mc?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D">13845 1650 N Ave in Wyanet, IL</a>. This shop offers Custom Paint and
-                Body Shop Services.<br></br> <br></br>Wondering what KB's Kustomz can do for you? <a href="tel:8157517039">Call for a Free Quote Today!</a>
-            </p>
+              <p className="text-left w-[80%] font-light text-lg"><strong>KB's Kustomz</strong> was established in 2023 by Kory Brown and is located at <a target="_blank" className="underline" href="https://www.google.com/maps/place/KB's+Kustomz/@41.388281,-89.5942745,1350m/data=!3m1!1e3!4m6!3m5!1s0x88098fe3e725c8bf:0x2ae78e393bcc4d23!8m2!3d41.3879585!4d-89.5909702!16s%2Fg%2F11y522h0mc?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D">13845 1650 N Ave in Wyanet, IL</a>.
+                  This shop offers Custom Paint and Body Shop Services.
+                  <br></br>
+                  <br></br>
+                  Wondering what KB's Kustomz can do for you? <a href="tel:8157517039">Call for a Free Quote Today!</a>
+              </p>
             <div className="flex max-[768px]:hidden items-center w-[80%] max-[768px]:flex-col justify-start gap-[1em] mt-[1.5em]">
                 <Image className="rounded drop-shadow-lg" width={250} height={250} fetchPriority="high" src="/images/hat.jpg" alt="KB's Kustomz Custom hat" />
                 <Image className="rounded drop-shadow-lg" width={250} height={250} fetchPriority="high" src="/images/shopInside.jpg" alt="KB's Kustomz Custom Shop Inside" />            
