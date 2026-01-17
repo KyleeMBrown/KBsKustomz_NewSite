@@ -73,12 +73,12 @@ const page = () => {
         </div>
         : null}
       <ModalPopup
-        className="max-[768px]:bg-transparent max-[768px]:backdrop-blur-xl max-[768px]:text-white"
+        className="bg-white max-[768px]:backdrop-blur-xl max-[768px]:text-white"
         open={dialogOpen}
         setOpen={setDialogOpen}
         description={<span className="text-black max-[768px]:text-white">Are you sure you want to upload these images?</span>}
-        customClose={<Button variant="outline" className="text-black">No</Button>}
-        footer={<Button variant="outline" className='bg-green-500 text-white'>Yes</Button>}
+        customClose={<Button variant="outline" className="text-black cursor-pointer">No</Button>}
+        footer={<Button variant="outline" className='bg-green-500 cursor-pointer text-white'>Yes</Button>}
       />
     </div>
   )

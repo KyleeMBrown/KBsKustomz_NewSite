@@ -22,6 +22,8 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 
+import LogoutButton from "./LogoutButton"
+
 // This is sample data.
 const data = {
   navMain: [
@@ -81,7 +83,7 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
   return (
-    <Sidebar {...props}  >
+    <Sidebar {...props} className="bg-amber-950" >
       <SidebarHeader className="bg-amber-950 text-white">
         <SidebarMenu >
           <SidebarMenuItem>
@@ -140,6 +142,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarGroup>
       </SidebarContent>
       <SidebarRail />
+     <LogoutButton />
     </Sidebar>
   )
 }
