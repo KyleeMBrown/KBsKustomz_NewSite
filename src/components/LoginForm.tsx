@@ -108,7 +108,7 @@ export function LoginForm({
               <Field>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
                 <Input
-                  className=" placeholder:opacity-40 placeholder:text-white"
+                  className=" placeholder:opacity-40 b placeholder:text-white"
                   id="email"
                   type="email"
                   placeholder="email@example.com"
@@ -128,13 +128,13 @@ export function LoginForm({
                   </a>
                 </div>
                 <div className="w-full flex items-center justify-end">
-                  <Input  value={pass} onChange={(e) => setPass(e.target.value)} id="password" type={hidden ? "password" : "text"} required />
+                  <Input className="focus-within:shadow-none"  value={pass} onChange={(e) => setPass(e.target.value)} id="password" type={hidden ? "password" : "text"} required />
                   {hidden ?
-                    (<svg onClick={() => setHidden(false)} xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" className={cn(!hidden && "hidden", "bi bi-eye absolute mr-2 cursor-pointer hover:scale-106 active:scale-100")} viewBox="0 0 16 16">
+                    (<svg onClick={() => setHidden(false)} xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" className={cn(!hidden && "hidden", "x bi bi-eye absolute mr-2 cursor-pointer hover:scale-106 active:scale-100")} viewBox="0 0 16 16">
                       <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
                       <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
                     </svg>) :
-                    (<svg onClick={() => setHidden(true)} xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className={cn(hidden && "hidden", "bi bi-eye-fill absolute mr-2 cursor-pointer hover:scale-106 active:scale-100")} viewBox="0 0 16 16">
+                    (<svg onClick={() => setHidden(true)} xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" className={cn(hidden && "hidden", "bi bi-eye-fill absolute mr-2 cursor-pointer hover:scale-106 active:scale-100")} viewBox="0 0 16 16">
                     <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
                     <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
                   </svg>)}
@@ -142,7 +142,7 @@ export function LoginForm({
               </Field>
               <Field>
               <Button className="bg-amber-950 cursor-pointer hover:bg-white hover:text-amber-950" type="submit">{!loading ? "Login" : <Spinner className="w-5" />}</Button>
-                <Button onClick={loginWithGoogle} className="text-amber-950 cursor-pointer flex items-center justify-center gap-4" variant="outline" type="button">
+                <Button onClick={loginWithGoogle} className="text-amber-950  bg-white cursor-pointer flex items-center justify-center gap-4 hover:bg-amber-950 hover:text-white" variant="outline" type="button">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-google" viewBox="0 0 16 16">
                     <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
                   </svg>
@@ -159,7 +159,7 @@ export function LoginForm({
     open={open}
     setOpen={setOpen}
     title={<span className="text-red-500">ERROR</span>}
-    customClose={<Button className="cursor-pointer text-black hover:bg-transparent hover:text-white" variant="outline">Close</Button>}
+    customClose={<Button className="cursor-pointer text-white  hover:bg-white hover:text-gray-400" variant="outline">Close</Button>}
     description={
       <div className="text-left"><br></br>{err?.message} . . . please try again
         <br></br>

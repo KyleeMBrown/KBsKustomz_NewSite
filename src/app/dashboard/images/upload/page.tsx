@@ -33,22 +33,23 @@ const page = () => {
   
 
   return (
-    <div className="flex flex-col bg-amber-950 w-full h-screen max-[768px]:h-screen">
+    <div className="flex flex-col bg-amber-950 w-full h-[92vh] max-[830px]:h-[94.5vh] max-[768px]:h-screen">
       {/* Images to upload */}
-      <section className='h-[70%] max-[768px]:h-[80%] overflow-y-scroll w-full bg-[#240d01] text-white'>
+      <section className='h-[70%]  max-[768px]:h-[80%] overflow-y-scroll w-full bg-[#240d01] text-white'>
         {filesToUpload.length > 0 ? 
-          <div className="grid grid-cols-5 max-[768px]:flex-wrap max-[768px]:flex max-[768px]:items-center max-[768px]:justify-center max-[768px]:pt-[2em] z-0 p-8 overflow-hidden">
+          <div className="grid grid-cols-5 gap-4 max-[768px]:flex-wrap max-[768px]:flex max-[768px]:gap-4 max-[768px]:items-center max-[768px]:justify-center max-[768px]:pt-[1em] z-0 p-8 max-[768px]:p-1 overflow-hidden w-full">
               {filesToUpload.map(((file, index) => (
                 <ImagePreview handleDelete={()=>{setFilesToUpload(filesToUpload.filter((item=>item !== file)))}} src={generateLocalURL(file)} key={index} />
               )))}
           </div>
           : <div className="w-full h-full flex items-center justify-center"><p>No Images Chosen</p>
+            {/** Tool Tip */}
             <Tooltip open={toolOpen} onOpenChange={setToolOpen} >
-              <TooltipTrigger >
+              <TooltipTrigger className="cursor-help">
               <svg onClick={()=>{setToolOpen(true)}} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="ml-3 bi bi-info-circle" viewBox="0 0 16 16">
                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                 <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-                </svg>
+              </svg>
               </TooltipTrigger>
               <TooltipContent className='bg-white text-black'>
                 Selected images will appear here
@@ -62,7 +63,7 @@ const page = () => {
           <input {...getInputProps()}/>
           {isDragActive ? 
             <p className='absolute z-99'>Drop File(s) here</p> :
-            <p className='absolute z-0'>Drag File(s) or click to select the file(s)</p>}
+            <p className='absolute z-0 max-[768px]:text-[0.75em]'>Drag File(s) or click to select the file(s)</p>}
           
         </div>
       </section>
@@ -76,7 +77,7 @@ const page = () => {
         className="bg-white max-[768px]:backdrop-blur-xl max-[768px]:text-white"
         open={dialogOpen}
         setOpen={setDialogOpen}
-        description={<span className="text-black max-[768px]:text-white">Are you sure you want to upload these images?</span>}
+        description={<span className="text-black">Are you sure you want to upload these images?</span>}
         customClose={<Button variant="outline" className="text-black cursor-pointer">No</Button>}
         footer={<Button variant="outline" className='bg-green-500 cursor-pointer text-white'>Yes</Button>}
       />

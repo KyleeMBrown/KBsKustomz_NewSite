@@ -41,17 +41,7 @@ const data = {
         }
       ],
     },
-    {
-      title: "Settings",
-      url: "#",
-      items: [
-        {
-          //TODO: add logout to gen settings
-          title: "General",
-          url: "#"
-        }
-      ],
-    },
+    
     {
       title: "Manage Users",
       url: "#",
@@ -73,6 +63,16 @@ const data = {
         {
           title: "General",
           url: "#",
+        }
+      ],
+    },
+    {
+      title: "Settings",
+      url: "#",
+      items: [
+        {
+          title: "General",
+          url: "#"
         }
       ],
     }

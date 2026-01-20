@@ -87,3 +87,6 @@
     --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+input {
+  --tw-ring-shadow: 0 0 #000 !important;
+}
