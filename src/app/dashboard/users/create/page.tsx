@@ -2,8 +2,15 @@ import CreateUser from "@/components/CreateAUser"
 
 const page = () => {
   return (
-    <div className="flex items-center justify-center w-full h-[92vh] bg-blue-400">
-        <CreateUser/>
+    <div className="flex items-center justify-center w-full p-5 h-[92vh] bg-[#240d01]">
+      <div className="bg-amber-950 flex max-[768px]:flex-col w-full h-full">
+        <div className="w-[60%] max-[768px]:w-full h-full">
+          <CreateUser />
+        </div>
+        <div className="w-[40%] max-[768px]:hidden h-full bg-[url('/images/pexels-matreding-18617935.jpg')] bg-center bg-cover">
+  
+        </div>
+      </div>
     </div>
   )
 }

@@ -43,7 +43,7 @@ const data = {
     },
     
     {
-      title: "Manage Users",
+      title: "Users",
       url: "#",
       items: [
         {
@@ -51,7 +51,7 @@ const data = {
           url: "/dashboard/users/create",
         },
         {
-          title: "Edit Users",
+          title: "Manage Users",
           url: "#",
         }
       ],

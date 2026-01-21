@@ -30,12 +30,12 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const router = useRouter();
 
-  const [email, setEmail]:[string, Dispatch<SetStateAction<string>>] = useState("");
-  const [pass, setPass]:[string, Dispatch<SetStateAction<string>>] = useState("");
-  const [hidden, setHidden]:[boolean, Dispatch<SetStateAction<boolean>>] = useState(true)
-  const [loading, setLoading]:[boolean, Dispatch<SetStateAction<boolean>>] = useState(false)
-  const [open, setOpen]:[boolean, Dispatch<SetStateAction<boolean>>] = useState(false)
-  const [err, setErr]:[AuthApiError, Dispatch<SetStateAction<AuthApiError>>] = useState();
+  const [email, setEmail]:[string, Dispatch<SetStateAction<string>>] = useState<string>("");
+  const [pass, setPass]:[string, Dispatch<SetStateAction<string>>] = useState<string>("");
+  const [hidden, setHidden]:[boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(true)
+  const [loading, setLoading]:[boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(false)
+  const [open, setOpen]:[boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(false)
+  const [err, setErr]:[AuthApiError, Dispatch<SetStateAction<AuthApiError>>] = useState<AuthApiError>();
 
   const login = async ():Promise<void> => {
     try { 
@@ -134,7 +134,8 @@ export function LoginForm({
                       <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z" />
                       <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0" />
                     </svg>) :
-                    (<svg onClick={() => setHidden(true)} xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" className={cn(hidden && "hidden", "bi bi-eye-fill absolute mr-2 cursor-pointer hover:scale-106 active:scale-100")} viewBox="0 0 16 16">
+                      (
+                  <svg onClick={() => setHidden(true)} xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" className={cn(hidden && "hidden", "bi bi-eye-fill absolute mr-2 cursor-pointer hover:scale-106 active:scale-100")} viewBox="0 0 16 16">
                     <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
                     <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
                   </svg>)}
