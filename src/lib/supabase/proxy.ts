@@ -36,8 +36,9 @@ export async function updateSession(request: NextRequest) {
   const { data } = await supabase.auth.getClaims()
 
   const user = data?.claims
-  const userId = data?.claims?.sub
-  
+  const userId:string = data?.claims?.sub
+  const role:string= user?.user_metadata?.user_role
+  const email:string = user?.email
 
     // TODO: uncomment out the below 
   if (!user && request.nextUrl.pathname.startsWith('/dashboard')) {
@@ -48,9 +49,13 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
-  if (request.nextUrl.pathname.startsWith('/dashboard/users/create')) {
+  if ((request.nextUrl.pathname.startsWith('/dashboard/users/create') && (role !== "ADMIN") && (email !==process.env.MASTER_EMAIL))) {
     //TODO: make sure only ADMIN user roles can create another user
-    
+    const url = request.nextUrl.clone()
+    url.pathname = '/dashboard/unauthorized'
+    console.log("not authorized")
+    console.log(email)
+    return NextResponse.redirect(url)
   }
   // IMPORTANT: You *must* return the supabaseResponse object as it is. If you're
   // creating a new response object with NextResponse.next() make sure to:

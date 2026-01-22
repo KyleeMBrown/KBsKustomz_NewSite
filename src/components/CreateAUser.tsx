@@ -32,7 +32,7 @@ const CreateUser = () => {
   const [error, setError]: [AuthApiError, Dispatch<SetStateAction<AuthApiError>>] = useState<AuthApiError>();
   
   const [loading, setLoading]: [boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(false)
-  const [success, setSuccess]:[boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(true)
+  const [success, setSuccess]:[boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(false)
 
   const formFilled: boolean = (lastName && email && confirmEmail && password && confirmPass && role) != ""
   const emailMatch: boolean = (email === confirmEmail) && (email && confirmEmail != "")
@@ -43,6 +43,7 @@ const CreateUser = () => {
     try {
       setLoading(true)
       if (emailMatch && passMatch) {
+        //TODO: Rreplace the below with server side login using the service_role_key
         const { data,  error } = await supabase.auth.signUp({
           email: email,
           password: password,
@@ -108,11 +109,11 @@ const CreateUser = () => {
               <Input id="confirmPass" value={confirmPass} onChange={(e) => { setConfirmPass(e.target.value) }} required type="password" className={cn(passMatch && "border-green-400 ", "w-[70%] max-[768px]:w-full text-white")}></Input>
               <br></br>
               {/* Create User Button (Submit) */}
-              <Button type="submit" disabled={!formFilled} className='bg-white pb-4 max-[768px]:w-full w-[70%] hover:bg-amber-950 hover:text-white cursor-pointer hover:border-white border border-transparent'>Create User</Button>
+              <Button type="submit" disabled={!formFilled} className='bg-white max-[768px]:w-full w-[70%] hover:bg-amber-950 hover:text-white cursor-pointer hover:border-white border border-transparent'>Create User</Button>
             </form>
         </div>) :
         <div className="flex items-center justify-center h-full w-full"><Spinner color="white" className="w-10" /></div>}
-      {success ? <SuccessfulSubmission message="User has beem successfully created!" successURL='/dashboard/users/'/> : null}
+      {success ? <SuccessfulSubmission message="User has beem successfully created!" successURL='/dashboard/users/create'/> : null}
       <ModalPopup
         open={open}
         setOpen={setOpen}
