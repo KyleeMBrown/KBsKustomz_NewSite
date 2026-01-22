@@ -4,11 +4,13 @@ import { createClient } from "@/lib/supabase/server";
  
 
 
-export async function POST(request: NextRequest): Promise<void> {
+export async function POST(req: NextRequest): Promise<NextResponse> {
     try {
     
-        const files: File[] = await request.json()
+        const files: File[] = await req.json();
+
         const supabase = await createClient();
+
         files.forEach(async (file) => {
             const blob = await put(file.name, file, {
                 access: 'public',
@@ -23,8 +25,10 @@ export async function POST(request: NextRequest): Promise<void> {
             ])
 
         })
-    } catch (err) {
+
         
+    } catch (err) {
+        return 
     }
     
 }

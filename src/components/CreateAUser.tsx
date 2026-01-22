@@ -44,15 +44,7 @@ const CreateUser = () => {
       setLoading(true)
       if (emailMatch && passMatch) {
         //TODO: Rreplace the below with server side login using the service_role_key
-        const { data,  error } = await supabase.auth.signUp({
-          email: email,
-          password: password,
-          options: {
-            data: {
-              user_role:role
-            }
-          }
-        })
+        
 
         if (error) { throw error }
 
