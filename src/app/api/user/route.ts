@@ -37,7 +37,7 @@ export async function POST(req: NextRequest):Promise<NextResponse> {
 
 /**
  * Route that retrieves the current users information from the DB
- * @param request
+ * @param req
  * @method GET
  * @description retrieves the user with a current active session
  *              
@@ -52,7 +52,7 @@ export async function GET(req: NextRequest):Promise<NextResponse> {
             throw new Error("No user found")
         }
 
-        return NextResponse.json({ user }, { status: 200 })
+        return NextResponse.json(user, { status: 200 })
     } catch (err) {
         return NextResponse.json({ message: err.message }, { status: 400 })
     }
