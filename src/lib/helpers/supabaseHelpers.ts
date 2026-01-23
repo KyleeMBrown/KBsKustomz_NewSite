@@ -1,10 +1,11 @@
 /**
+ * @file supabaseHelpers.ts
  * @author Kylee Brown
  * @date 01/21/26
  * @description File to hold all SUPABASE helpers
  */
 
-import { User } from "./types/Types";
+import { User } from "../types/Types";
 
 /********************************************************************/
 /**************************** USER HELPERS **************************/

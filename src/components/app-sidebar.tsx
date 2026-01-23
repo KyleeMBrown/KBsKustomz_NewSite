@@ -1,13 +1,13 @@
-import * as React from "react"
-import {Minus, Plus } from "lucide-react"
+import * as React from "react";
+import { Minus, Plus } from "lucide-react";
 
-import { SearchForm } from "@/components/search-form"
+import { SearchForm } from "@/Components/search-form";
 
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+} from "@/Components/ui/collapsible";
 import {
   Sidebar,
   SidebarContent,
@@ -20,9 +20,12 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/Components/ui/sidebar";
 
-import LogoutButton from "./LogoutButton"
+import LogoutButton from "./LogoutButton";
+import { useState } from "react";
+import Spinner from "./Spinner";
+import { AppSidebarProps } from "@/Lib/types/Types";
 
 // This is sample data.
 const data = {
@@ -38,10 +41,10 @@ const data = {
         {
           title: "Manage",
           url: "/dashboard/images/manage",
-        }
+        },
       ],
     },
-    
+
     {
       title: "Users",
       url: "#",
@@ -53,7 +56,7 @@ const data = {
         {
           title: "Manage Users",
           url: "#",
-        }
+        },
       ],
     },
     {
@@ -63,7 +66,7 @@ const data = {
         {
           title: "General",
           url: "#",
-        }
+        },
       ],
     },
     {
@@ -72,29 +75,33 @@ const data = {
       items: [
         {
           title: "General",
-          url: "#"
-        }
+          url: "#",
+        },
       ],
-    }
+    },
   ],
-}
+};
 
-
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-
+export function AppSidebar({ user, ...props }: AppSidebarProps) {
   return (
-    <Sidebar {...props} className="bg-amber-950" >
+    <Sidebar {...props} className="bg-amber-950">
       <SidebarHeader className="bg-amber-950 text-white">
-        <SidebarMenu >
+        <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <div>
-              <a href="/dashboard" className="cursor-pointer">
-                <img alt="KB's Kustomz Logo" src="/images/logo.png" className="size-10" />
-              </a>
+                <a href="/dashboard" className="cursor-pointer">
+                  <img
+                    alt="KB's Kustomz Logo"
+                    src="/images/logo.png"
+                    className="size-10"
+                  />
+                </a>
                 <div className="flex flex-col gap-0.5 leading-none">
                   <span className="font-medium">KB's Kustomz Dashboard</span>
-                  <span className="">v1.0.0</span>
+                  <span className="">
+                    v1.0.0 - {user ? user?.email : <Spinner color="white" />}
+                  </span>
                 </div>
               </div>
             </SidebarMenuButton>
@@ -108,7 +115,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             {data.navMain.map((item, index) => (
               <Collapsible
                 key={item.title}
-                defaultOpen={index===0}
+                defaultOpen={index === 0}
                 className="group/collapsible"
               >
                 <SidebarMenuItem>
@@ -124,11 +131,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       <SidebarMenuSub>
                         {item.items.map((item) => (
                           <SidebarMenuSubItem key={item.title}>
-                            <SidebarMenuSubButton
-                              asChild
-                              isActive={null}
-                            >
-                              <a className="text-white" href={item.url}>{item.title}</a>
+                            <SidebarMenuSubButton asChild isActive={null}>
+                              <a className="text-white" href={item.url}>
+                                {item.title}
+                              </a>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
                         ))}
@@ -142,7 +148,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarGroup>
       </SidebarContent>
       <SidebarRail />
-     <LogoutButton />
+      <LogoutButton />
     </Sidebar>
-  )
+  );
 }

@@ -1,4 +1,5 @@
 /**
+ * @file client.ts
  * @author Kylee Brown
  * @date 01/22/26
  * @description File that holds the function to create a browser client 

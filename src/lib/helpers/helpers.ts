@@ -1,6 +1,7 @@
 /**
- * Author: Kylee Brown
- * Description: File to hold all helper functions
+ * @file helpers.ts
+ * @author Kylee Brown
+ * @description File to hold all helper functions
  */
 
 

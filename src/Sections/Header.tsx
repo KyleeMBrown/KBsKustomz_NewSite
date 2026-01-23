@@ -1,18 +1,14 @@
-"use client"
+"use client";
 import Link from "next/link";
-import Navbar from "../components/Navbar";
+import Navbar from "../Components/Navbar";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-
+import { cn } from "@/Styling configs/utils";
 
 const Header = () => {
   const pathname = usePathname();
-  const protectedRoutes = ["/auth", "/dashboard"]
-  const hideHeader = protectedRoutes.some(path =>
-    pathname.startsWith(path)
-  )
-  
+  const protectedRoutes = ["/auth", "/dashboard"];
+  const hideHeader = protectedRoutes.some((path) => pathname.startsWith(path));
 
   return (
     <header className={cn(hideHeader && "hidden")}>
@@ -35,7 +31,7 @@ const Header = () => {
       </div>
       {/* Header Bottom -> Navigation Bar */}
       <Navbar />
-      
+
       {/* LOGO */}
       <Link href="/">
         <Image
