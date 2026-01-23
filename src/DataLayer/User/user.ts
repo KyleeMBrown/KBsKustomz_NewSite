@@ -12,12 +12,11 @@
  */
 
 export const getUser = async () => {
-    const response = await fetch("/api/user", {
+    const response = await fetch(`${process.env.LOCAL_API_URL}/api/user`, {
       method: "GET",
     });
   
     const user = await response.json();
-  
 
     return user;
   };

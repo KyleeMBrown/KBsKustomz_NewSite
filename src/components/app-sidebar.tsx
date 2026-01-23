@@ -100,7 +100,7 @@ export function AppSidebar({ user, ...props }: AppSidebarProps) {
                 <div className="flex flex-col gap-0.5 leading-none">
                   <span className="font-medium">KB's Kustomz Dashboard</span>
                   <span className="">
-                    v1.0.0 - {user ? user?.email : <Spinner color="white" />}
+                    v1.0.0 - {user ? user?.email : <Spinner color="white" className="bg-white" />}
                   </span>
                 </div>
               </div>

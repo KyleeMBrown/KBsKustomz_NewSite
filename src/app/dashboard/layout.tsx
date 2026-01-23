@@ -7,6 +7,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/Components/ui/sidebar";
+import { getUser } from "@/DataLayer/User/user";
 
 export const metadata = {
   robots: {
@@ -15,13 +16,13 @@ export const metadata = {
   },
 };
 
-//const user = await getUser();
+const user = await getUser();
 
 export default function RootLayout({ children }) {
 
   return (
     <SidebarProvider>
-      <AppSidebar user={null} />
+      <AppSidebar user={user} />
       <SidebarInset>
         <header className="flex h-[8vh] shrink-0 bg-amber-950 items-center gap-2 border-b px-4">
           <SidebarTrigger className="-ml-1 text-white" />
