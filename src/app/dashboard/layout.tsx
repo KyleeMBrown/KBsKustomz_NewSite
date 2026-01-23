@@ -1,36 +1,38 @@
-import DynamicBreadcrumbs from "@/components/DynamicBreadcrumbs"
-import { AppSidebar } from "@/components/app-sidebar"
+import DynamicBreadcrumbs from "@/Components/DynamicBreadcrumbs";
+import { AppSidebar } from "@/Components/app-sidebar";
 
-import { Separator } from "@/components/ui/separator"
+import { Separator } from "@/Components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar"
+} from "@/Components/ui/sidebar";
 
 export const metadata = {
-    robots: {
-      index: false,
-      follow: false,
-    },
-}  
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
+
+const user = await getUser();
 
 export default function RootLayout({ children }) {
 
-    return (
-      <SidebarProvider>
-          <AppSidebar />
-          <SidebarInset>
-            <header className="flex h-[8vh] shrink-0 bg-amber-950 items-center gap-2 border-b px-4">
-              <SidebarTrigger className="-ml-1 text-white" />
-              <Separator
-                orientation="vertical"
-                className="mr-2 data-[orientation=vertical]:h-4"
-              />
-             <DynamicBreadcrumbs/>
-          </header>
-          
-            {/*<iv className="flex flex-1 flex-col gap-4 p-4">
+  return (
+    <SidebarProvider>
+      <AppSidebar user={user} />
+      <SidebarInset>
+        <header className="flex h-[8vh] shrink-0 bg-amber-950 items-center gap-2 border-b px-4">
+          <SidebarTrigger className="-ml-1 text-white" />
+          <Separator
+            orientation="vertical"
+            className="mr-2 data-[orientation=vertical]:h-4"
+          />
+          <DynamicBreadcrumbs />
+        </header>
+
+        {/*<iv className="flex flex-1 flex-col gap-4 p-4">
               <div className="grid auto-rows-min gap-4 md:grid-cols-3">
                 <div className="bg-muted/50 aspect-video rounded-xl" />
                 <div className="bg-muted/50 aspect-video rounded-xl" />
@@ -38,9 +40,8 @@ export default function RootLayout({ children }) {
               </div>
               <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
             </div>*/}
-            {children}
-          </SidebarInset>
-        </SidebarProvider>
-    )
-  }
-  
+        {children}
+      </SidebarInset>
+    </SidebarProvider>
+  );
+}

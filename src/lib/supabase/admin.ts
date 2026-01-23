@@ -1,4 +1,5 @@
 /**
+ * @file admin.ts
  * @author Kylee Brown
  * @date 01/22/26
  * @description File that holds the function to create an admin client for 

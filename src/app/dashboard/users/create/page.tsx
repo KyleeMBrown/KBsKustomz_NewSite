@@ -1,4 +1,4 @@
-import CreateUser from "@/components/CreateAUser"
+import CreateUser from "@/Components/CreateAUser";
 
 const page = () => {
   return (
@@ -7,12 +7,10 @@ const page = () => {
         <div className="w-[60%] max-[768px]:w-full h-full">
           <CreateUser />
         </div>
-        <div className="w-[40%] max-[768px]:hidden h-full bg-[url('/images/pexels-matreding-18617935.jpg')] bg-center bg-cover">
-  
-        </div>
+        <div className="w-[40%] max-[768px]:hidden h-full bg-[url('/images/pexels-matreding-18617935.jpg')] bg-center bg-cover"></div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

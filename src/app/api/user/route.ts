@@ -3,9 +3,10 @@
 /********************************************************************/
 
 import { NextRequest, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
-import { User } from "@/lib/types/Types";
-import { createUser } from "@/lib/supabaseHelpers";
+import { createAdminClient } from "@/Lib/supabase/admin";
+import { User } from "@/Lib/types/Types";
+import { createUser } from "@/Lib/helpers/supabaseHelpers";
+import { createClient } from "@/Lib/supabase/server";
 
 /**
  * Route that creates a user in the Database
@@ -32,4 +33,27 @@ export async function POST(req: NextRequest):Promise<NextResponse> {
         return NextResponse.json({ message: err.message }, { status: 400 })
         
     }    
+}
+
+/**
+ * Route that retrieves the current users information from the DB
+ * @param request
+ * @method GET
+ * @description retrieves the user with a current active session
+ *              
+ */
+
+export async function GET(req: NextRequest):Promise<NextResponse> {
+    try { 
+        const supabase = await createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        
+        if (!user) {
+            throw new Error("No user found")
+        }
+
+        return NextResponse.json({ user }, { status: 200 })
+    } catch (err) {
+        return NextResponse.json({ message: err.message }, { status: 400 })
+    }
 }

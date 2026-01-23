@@ -1,6 +1,16 @@
+/**
+ * @file lib/supabase/proxy.ts
+ * @author Kylee Brown
+ * @description Supabase proxy (middleware) that handles session updates via cookies 
+ * and enforces Security Checks like whitelisting and checking if a user object
+ * available
+ * 
+ */
+
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
-import { whitelistColumns } from '../helpers'
+import { whitelistColumns } from '../helpers/helpers'
+import { JwtPayload } from '@supabase/supabase-js'
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -36,9 +46,9 @@ export async function updateSession(request: NextRequest) {
   // with the Supabase client, your users may be randomly logged out.
   const { data } = await supabase.auth.getClaims()
 
-  const user = data?.claims
-  const role: string = user?.user_metadata?.user_role
-  const email: string = user?.email
+  const user:JwtPayload = data?.claims // the user object
+  const role: string = user?.user_metadata?.user_role // the role the user was assigned
+  const email: string = user?.email // the user email
 
     // TODO: uncomment out the below 
   if (!user && request.nextUrl.pathname.startsWith('/dashboard')) {

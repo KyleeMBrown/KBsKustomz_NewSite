@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { put } from '@vercel/blob';
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/Lib/supabase/server";
  
 
 
