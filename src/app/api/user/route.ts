@@ -1,10 +1,11 @@
-/**
- * Routes that handle users of the Dashboard
- */
+/********************************************************************/
+/************* Routes that handle users of the Dashboard ************/
+/********************************************************************/
 
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { User } from "@/lib/types/Types";
+import { createUser } from "@/lib/supabaseHelpers";
 
 /**
  * Route that creates a user in the Database
@@ -18,14 +19,17 @@ export async function POST(req: NextRequest):Promise<NextResponse> {
         // request the user object from the client
         const user:User = await req.json();
         // create a server client to handle user creation
-        const supabase = await createClient();
+        const supabase = await createAdminClient();
 
-        
-
+        // use the helper fucntion to create a user
+        await createUser(supabase, user);
         // return success message and staus code
         return NextResponse.json({message:"User Successfully created!"}, {status:200})
     } catch (err) {
+        // log error to the console
+        console.error(err.message)
         // return an error message and status code
-        return NextResponse.json({message:err.message}, {status:400})
+        return NextResponse.json({ message: err.message }, { status: 400 })
+        
     }    
 }

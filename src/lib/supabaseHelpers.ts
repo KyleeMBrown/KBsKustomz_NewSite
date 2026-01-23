@@ -4,8 +4,6 @@
  * @description File to hold all SUPABASE helpers
  */
 
-import type { SupabaseClient } from "@supabase/supabase-js";
-import { Database } from "./types/supabaseKbs";
 import { User } from "./types/Types";
 
 /********************************************************************/
@@ -15,22 +13,20 @@ import { User } from "./types/Types";
 /**
  * Helper function to create a user in the Database
  * @param supabase - the client used to handle user signup
- * @param {User} - the user object request from the client
+ * @param user {User} - the user object requested
  * @description The fucntion creates a user in the auth databse 
  *              the inserts a user in to the users table
+ * @throws errors produced by the supabase API
  */
 
-export const createUser = async (supabase, user: User) => {
+export const createUser = async (supabase:any, user:User) => {
     try {
         // sign up the user to the DB using the requested information
-        const { data, error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.admin.createUser({
             email: user.email,
+            email_confirm:true,
             password: user.password,
-            options: {
-                data: {
-                    user_role: user.role
-                }
-            }
+            user_metadata: { user_role: user.role }
         })
    
         // if there is an error creating the user
@@ -38,9 +34,26 @@ export const createUser = async (supabase, user: User) => {
         if (error) { throw error }
     
         // insert the user into the users table
-        const { data:response, error:err } = await supabase
-    } catch (err) {
         
+        const { data:res, error:err } = await supabase
+        .from('users')
+        .insert([
+            {
+                id: data?.user?.id,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email,
+                role: user.role,
+                created_by: user.created_by
+            },
+        ])
+        .select()
+        .single()
+        
+        if (err) { throw err }
+        
+    } catch (err) {
+        throw err
     }
     
 
