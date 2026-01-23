@@ -9,13 +9,11 @@ import { Button } from "./ui/button";
 import { Dispatch, SetStateAction, useState } from "react";
 import { cn } from "@/Styling configs/utils";
 import DropDownSelect from "./MultiSelect";
-import { createClient } from "@/Lib/supabase/client";
+import { handleCreateUser, getUser } from "@/DataLayer/User/user";
 import ModalPopup from "./ModalPopup";
 import { AuthApiError } from "@supabase/supabase-js";
 import Spinner from "./Spinner";
 import SuccessfulSubmission from "./SuccessfulSubmission";
-
-const supabase = createClient();
 
 const CreateUser = () => {
   const [firstName, setFirstName]: [string, Dispatch<SetStateAction<string>>] =
@@ -69,27 +67,25 @@ const CreateUser = () => {
 
       // if the email and password have been successfully confirmed
       if (emailMatch && passMatch) {
-        // request the user from api
-        const res = await fetch(`/api/user`, {
-          method: "GET",
-        });
-        // unpack the user object from the response
-        const user = await res.json();
 
-        // send a request to create a user
+        // request the user from api
+        const user = await getUser();
+
+        const userObj = {
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+          password: password,
+          role: role,
+          created_by: user?.email,
+        }
+    
+       // send a request to create a user
         const response = await fetch(`/api/user`, {
           method: "POST",
-          body: JSON.stringify({
-            first_name: firstName,
-            last_name: lastName,
-            email: email,
-            password: password,
-            role: role,
-            created_by: user?.email,
-          }),
+          body: JSON.stringify(userObj),
         });
 
-        // get the response as json
         const data = await response.json();
 
         // if the response status is 400
@@ -99,20 +95,29 @@ const CreateUser = () => {
 
         //log the response to the console
         console.log(data.message);
+
         // set the success message
         setSuccessMessage(data.message);
 
-        //TODO: Insert user into table => /user
+        // log the success  message
         console.log("User successfully created");
+
+        // trigger success page
         setSuccess(true);
+        //set loading to false
         setLoading(false);
       } else {
+        // throw password mismatch error
         throw new Error("Email or Password Does not match");
       }
     } catch (err) {
+      // set loading to false
       setLoading(false);
+      // trigger error modal
       setOpen(true);
-      console.log(err);
+      // log the error to the ocnsole
+      console.error(err);
+      // set the error object
       setError(err);
     }
   };

@@ -23,7 +23,6 @@ import {
 } from "@/Components/ui/sidebar";
 
 import LogoutButton from "./LogoutButton";
-import { useState } from "react";
 import Spinner from "./Spinner";
 import { AppSidebarProps } from "@/Lib/types/Types";
 
@@ -83,6 +82,7 @@ const data = {
 };
 
 export function AppSidebar({ user, ...props }: AppSidebarProps) {
+  
   return (
     <Sidebar {...props} className="bg-amber-950">
       <SidebarHeader className="bg-amber-950 text-white">
