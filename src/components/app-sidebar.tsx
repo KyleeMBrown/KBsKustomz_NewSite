@@ -82,7 +82,7 @@ const data = {
 };
 
 export function AppSidebar({ user, ...props }: AppSidebarProps) {
-  
+  console.log(user)
   return (
     <Sidebar {...props} className="bg-amber-950">
       <SidebarHeader className="bg-amber-950 text-white">
@@ -100,7 +100,7 @@ export function AppSidebar({ user, ...props }: AppSidebarProps) {
                 <div className="flex flex-col gap-0.5 leading-none">
                   <span className="font-medium">KB's Kustomz Dashboard</span>
                   <span className="">
-                    v1.0.0 - {user ? user?.email : <Spinner color="white" className="bg-white" />}
+                    v1.0.0 - {user ? user?.email : <Spinner color="white"/>}
                   </span>
                 </div>
               </div>
