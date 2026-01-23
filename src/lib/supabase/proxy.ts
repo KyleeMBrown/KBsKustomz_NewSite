@@ -1,5 +1,6 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import { whitelistColumns } from '../helpers'
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
@@ -36,9 +37,8 @@ export async function updateSession(request: NextRequest) {
   const { data } = await supabase.auth.getClaims()
 
   const user = data?.claims
-  const userId:string = data?.claims?.sub
-  const role:string= user?.user_metadata?.user_role
-  const email:string = user?.email
+  const role: string = user?.user_metadata?.user_role
+  const email: string = user?.email
 
     // TODO: uncomment out the below 
   if (!user && request.nextUrl.pathname.startsWith('/dashboard')) {
@@ -49,13 +49,40 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
-  if ((request.nextUrl.pathname.startsWith('/dashboard/users/create') && (role !== "ADMIN") && (email !==process.env.MASTER_EMAIL))) {
-    //TODO: make sure only ADMIN user roles can create another user
+  /*
+  *  RBA SECURITY CHECK on route create a user tab in dashboard
+ */
+
+  // if the user is trying to request the create a user page and is NOT ADMIN role and is not the MASTER_EMAIL
+  if (request.nextUrl.pathname.startsWith('/dashboard/users/create') && role !== "ADMIN") {
+    // redirect the user to the unauthorized page
     const url = request.nextUrl.clone()
     url.pathname = '/dashboard/unauthorized'
     console.log("not authorized")
-    console.log(email)
     return NextResponse.redirect(url)
+  }
+
+  /*
+  *  Whitelist column SECURITY CHECK on route create a user tab in dashboard
+ */
+  
+  // if the user is trying to create a user using the local api (/api)
+  if (request.nextUrl.pathname.startsWith('/api/user')) {
+    // switch statement for request methods
+    switch (request.method) {
+      // if the method is POST
+      case "POST":
+        // request the data
+        const data = await request.json();
+        //create the array of allowed coluymns
+        const allowed: string[] = ["first_name", "last_name", "email", "password", "role", "created_by"]
+
+        // if the requested columns are NOT allowed
+        if (!whitelistColumns(allowed, data)) {
+          // return an error message with code:400
+         return NextResponse.json({message:"Error unauthorized"}, {status: 400})
+        }
+    }
   }
   // IMPORTANT: You *must* return the supabaseResponse object as it is. If you're
   // creating a new response object with NextResponse.next() make sure to:

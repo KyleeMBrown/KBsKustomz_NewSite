@@ -32,7 +32,8 @@ const CreateUser = () => {
   const [error, setError]: [AuthApiError, Dispatch<SetStateAction<AuthApiError>>] = useState<AuthApiError>();
   
   const [loading, setLoading]: [boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(false)
-  const [success, setSuccess]:[boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(false)
+  const [success, setSuccess]: [boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(false)
+  const [successMessage, setSuccessMessage]: [string, Dispatch<SetStateAction<string>>] = useState<string>("");
 
   const formFilled: boolean = (lastName && email && confirmEmail && password && confirmPass && role) != ""
   const emailMatch: boolean = (email === confirmEmail) && (email && confirmEmail != "")
@@ -43,10 +44,32 @@ const CreateUser = () => {
     try {
       setLoading(true)
       if (emailMatch && passMatch) {
-        //TODO: Rreplace the below with server side login using the service_role_key
-        
+        const { data: { user } } = await supabase.auth.getUser()
+        //TODO: Rreplace the below with server side signup
+        const response = await fetch(`/api/user`, {
+          method: "POST",
+          body:  JSON.stringify({
+            first_name: firstName,
+            last_name: lastName,
+            email: email, 
+            password: password,
+            role: role,
+            created_by: user?.email
+          })
+        })
 
-        if (error) { throw error }
+        // get the response as json
+        const data = await response.json();
+
+        // if the response status is 400
+        if (response.status === 400) {
+          throw new Error(data.message)
+        }
+        
+        //log the response to the console
+        console.log(data.message);
+        // set the success message
+        setSuccessMessage(data.message);
 
         //TODO: Insert user into table => /user 
         console.log("User successfully created")
@@ -105,20 +128,20 @@ const CreateUser = () => {
             </form>
         </div>) :
         <div className="flex items-center justify-center h-full w-full"><Spinner color="white" className="w-10" /></div>}
-      {success ? <SuccessfulSubmission message="User has beem successfully created!" successURL='/dashboard/users/create'/> : null}
+      {success ? <SuccessfulSubmission message={successMessage||"User has beem successfully created!"} successURL='/dashboard/users/create'/> : null}
       <ModalPopup
         open={open}
         setOpen={setOpen}
         title={<span className="text-red-500">ERROR</span>}
         customClose={<Button className="cursor-pointer text-white  hover:bg-white hover:text-gray-400" variant="outline">Close</Button>}
         description={
-          <div className="text-left"><br></br>{error?.message} . . . please try again
+          <span className="text-left"><br></br>{error?.message} . . . please try again
             <br></br>
-            <div className="text-xs text-gray-500 text-left">
+            {error?.code && error?.status && <span className="text-xs text-gray-500 text-left">
               <br></br>Supabase Code [{error?.code}]
               <br></br>Status Code [{error?.status}]
-            </div>
-          </div>}
+            </span>}
+          </span>}
         className="z-999 bg-[#00000078] text-white backdrop-blur-lg border-none"
         />
     </div>

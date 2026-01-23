@@ -19,17 +19,14 @@ import { User } from "./types/Types";
  * @throws errors produced by the supabase API
  */
 
-export const createUser = async (supabase:any, user: User) => {
+export const createUser = async (supabase:any, user:User) => {
     try {
         // sign up the user to the DB using the requested information
-        const { data, error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.admin.createUser({
             email: user.email,
+            email_confirm:true,
             password: user.password,
-            options: {
-                data: {
-                    user_role: user.role
-                }
-            }
+            user_metadata: { user_role: user.role }
         })
    
         // if there is an error creating the user
@@ -41,7 +38,14 @@ export const createUser = async (supabase:any, user: User) => {
         const { data:res, error:err } = await supabase
         .from('users')
         .insert([
-        { first_name: user.first_name, last_name: user.last_name },
+            {
+                id: data?.user?.id,
+                first_name: user.first_name,
+                last_name: user.last_name,
+                email: user.email,
+                role: user.role,
+                created_by: user.created_by
+            },
         ])
         .select()
         .single()

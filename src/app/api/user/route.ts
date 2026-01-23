@@ -3,7 +3,7 @@
 /********************************************************************/
 
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { User } from "@/lib/types/Types";
 import { createUser } from "@/lib/supabaseHelpers";
 
@@ -19,11 +19,10 @@ export async function POST(req: NextRequest):Promise<NextResponse> {
         // request the user object from the client
         const user:User = await req.json();
         // create a server client to handle user creation
-        const supabase = await createClient();
+        const supabase = await createAdminClient();
 
         // use the helper fucntion to create a user
         await createUser(supabase, user);
-
         // return success message and staus code
         return NextResponse.json({message:"User Successfully created!"}, {status:200})
     } catch (err) {

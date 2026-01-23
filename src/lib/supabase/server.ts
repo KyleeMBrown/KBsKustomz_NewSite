@@ -1,4 +1,13 @@
 import { createServerClient } from '@supabase/ssr'
+/**
+ * @author Kylee Brown
+ * @date 01/22/26
+ * @description File that holds the function to create a server client 
+ *              for any server side supabase operations. 
+ *              - Obeys RLS
+ *              - Securely stores user cookies
+ */
+
 import { cookies } from 'next/headers'
 
 export async function createClient() {
