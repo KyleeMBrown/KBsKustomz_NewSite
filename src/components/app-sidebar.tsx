@@ -1,8 +1,7 @@
 import * as React from "react";
 import { Minus, Plus } from "lucide-react";
-
 import { SearchForm } from "@/Components/search-form";
-
+import Image from "next/image";
 import {
   Collapsible,
   CollapsibleContent,
@@ -23,8 +22,9 @@ import {
 } from "@/Components/ui/sidebar";
 
 import LogoutButton from "./LogoutButton";
-import Spinner from "./Spinner";
 import { AppSidebarProps } from "@/Lib/types/Types";
+import { Spinner } from "./ui/spinner";
+import { Badge } from "./ui/badge";
 
 // This is sample data.
 const data = {
@@ -91,17 +91,14 @@ export function AppSidebar({ user, ...props }: AppSidebarProps) {
             <SidebarMenuButton size="lg" asChild>
               <div>
                 <a href="/dashboard" className="cursor-pointer">
-                  <img
-                    alt="KB's Kustomz Logo"
-                    src="/images/logo.png"
-                    className="size-10"
-                  />
+                  <Image width={80} height={80} src="/images/logo.png" alt="KB's Kustomz Logo" fetchPriority="high"/>
                 </a>
-                <div className="flex flex-col gap-0.5 leading-none">
-                  <span className="font-medium">KB's Kustomz Dashboard</span>
-                  <span className="">
-                    v1.0.0 - {user ? user?.email : <Spinner color="white" />}
-                  </span>
+                <div className="flex flex-col gap-1 leading-none w-full">
+                  <h2 className="font-medium text-[14px] w-full">KB's Kustomz Dashboard</h2>
+                  <p className="">
+                    v1.0.0
+                  </p>
+                 
                 </div>
               </div>
             </SidebarMenuButton>
@@ -148,7 +145,12 @@ export function AppSidebar({ user, ...props }: AppSidebarProps) {
         </SidebarGroup>
       </SidebarContent>
       <SidebarRail />
-      <LogoutButton />
+      <LogoutButton user={user} />
+      {/*user ?
+        <div className="flex gap-1 items-center justify-center">
+        <Badge className="bg-[#240d01] mb-2"><span className="text-[0.6em] text-white font-light tracking-wider">{user?.user_metadata?.user_role}</span></Badge>
+        <h4 className="text-white font-extralight opacity-25 text-xs text-center p-2 pt-0">{user?.email}</h4>
+                        </div>: <center className="pb-2 pt-0"><Spinner color="gray" /></center>*/}
     </Sidebar>
   );
 }

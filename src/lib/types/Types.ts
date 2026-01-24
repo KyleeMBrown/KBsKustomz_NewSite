@@ -1,6 +1,7 @@
 import { Sidebar } from "@/Components/ui/sidebar";
 import { Database } from "./supabaseKbs";
 import React from 'react'
+import { AuthUser, UserResponse } from "@supabase/supabase-js";
 
 export type User =
     {
@@ -13,5 +14,5 @@ export type User =
     }
 
 export type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {
-        user: {email:string}
+        user: AuthUser
 }
