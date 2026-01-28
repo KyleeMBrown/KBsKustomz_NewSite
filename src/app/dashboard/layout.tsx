@@ -9,7 +9,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/Components/ui/sidebar";
-import { getUser } from "@/DataLayer/User/user";
 
 export const metadata = {
   robots: {
