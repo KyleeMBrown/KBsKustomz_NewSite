@@ -1,4 +1,6 @@
 export const dynamic = "force-dynamic"// NO CACHING
+export const revalidate = 0;// NO CACHING
+
 import DynamicBreadcrumbs from "@/Components/DynamicBreadcrumbs";
 import { AppSidebar } from "@/Components/app-sidebar";
 import { createClient } from "@/Lib/supabase/server";
