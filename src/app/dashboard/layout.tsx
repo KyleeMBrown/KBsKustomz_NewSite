@@ -1,5 +1,7 @@
+export const dynamic = "force-dynamic"// NO CACHING
 import DynamicBreadcrumbs from "@/Components/DynamicBreadcrumbs";
 import { AppSidebar } from "@/Components/app-sidebar";
+import { createClient } from "@/Lib/supabase/server";
 
 import { Separator } from "@/Components/ui/separator";
 import {
@@ -15,13 +17,14 @@ export const metadata = {
   },
 };
 
-//const user = await getUser();
-
+const supabase = await createClient();
+const { data: { user } } = await supabase.auth.getUser();
+//console.log(user)
 export default function RootLayout({ children }) {
 
   return (
     <SidebarProvider>
-      <AppSidebar user={null} />
+      <AppSidebar user={user} />
       <SidebarInset>
         <header className="flex h-[8vh] shrink-0 bg-amber-950 items-center gap-2 border-b px-4">
           <SidebarTrigger className="-ml-1 text-white" />

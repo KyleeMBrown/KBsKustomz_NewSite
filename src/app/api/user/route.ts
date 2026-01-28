@@ -48,7 +48,7 @@ export async function GET(req: NextRequest):Promise<NextResponse> {
         const supabase = await createClient();
         const { data: { user } } = await supabase.auth.getUser();
         
-        if (!user) {
+        if (user === null) {
             throw new Error("No user found")
         }
 

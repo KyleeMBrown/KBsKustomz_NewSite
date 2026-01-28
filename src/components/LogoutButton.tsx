@@ -5,7 +5,8 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { createClient } from "@/Lib/supabase/client";
 import { cn } from "@/Styling configs/utils";
 import { useRouter } from "next/navigation";
-
+import { Badge } from "./ui/badge";
+import { Spinner } from "./ui/spinner";
 /**
  * Logout Button Component
  * @returns a button the user uses to Logout of the Dashboard
@@ -14,7 +15,7 @@ import { useRouter } from "next/navigation";
 // create supabase client agent
 const supabase = createClient();
 
-const LogoutButton = (): React.ReactElement => {
+const LogoutButton = ({user}): React.ReactElement => {
   const [openLogout, setOpenLogout]: [
     boolean,
     Dispatch<SetStateAction<boolean>>
@@ -38,7 +39,7 @@ const LogoutButton = (): React.ReactElement => {
   };
   return (
     <>
-      <center className="pb-[1em] bg-amber-950">
+      <center className="bg-amber-950">
         <Button
           onClick={() => {
             setOpenLogout(true);
@@ -47,6 +48,18 @@ const LogoutButton = (): React.ReactElement => {
         >
           Log out
         </Button>
+   
+        {/* Fetch and display the current user role and email */}
+        {user ?
+        <div className="flex gap-0.5 mt-4 pb-1 items-center justify-center">
+            <Badge className="bg-[#240d01] mb-2">
+              <span className="text-[0.6em] text-white font-light tracking-wider">
+                {user?.user_metadata?.user_role}
+              </span>
+            </Badge>
+          <h4 className="text-white font-light opacity-45 text-xs text-center p-2 pt-0">{user?.email}</h4>
+        </div>
+          : <center className="pb-2 pt-0"><Spinner color="gray" /></center>}
       </center>
       <ModalPopup
         className="bg-black text-white"
