@@ -49,11 +49,17 @@ const LogoutButton = ({user}): React.ReactElement => {
           Log out
         </Button>
    
+        {/* Fetch and display the current user role and email */}
         {user ?
         <div className="flex gap-0.5 mt-4 pb-1 items-center justify-center">
-        <Badge className="bg-[#240d01] mb-2"><span className="text-[0.6em] text-white font-light tracking-wider">{user?.user_metadata?.user_role}</span></Badge>
-        <h4 className="text-white font-light opacity-45 text-xs text-center p-2 pt-0">{user?.email}</h4>
-      </div>: <center className="pb-2 pt-0"><Spinner color="gray" /></center>}
+            <Badge className="bg-[#240d01] mb-2">
+              <span className="text-[0.6em] text-white font-light tracking-wider">
+                {user?.user_metadata?.user_role}
+              </span>
+            </Badge>
+          <h4 className="text-white font-light opacity-45 text-xs text-center p-2 pt-0">{user?.email}</h4>
+        </div>
+          : <center className="pb-2 pt-0"><Spinner color="gray" /></center>}
       </center>
       <ModalPopup
         className="bg-black text-white"
