@@ -49,8 +49,7 @@ export async function updateSession(request: NextRequest) {
   const user:JwtPayload = data?.claims // the user object
   const role: string = user?.user_metadata?.user_role // the role the user was assigned
   const email: string = user?.email // the user email
-
-    // TODO: uncomment out the below 
+  
   if (!user && request.nextUrl.pathname.startsWith('/dashboard')) {
     // no user, potentially respond by redirecting the user to the login page
     const url = request.nextUrl.clone()
@@ -58,6 +57,7 @@ export async function updateSession(request: NextRequest) {
     console.log("not authorized")
     return NextResponse.redirect(url)
   }
+
 
   /*
   *  RBA SECURITY CHECK on route create a user tab in dashboard
@@ -70,6 +70,8 @@ export async function updateSession(request: NextRequest) {
     url.pathname = '/dashboard/unauthorized'
     console.log("not authorized")
     return NextResponse.redirect(url)
+  } else {
+
   }
 
   /*

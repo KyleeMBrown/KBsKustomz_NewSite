@@ -1,3 +1,4 @@
+
 "use client";
 import ModalPopup from "./ModalPopup";
 import { Button } from "./ui/button";
@@ -6,35 +7,60 @@ import { cn } from "@/Styling configs/utils";
 import { useRouter } from "next/navigation";
 import { Badge } from "./ui/badge";
 import { Spinner } from "./ui/spinner";
-import { logOut } from "@/Lib/helpers/signOutServerFunc";
+import { createClient } from "@/Lib/supabase/client";
 /**
  * Logout Button Component
+ * @author Kylee Brown
  * @returns a button the user uses to Logout of the Dashboard
+ * and displays the info of the current user (role, email)
  */
 
+// supabase client for handling logout on client
+const supabase = createClient();
 
 
-const LogoutButton = ({user}): React.ReactElement => {
+const LogoutButton = ({ user }): React.ReactElement => {
+  // handles logout modal state
   const [openLogout, setOpenLogout]: [
     boolean,
     Dispatch<SetStateAction<boolean>>
   ] = useState<boolean>(false);
+
+  // handles error message state
   const [errMessage, setErrMessage]: [
     string,
     Dispatch<SetStateAction<string>>
   ] = useState<string>(null);
+
+  // helps with refresh 
   const router = useRouter();
-  const handleLogOut = async () => {
+
+  /* Function to handle user logout */
+  const handleLogOut = async ():Promise<void> => {
     try {
-      await logOut();
+      // use supabase client to logout and destroy the session (default: GLOBAL logout)
+      const { error } = await supabase.auth.signOut(); 
+      // if error signing out
+      if (error) {
+        throw error;
+      }
+      // refresh the window (let the proxy do the rest)
       router.refresh();
     } catch (err) {
+      // set error message
+      setErrMessage(err.message)
+      //open the error modal
+      setOpenLogout(true)
+      // log the error to the console
       console.error(err);
+      
     }
   };
+
   return (
     <>
       <center className="bg-amber-950">
+        {/* logout Button */}
         <Button
           onClick={() => {
             setOpenLogout(true);
@@ -56,6 +82,8 @@ const LogoutButton = ({user}): React.ReactElement => {
         </div>
           : <center className="pb-2 pt-0"><Spinner color="gray" /></center>}
       </center>
+
+      {/* Modal Popup Component */}
       <ModalPopup
         className="bg-black text-white"
         open={openLogout}
