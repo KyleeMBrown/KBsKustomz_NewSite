@@ -34,26 +34,3 @@ export async function POST(req: NextRequest):Promise<NextResponse> {
         
     }    
 }
-
-/**
- * Route that retrieves the current users information from the DB
- * @param req
- * @method GET
- * @description retrieves the user with a current active session
- *              
- */
-
-export async function GET(req: NextRequest):Promise<NextResponse> {
-    try { 
-        const supabase = await createClient();
-        const { data: { user } } = await supabase.auth.getUser();
-        
-        if (user === null) {
-            throw new Error("No user found")
-        }
-
-        return NextResponse.json(user, { status: 200 })
-    } catch (err) {
-        return NextResponse.json({ message: err.message }, { status: 400 })
-    }
-}
