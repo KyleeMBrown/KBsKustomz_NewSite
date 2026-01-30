@@ -24,6 +24,12 @@ export default async function RootLayout({ children }) {
 
   // trying getClaims() instead
   const { data, error } = await supabase.auth.getClaims();
+
+  //if error retrieving user
+  if (error) {
+    // log to console for dev
+    console.log(error)
+  }
   const user:JwtPayload = data?.claims
   return (
     <SidebarProvider>
