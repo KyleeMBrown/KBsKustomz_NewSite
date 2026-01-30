@@ -1,4 +1,3 @@
-
 import DynamicBreadcrumbs from "@/Components/DynamicBreadcrumbs";
 import { AppSidebar } from "@/Components/app-sidebar";
 import { createClient } from "@/Lib/supabase/server";
@@ -18,13 +17,14 @@ export const metadata = {
   },
 };
 
-const supabase = await createClient();
-// trying getClaims() instead
-const { data, error } = await supabase.auth.getClaims()
-const user:JwtPayload = data?.claims
-//console.log(user)
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  // bug fix: create client needs to be inside component or else
+  // the api pulls stale users
+  const supabase = await createClient();
 
+  // trying getClaims() instead
+  const { data, error } = await supabase.auth.getClaims();
+  const user:JwtPayload = data?.claims
   return (
     <SidebarProvider>
       <AppSidebar user={user} />
