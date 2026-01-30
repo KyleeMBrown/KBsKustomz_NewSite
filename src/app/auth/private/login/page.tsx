@@ -1,7 +1,13 @@
+
+/**
+ * @route /auth/private/login
+ * File that serves the user login form
+ * @author Kylee Brown
+ */
+
 import { LoginForm } from "@/Components/LoginForm";
 
 export default function Page() {
-
   
   return (
     <div className="flex bg-[url('/images/rusticLoginBG.jpg')] bg-center bg-cover min-h-svh w-full items-center justify-center p-6 md:p-10">
