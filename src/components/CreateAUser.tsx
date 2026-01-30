@@ -9,7 +9,7 @@ import { Button } from "./ui/button";
 import { Dispatch, SetStateAction, useState } from "react";
 import { cn } from "@/Styling configs/utils";
 import DropDownSelect from "./MultiSelect";
-import { handleCreateUser, getUser } from "@/DataLayer/User/user";
+import { getUser } from "@/DataLayer/User/user";
 import ModalPopup from "./ModalPopup";
 import { AuthApiError } from "@supabase/supabase-js";
 import Spinner from "./Spinner";

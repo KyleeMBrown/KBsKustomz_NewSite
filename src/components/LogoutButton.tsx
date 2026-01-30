@@ -2,18 +2,17 @@
 import ModalPopup from "./ModalPopup";
 import { Button } from "./ui/button";
 import { Dispatch, SetStateAction, useState } from "react";
-import { createClient } from "@/Lib/supabase/client";
 import { cn } from "@/Styling configs/utils";
 import { useRouter } from "next/navigation";
 import { Badge } from "./ui/badge";
 import { Spinner } from "./ui/spinner";
+import { logOut } from "@/Lib/helpers/signOutServerFunc";
 /**
  * Logout Button Component
  * @returns a button the user uses to Logout of the Dashboard
  */
 
-// create supabase client agent
-const supabase = createClient();
+
 
 const LogoutButton = ({user}): React.ReactElement => {
   const [openLogout, setOpenLogout]: [
@@ -27,11 +26,7 @@ const LogoutButton = ({user}): React.ReactElement => {
   const router = useRouter();
   const handleLogOut = async () => {
     try {
-      const { error } = await supabase.auth.signOut();
-
-      if (error) {
-        throw error;
-      }
+      await logOut();
       router.refresh();
     } catch (err) {
       console.error(err);

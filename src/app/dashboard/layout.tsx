@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic"// NO CACHING
+
 import DynamicBreadcrumbs from "@/Components/DynamicBreadcrumbs";
 import { AppSidebar } from "@/Components/app-sidebar";
 import { createClient } from "@/Lib/supabase/server";
@@ -9,7 +9,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/Components/ui/sidebar";
-import { getUser } from "@/DataLayer/User/user";
+import { JwtPayload } from "@supabase/supabase-js";
 
 export const metadata = {
   robots: {
@@ -19,7 +19,8 @@ export const metadata = {
 };
 
 const supabase = await createClient();
-const { data: { user } } = await supabase.auth.getUser();
+const { data, error } = await supabase.auth.getClaims()
+const user:JwtPayload = data?.claims
 //console.log(user)
 export default function RootLayout({ children }) {
 

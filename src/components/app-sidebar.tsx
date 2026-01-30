@@ -1,4 +1,4 @@
-import * as React from "react";
+
 import { Minus, Plus } from "lucide-react";
 import { SearchForm } from "@/Components/search-form";
 import Image from "next/image";
@@ -22,9 +22,11 @@ import {
 } from "@/Components/ui/sidebar";
 
 import LogoutButton from "./LogoutButton";
-import { AppSidebarProps } from "@/Lib/types/Types";
-import { Spinner } from "./ui/spinner";
-import { Badge } from "./ui/badge";
+import { JwtPayload } from "@supabase/supabase-js";
+
+interface Props {
+  user: JwtPayload;
+}
 
 // This is sample data.
 const data = {
@@ -81,7 +83,7 @@ const data = {
   ],
 };
 
-export function AppSidebar({ user, ...props }: AppSidebarProps) {
+export function AppSidebar ({ user, ...props }: Props) {
   
   return (
     <Sidebar {...props} className="bg-amber-950">
