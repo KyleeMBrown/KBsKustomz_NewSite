@@ -3,6 +3,7 @@ import Image from 'next/image'
 /**
  * The Services page for KB's Kustomz
  * @description displays the services offered by KB's Kustomz
+ * @author Kylee Brown
  */
 
 const page = () => {
