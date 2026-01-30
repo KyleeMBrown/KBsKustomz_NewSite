@@ -19,6 +19,7 @@ export const metadata = {
 };
 
 const supabase = await createClient();
+// trying getClaims() instead
 const { data, error } = await supabase.auth.getClaims()
 const user:JwtPayload = data?.claims
 //console.log(user)
