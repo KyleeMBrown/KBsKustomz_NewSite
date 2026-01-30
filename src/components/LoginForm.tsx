@@ -22,12 +22,15 @@ import { useRouter } from "next/navigation";
 import ModalPopup from "./ModalPopup";
 import { AuthApiError } from "@supabase/supabase-js";
 
-const supabase = createClient();
 
-export function LoginForm({
+
+export function LoginForm ({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  // create the supabase browser client
+  const supabase = createClient();
+  // router to handle refresh
   const router = useRouter();
 
   const [email, setEmail]: [string, Dispatch<SetStateAction<string>>] =
