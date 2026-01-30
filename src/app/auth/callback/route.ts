@@ -1,3 +1,6 @@
+/********************************************************************/
+/************* Callback Func that handles Google Signup *************/
+/********************************************************************/
 import { NextResponse } from 'next/server'
 // The client you created from the Server-Side Auth instructions
 import { createClient } from '@/Lib/supabase/server'
