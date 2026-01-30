@@ -6,7 +6,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/Lib/supabase/admin";
 import { User } from "@/Lib/types/Types";
 import { createUser } from "@/Lib/helpers/supabaseHelpers";
-import { createClient } from "@/Lib/supabase/server";
 
 /**
  * Route that creates a user in the Database
