@@ -1,3 +1,4 @@
+
 "use client";
 import ModalPopup from "./ModalPopup";
 import { Button } from "./ui/button";
@@ -9,6 +10,7 @@ import { Spinner } from "./ui/spinner";
 import { createClient } from "@/Lib/supabase/client";
 /**
  * Logout Button Component
+ * @author Kylee Brown
  * @returns a button the user uses to Logout of the Dashboard
  * and displays the info of the current user (role, email)
  */
@@ -23,10 +25,14 @@ const LogoutButton = ({ user }): React.ReactElement => {
     boolean,
     Dispatch<SetStateAction<boolean>>
   ] = useState<boolean>(false);
+
+  // handles error message state
   const [errMessage, setErrMessage]: [
     string,
     Dispatch<SetStateAction<string>>
   ] = useState<string>(null);
+
+  // helps with refresh 
   const router = useRouter();
 
   /* Function to handle user logout */
