@@ -1,4 +1,11 @@
 "use client";
+
+/**
+ * @route /dashboard/images/upload
+ * Page used to upload new images to the website
+ * @author Kylee Brown
+ */
+
 import { useDropzone } from "react-dropzone";
 import { useCallback, useState, Dispatch, SetStateAction } from "react";
 import { cn } from "@/Styling configs/utils";

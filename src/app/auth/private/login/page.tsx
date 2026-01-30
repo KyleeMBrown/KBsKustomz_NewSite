@@ -1,4 +1,3 @@
-
 /**
  * @route /auth/private/login
  * File that serves the user login form
