@@ -1,6 +1,5 @@
 import DynamicBreadcrumbs from "@/Components/DynamicBreadcrumbs";
 import { AppSidebar } from "@/Components/app-sidebar";
-import { createClient } from "@/Lib/supabase/server";
 
 import { Separator } from "@/Components/ui/separator";
 import {
@@ -20,6 +19,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   try {
+    
     // use Server func getUser to retrieve the current user
     const user = await getUser();
 

@@ -103,7 +103,7 @@ export function LoginForm ({
         provider: "google",
         options: {
           // redirect to callback func
-          redirectTo: `http://localhost:3000/auth/callback?next=/dashboard`,
+          redirectTo: `http://localhost:3000/api/auth/callback?next=/dashboard`,
         },
       });
 
