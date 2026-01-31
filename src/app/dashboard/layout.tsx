@@ -9,6 +9,7 @@ import {
   SidebarTrigger,
 } from "@/Components/ui/sidebar";
 import { JwtPayload } from "@supabase/supabase-js";
+import { getUser } from "@/DataLayer/User/user";
 
 export const metadata = {
   robots: {
@@ -18,33 +19,24 @@ export const metadata = {
 };
 
 export default async function RootLayout({ children }) {
-  // bug fix: create client needs to be inside component or else
-  // the api pulls stale users
-  const supabase = await createClient();
+  try {
+    // use Server func getUser to retrieve the current user
+    const user = await getUser();
 
-  // trying getClaims() instead
-  const { data, error } = await supabase.auth.getClaims();
+    return (
+      <SidebarProvider>
+        <AppSidebar user={user} />
+        <SidebarInset>
+          <header className="flex h-[8vh] shrink-0 bg-amber-950 items-center gap-2 border-b px-4">
+            <SidebarTrigger className="-ml-1 text-white" />
+            <Separator
+              orientation="vertical"
+              className="mr-2 data-[orientation=vertical]:h-4"
+            />
+            <DynamicBreadcrumbs />
+          </header>
 
-  //if error retrieving user
-  if (error) {
-    // log to console for dev
-    console.log(error)
-  }
-  const user:JwtPayload = data?.claims
-  return (
-    <SidebarProvider>
-      <AppSidebar user={user} />
-      <SidebarInset>
-        <header className="flex h-[8vh] shrink-0 bg-amber-950 items-center gap-2 border-b px-4">
-          <SidebarTrigger className="-ml-1 text-white" />
-          <Separator
-            orientation="vertical"
-            className="mr-2 data-[orientation=vertical]:h-4"
-          />
-          <DynamicBreadcrumbs />
-        </header>
-
-        {/*<iv className="flex flex-1 flex-col gap-4 p-4">
+          {/*<iv className="flex flex-1 flex-col gap-4 p-4">
               <div className="grid auto-rows-min gap-4 md:grid-cols-3">
                 <div className="bg-muted/50 aspect-video rounded-xl" />
                 <div className="bg-muted/50 aspect-video rounded-xl" />
@@ -52,8 +44,11 @@ export default async function RootLayout({ children }) {
               </div>
               <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
             </div>*/}
-        {children}
-      </SidebarInset>
-    </SidebarProvider>
-  );
+          {children}
+        </SidebarInset>
+      </SidebarProvider>
+    );
+  } catch (error) {
+    console.log(error)
+  }
 }

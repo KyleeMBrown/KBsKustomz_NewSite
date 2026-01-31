@@ -5,6 +5,9 @@
  *
  */
 
+import { createClient } from "@/Lib/supabase/server";
+import { JwtPayload } from "@supabase/supabase-js";
+
 /**
  * @name getUser
  * @description - Function that retrieves the current user object via API fetch
@@ -12,12 +15,24 @@
  */
 
 export const getUser = async () => {
-    const response = await fetch("/api/user", {
-      method: "GET",
-    });
-  
-    const user = await response.json();
-  
+  try {
+    // bug fix: create client needs to be inside component or else
+    // the api pulls stale users
+    const supabase = await createClient();
 
-    return user;
+    // trying getClaims() instead
+    const { data, error } = await supabase.auth.getClaims();
+
+    //if error retrieving user
+    if (error) {
+      // log to console for dev
+      console.log(error)
+    }
+    // Get current user from claims
+    const user: JwtPayload = data?.claims
+
+    return user
+  } catch (e) {
+    throw e;
+  }
   };
