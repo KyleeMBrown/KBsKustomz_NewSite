@@ -37,7 +37,6 @@ export const createNewUser = async (user: User):Promise<{message:string}> => {
 }
 
 
-
 /**
  * @name getUser
  * @description - Function that retrieves the current user object via API fetch
