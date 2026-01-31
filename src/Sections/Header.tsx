@@ -1,4 +1,11 @@
 "use client";
+
+/**
+ * @returns Header 
+ * @used_in / -> layout.tsx
+ * CLIENT COMPONENT
+ */
+
 import Link from "next/link";
 import Navbar from "../Components/Navbar";
 import Image from "next/image";
