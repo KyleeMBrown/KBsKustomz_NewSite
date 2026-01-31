@@ -8,7 +8,7 @@ import {
   SidebarTrigger,
 } from "@/Components/ui/sidebar";
 import { JwtPayload } from "@supabase/supabase-js";
-import { getUser } from "@/DataLayer/User/user";
+import { getUser } from "@/ServerActions/User/user";
 
 export const metadata = {
   robots: {
@@ -19,7 +19,6 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   try {
-    
     // use Server func getUser to retrieve the current user
     const user = await getUser();
 
@@ -49,6 +48,6 @@ export default async function RootLayout({ children }) {
       </SidebarProvider>
     );
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }

@@ -10,7 +10,7 @@ import { Button } from "./ui/button";
 import { Dispatch, SetStateAction, useState } from "react";
 import { cn } from "@/Styling configs/utils";
 import DropDownSelect from "./MultiSelect";
-import { createNewUser, getUser } from "@/DataLayer/User/user";
+import { createNewUser, getUser } from "@/ServerActions/User/user";
 import ModalPopup from "./ModalPopup";
 import { AuthApiError } from "@supabase/supabase-js";
 import Spinner from "./Spinner";
@@ -68,7 +68,6 @@ const CreateUser = () => {
 
       // if the email and password have been successfully confirmed
       if (emailMatch && passMatch) {
-
         // request the user from api
         const user = await getUser();
 
@@ -80,10 +79,10 @@ const CreateUser = () => {
           password: password,
           role: role,
           created_by: user?.email,
-        }
+        };
 
         // use the server action to create a user
-        const data = await createNewUser(userObj)
+        const data = await createNewUser(userObj);
 
         //log the response to the console
         console.log(data.message);

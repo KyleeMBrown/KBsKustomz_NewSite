@@ -96,8 +96,7 @@ export function LoginForm ({
       /*TODO:  check the user is already in the users table
        *       Then signin with google if email has been found
        */
-
-
+      
       // request to signin with google using supabase browser client
       await supabase.auth.signInWithOAuth({
         provider: "google",
