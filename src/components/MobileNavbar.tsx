@@ -1,3 +1,10 @@
+/**
+ * @returns Mobile Only hamburger Nav
+ * @used_in @Sections/Header
+ * @description website navigation menu for mobile only users
+ * @screen_size < 786px
+ */
+
 import {
   DropdownMenu,
   DropdownMenuContent,

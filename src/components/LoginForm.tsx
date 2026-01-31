@@ -1,4 +1,12 @@
 "use client";
+
+/**
+ * @returns User login form 
+ * @used_in /auth/private/login -> page.tsx
+ * @description a form that allows users to login with password or with google
+ * CLIENT COMPONENT
+ */
+
 import { cn } from "@/Styling configs/utils";
 import { Button } from "@/Components/ui/button";
 import {
@@ -46,27 +54,41 @@ export function LoginForm ({
   const [err, setErr]: [AuthApiError, Dispatch<SetStateAction<AuthApiError>>] =
     useState<AuthApiError>();
 
+  /* Function to login with password */
   const login = async (): Promise<void> => {
     try {
+      // set loading true
       setLoading(true);
+      // request a signin from the supabase browser client
       let { data, error } = await supabase.auth.signInWithPassword({
         email: email,
         password: pass,
       });
 
+      // hadnle error
       if (error) {
         throw error;
       }
 
+      // redirect the user after successful login
       router.replace("/dashboard");
+      // stop loading state
       setLoading(false);
+
     } catch (err) {
+      // set the error object
       setErr(err);
+      // stop laoding state
       setLoading(false);
+      // open modal to display error
       setOpen(true);
+      // log error for dev
+      console.error(err)
     }
   };
 
+
+  /* Function to login with google */
   const loginWithGoogle = async (): Promise<void> => {
     try {
       setLoading(true);
@@ -75,18 +97,27 @@ export function LoginForm ({
        *       Then signin with google if email has been found
        */
 
+
+      // request to signin with google using supabase browser client
       await supabase.auth.signInWithOAuth({
         provider: "google",
         options: {
+          // redirect to callback func
           redirectTo: `http://localhost:3000/auth/callback?next=/dashboard`,
         },
       });
 
+      // stop laod state
       setLoading(false);
     } catch (err) {
+      // set error object
       setErr(err);
+      // set load state false
       setLoading(false);
+      // open modal to display error
       setOpen(true);
+      // log error for dev
+      console.error(err)
     }
   };
 
@@ -114,6 +145,7 @@ export function LoginForm ({
               }}
             >
               <FieldGroup>
+                {/* Email Input */}
                 <Field>
                   <FieldLabel htmlFor="email">Email</FieldLabel>
                   <Input
@@ -126,9 +158,11 @@ export function LoginForm ({
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </Field>
+                 {/* Password Input */}
                 <Field>
                   <div className="flex items-center">
                     <FieldLabel htmlFor="password">Password</FieldLabel>
+                     {/* Forgot Password Link */}
                     <a
                       href="#"
                       className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
@@ -145,6 +179,7 @@ export function LoginForm ({
                       type={hidden ? "password" : "text"}
                       required
                     />
+                     {/* Hide/Reveal Password eye button */}
                     {hidden ? (
                       <svg
                         onClick={() => setHidden(false)}
@@ -181,12 +216,14 @@ export function LoginForm ({
                   </div>
                 </Field>
                 <Field>
+                  {/* Login Button */}
                   <Button
                     className="bg-amber-950 cursor-pointer hover:bg-white hover:text-amber-950"
                     type="submit"
                   >
                     {!loading ? "Login" : <Spinner className="w-5" />}
                   </Button>
+                   {/* Login with Google Button */}
                   <Button
                     onClick={loginWithGoogle}
                     className="text-amber-950  bg-white cursor-pointer flex items-center justify-center gap-4 hover:bg-amber-950 hover:text-white"
@@ -211,6 +248,7 @@ export function LoginForm ({
           </CardContent>
         </Card>
       </div>
+       {/* Pop up Modal */}
       <ModalPopup
         open={open}
         setOpen={setOpen}

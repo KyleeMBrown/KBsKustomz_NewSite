@@ -1,6 +1,7 @@
 "use client";
 /**
  * @returns Component used to create a new user for the KB's Kustomz Dashboard
+ * @used_in /dashboard/users/create -> page.tsx
  * @description Set users name, role, email, and password
  */
 import { Input } from "./ui/input";

@@ -1,4 +1,12 @@
 "use client";
+
+/**
+ * @returns Dashboard Breadcrumbs
+ * @used_in /dashboard -> layout.tsx
+ * @description dynamically renders the breadcrumbe at the top of the dashboard
+ * CLIENT COMPONENT
+ */
+
 import {
   Breadcrumb,
   BreadcrumbItem,

@@ -1,4 +1,7 @@
-/* Modal Popup for handling Errors, Saves, etc */
+/**
+ * @returns Modal Popup
+ * @description Modal Popup for handling Errors, Saves, etc
+ */
 
 import {
   Dialog,
@@ -24,12 +27,16 @@ const ModalPopup = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className={cn(className)}>
+        {/* Header */}
         <DialogHeader>
+          {/* Title */}
           <DialogTitle>{title}</DialogTitle>
+           {/* Description */}
           <DialogDescription className="text-white">
             {description}
           </DialogDescription>
         </DialogHeader>
+        {/* Footer */}
         <DialogFooter>
           <DialogClose asChild>
             {customClose === null ? (

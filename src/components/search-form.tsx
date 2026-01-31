@@ -1,3 +1,9 @@
+/**
+ * @returns Dashboard side bar search
+ * @used_in @Components/app-sidebar.tsx
+ * @description website navigation menu for mobile only users
+ */
+
 import { Search } from "lucide-react";
 
 import { Label } from "@/Components/ui/label";

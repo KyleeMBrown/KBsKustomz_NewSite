@@ -1,4 +1,14 @@
 "use client"
+
+/**
+ * @returns Main site navigation 
+ * @used_in @Sections/Header
+ * @description website navigation menu for desktop only users
+ * @screen_size > 786px
+ * CLIENT COMPONENT
+ */
+
+
 import Link from "next/link"
 import MobileNavbar from "./MobileNavbar"
 
