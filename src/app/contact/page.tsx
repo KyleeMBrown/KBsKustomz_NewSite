@@ -2,6 +2,7 @@ import Image from "next/image"
 
 /**
  * The Contact page for KB's Kustomz
+ * @author Kylee Brown
  */
 
 const page = () => {

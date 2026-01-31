@@ -1,3 +1,11 @@
+/**
+ * @route /dashboard/users/create
+ * @role ADMIN level access only
+ * Page where users with ADMIN level permissions can
+ * create new users
+ * @author Kylee Brown
+ */
+
 import CreateUser from "@/Components/CreateAUser";
 
 const page = () => {

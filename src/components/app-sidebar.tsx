@@ -1,3 +1,8 @@
+/**
+ * @returns Side bar component for the Dashboard
+ * @used_in /dashboard -> layout.tsx
+ * @description renders the Sidebar navigation menu 
+ */
 
 import { Minus, Plus } from "lucide-react";
 import { SearchForm } from "@/Components/search-form";

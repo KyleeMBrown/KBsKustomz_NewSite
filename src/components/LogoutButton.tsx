@@ -1,5 +1,15 @@
 
 "use client";
+
+/**
+ * Logout Button Component
+ * @author Kylee Brown
+ * @used_in @component/app-sidebar.tsx
+ * @returns a button the user uses to Logout of the Dashboard
+ * and displays the info of the current user (role, email)
+ * CLIENT COMPONENT
+ */
+
 import ModalPopup from "./ModalPopup";
 import { Button } from "./ui/button";
 import { Dispatch, SetStateAction, useState } from "react";
@@ -8,18 +18,13 @@ import { useRouter } from "next/navigation";
 import { Badge } from "./ui/badge";
 import { Spinner } from "./ui/spinner";
 import { createClient } from "@/Lib/supabase/client";
-/**
- * Logout Button Component
- * @author Kylee Brown
- * @returns a button the user uses to Logout of the Dashboard
- * and displays the info of the current user (role, email)
- */
-
-// supabase client for handling logout on client
-const supabase = createClient();
 
 
 const LogoutButton = ({ user }): React.ReactElement => {
+
+  // supabase browser client for handling logout
+  const supabase = createClient();
+
   // handles logout modal state
   const [openLogout, setOpenLogout]: [
     boolean,

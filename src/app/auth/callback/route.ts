@@ -1,3 +1,7 @@
+/********************************************************************/
+/************* Callback Func that handles Google Signup *************/
+/********************************************************************/
+
 import { NextResponse } from 'next/server'
 // The client you created from the Server-Side Auth instructions
 import { createClient } from '@/Lib/supabase/server'
@@ -30,5 +34,6 @@ export async function GET(request: Request) {
   }
 
   // return the user to an error page with instructions
+  // TODO: create the error page
   return NextResponse.redirect(`${origin}/auth/auth-code-error`)
 }

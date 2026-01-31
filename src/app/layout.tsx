@@ -1,3 +1,7 @@
+/********************************************************************/
+/******************Base Layout for KB's Kustomz Site ****************/
+/********************************************************************/
+
 import "./globals.css";
 import Header from "../Sections/Header";
 import Footer from "../Sections/Footer";

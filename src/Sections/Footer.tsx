@@ -1,4 +1,11 @@
 "use client";
+
+/**
+ * @returns Footer 
+ * @used_in / -> layout.tsx
+ * CLIENT COMPONENT
+ */
+
 import { cn } from "@/Styling configs/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

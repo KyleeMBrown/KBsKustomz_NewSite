@@ -1,3 +1,9 @@
+/**
+ * @returns Multi Select Drop doen
+ * @used_in @Components/CreateAUser.tsx
+ * @description website navigation menu for mobile only users
+ */
+
 import {
   Select,
   SelectContent,
@@ -17,8 +23,10 @@ const DropDownSelect = ({
   return (
     <Select value={value} onValueChange={setValue}>
       <SelectTrigger className={cn(className, "w-45")}>
+        {/* Placeholder */}
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
+      {/* Drop Down */}
       <SelectContent className="bg-white">
         {options
           ? options.map((item: any, index: number) => (

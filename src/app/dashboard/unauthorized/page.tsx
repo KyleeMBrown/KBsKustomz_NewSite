@@ -1,4 +1,8 @@
-
+/**
+ * @route /dashboard/unauthorized
+ * Page for unauthorized users
+ * @author Kylee Brown
+ */
 
 const page = () => {
   return (

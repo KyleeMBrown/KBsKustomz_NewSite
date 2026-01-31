@@ -1,5 +1,11 @@
 "use client"
 
+/**
+ * @returns Hero section of the homepage
+ * @used_in / -> page.tsx
+ * CLIENT COMPONENT
+ */
+
 const Hero = (): React.JSX.Element => {
 
   return (

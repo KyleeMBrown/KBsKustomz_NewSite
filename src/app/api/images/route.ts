@@ -1,7 +1,10 @@
+/********************************************************************/
+/************* Routes that handle image uploads/retrieval ***********/
+/********************************************************************/
+
 import { NextRequest, NextResponse } from "next/server";
 import { put } from '@vercel/blob';
 import { createClient } from "@/Lib/supabase/server";
- 
 
 
 export async function POST(req: NextRequest): Promise<NextResponse> {

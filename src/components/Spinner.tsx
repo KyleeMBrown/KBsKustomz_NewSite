@@ -1,5 +1,9 @@
+/**
+ * @returns Loading Spinner
+ * @description Spinner used for loading states in application
+ */
+
 import { cn } from "@/Styling configs/utils";
-import { ComponentProps } from "react";
 
 const Spinner = ({
   className,
