@@ -21,23 +21,28 @@ import {
 } from "@/Components/ui/tooltip";
 
 const page = () => {
+  // manages local image file list state
   const [filesToUpload, setFilesToUpload]: [
     File[],
     Dispatch<SetStateAction<File[]>>
   ] = useState<File[]>([]);
+  // manages modal popup state
   const [dialogOpen, setDialogOpen]: [
     boolean,
     Dispatch<SetStateAction<boolean>>
   ] = useState<boolean>(false);
+  // handles tooltip state
   const [toolOpen, setToolOpen]: [boolean, Dispatch<SetStateAction<boolean>>] =
     useState<boolean>(false);
 
+  // callback for adding files to list on Drop
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFilesToUpload((prev) => [...prev, ...acceptedFiles]);
     // Do something with the files
     acceptedFiles.map((file) => console.log(file));
   }, []);
 
+  // Drop zone config
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: { "image/*": [] },
@@ -48,6 +53,7 @@ const page = () => {
     <div className="flex flex-col bg-amber-950 w-full h-[92vh] max-[830px]:h-[94.5vh] max-[768px]:h-screen">
       {/* Images to upload */}
       <section className="h-[70%]  max-[768px]:h-[80%] overflow-y-scroll w-full bg-[#240d01] text-white">
+        {filesToUpload.length > 0 ? <div className="w-full pt-4 pl-4"><Button onClick={()=> setFilesToUpload([])} className="bg-white text-amber-900 uppercase cursor-pointer hover:scale-102 transition-all ease-in">Clear All</Button> </div>: null}
         {filesToUpload.length > 0 ? (
           <div className="grid grid-cols-5 gap-4 max-[768px]:flex-wrap max-[768px]:flex max-[768px]:gap-4 max-[768px]:items-center max-[768px]:justify-center max-[768px]:pt-[1em] z-0 p-8 max-[768px]:p-1 overflow-hidden w-full">
             {filesToUpload.map((file, index) => (
