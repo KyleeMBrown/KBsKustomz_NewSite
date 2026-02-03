@@ -3,7 +3,7 @@
 /**
  * @file user.ts
  * @author Kylee Brown
- * @description File that handles fetching the API for USER Data
+ * @description File that handles retrieving user data from the Database client
  *
  */
 
@@ -17,6 +17,7 @@ import { JwtPayload, SupabaseClient } from "@supabase/supabase-js";
  * @name createNewUser
  * @description - Function that creates another user for the dashboard
  * @async
+ * SERVER ACTION
  */
 
 export const createNewUser = async (user: User):Promise<{message:string}> => {
@@ -41,6 +42,7 @@ export const createNewUser = async (user: User):Promise<{message:string}> => {
  * @name getUser
  * @description - Function that retrieves the current user object via API fetch
  * @async
+ * SERVER ACTION
  */
 
 export const getUser = async ():Promise<JwtPayload> => {

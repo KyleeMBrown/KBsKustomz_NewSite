@@ -19,6 +19,12 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/Components/ui/tooltip";
+import { uploadImage } from "@/ServerActions/Images/images";
+import { useRouter } from "next/navigation";
+
+interface supabaseError extends Error {
+  code:string
+}
 
 const page = () => {
   // manages local image file list state
@@ -34,7 +40,14 @@ const page = () => {
   // handles tooltip state
   const [toolOpen, setToolOpen]: [boolean, Dispatch<SetStateAction<boolean>>] =
     useState<boolean>(false);
-
+  // handles error objects
+  const [error, setError]: [supabaseError, Dispatch<SetStateAction<supabaseError>>] = useState(null);
+  // handles loading state
+  const [loading, setLoading]: [boolean, Dispatch<SetStateAction<boolean>>] =
+  useState<boolean>(false);
+  const [success, setSuccess]: [boolean, Dispatch<SetStateAction<boolean>>] =
+  useState<boolean>(false);
+  
   // callback for adding files to list on Drop
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFilesToUpload((prev) => [...prev, ...acceptedFiles]);
@@ -48,6 +61,33 @@ const page = () => {
     accept: { "image/*": [] },
     maxFiles: 10,
   });
+
+
+  /* Function to handle uploading each file */
+  const handleUpload = async():Promise<void> => {
+    try {
+      setLoading(true)
+    //TODO: Compress images  before requesting to upload
+    // note: current proj. upload limit 1MB
+      await Promise.all(filesToUpload.map(async (file) => {
+        try {
+          await uploadImage(file)
+        }catch(e){
+          throw new Error(e.message);
+        }
+      }))
+
+      setSuccess(true)
+      setFilesToUpload([]);
+    } catch (e) {
+      setLoading(false)
+      console.log(e)
+      setError(e)
+    } finally {
+      setLoading(false)
+    }
+  }
+
 
   return (
     <div className="flex flex-col bg-amber-950 w-full h-[92vh] max-[830px]:h-[94.5vh] max-[768px]:h-screen">
@@ -120,7 +160,7 @@ const page = () => {
         <div className="w-full h-auto flex items-center pl-[1em] pr-[1em] justify-center">
           <a
             onClick={() => {
-              console.log(filesToUpload), setDialogOpen(true);
+              console.log(filesToUpload), setDialogOpen(true), setError(null), setSuccess(false);
             }}
             className="cursor-pointer p-[0.25em] rounded w-full mb-4 text-center bg-white text-amber-950"
           >
@@ -133,22 +173,29 @@ const page = () => {
         open={dialogOpen}
         setOpen={setDialogOpen}
         description={
-          <span className="text-black">
-            Are you sure you want to upload these images?
-          </span>
+          error ? <span className="text-red-500">{error.message}<br></br>{error.code}</span>:
+              (!success ?<span className="text-black">
+            {loading ? "Loading...": "Are you sure you want to upload these images?"}
+            </span> : <span className="text-green-500">Success! Images have been uploaded</span>)
         }
         customClose={
-          <Button variant="outline" className="text-black cursor-pointer">
-            No
-          </Button>
+          success ? <span></span> :
+            (!loading ?
+              (<Button variant="outline" className="text-black cursor-pointer">
+                {error ? "Cancel": "No"}
+              </Button>) :
+              null)
         }
         footer={
-          <Button
+          success ? <Button onClick={() => {setDialogOpen(false)}} variant='outline' className="cursor-pointer hover:scale-102 active-scale:100 text-green-500 outline-green-500 hover:bg-green-500 hover:text-white">Yes</Button>
+            :!loading ? (!error ? <Button
             variant="outline"
             className="bg-green-500 cursor-pointer text-white"
+            /* Invoke the server action uloadImages() */
+            onClick={() => {handleUpload()}}
           >
-            Yes
-          </Button>
+          Yes
+          </Button>:null):null
         }
       />
     </div>
