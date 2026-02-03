@@ -1,4 +1,6 @@
 *Author and Developer: [Kylee Brown](https://www.linkedin.com/in/kylee-brown-7167b9274/)*
+<br><br>
+![Static Badge](https://img.shields.io/badge/In%20Development-8A2BE2)
 
 
 # Summary
@@ -19,11 +21,11 @@ Eventually the client needed more frequent image uploads as they received more c
 
 # Challenges with the OLD site
 
-1. The first callenge that occured after the old site went into production was the time it took to upload the images the client had sent me. I had to drag each asset into the project and update the gallery HTML by hand adding the new images.
+1. The first callenge that occured after the old site went into production, was that it tooke a long time to upload the images the client had sent me. I had to drag each asset into the project and update the gallery source code by hand.
 2. The second challenge was making sure the site had the sufficient SEO so the site could appear higher up on search engines like Google when crawled
 3. The third challenge was site speed, the pages were loading at a decent rate but updates needed to be made to improve it
 4. There was not a way in showing the client analytics about their site other than from their google business account
-6. Lastly, the mobile site UI could definately be more clean anaesthetically pleasing 
+6. Lastly, the mobile site UI could definately be more clean and aesthetically pleasing 
 
 # Solutions implemented on the NEW site
 
@@ -49,6 +51,7 @@ Eventually the client needed more frequent image uploads as they received more c
 
 # Production
 - Hosting is a CI/CD process using `Github` + `Vercel`
+- Eventually I would like to incoorporate `Github Actions + Github Projects`
 
 # Conclusion
 - I continue to monitor the site and update any libraries as needed. 
