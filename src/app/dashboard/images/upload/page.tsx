@@ -10,7 +10,7 @@ import { useDropzone } from "react-dropzone";
 import { useCallback, useState, Dispatch, SetStateAction } from "react";
 import { cn } from "@/Styling configs/utils";
 import ImagePreview from "@/Components/ImagePreview";
-import { generateLocalURL } from "@/Lib/helpers/helpers";
+import { generateLocalURL } from "@/Lib/helpers/serverHelpers";
 import ModalPopup from "@/Components/ModalPopup";
 import { Button } from "@/Components/ui/button";
 
@@ -21,9 +21,10 @@ import {
 } from "@/Components/ui/tooltip";
 import { uploadImage } from "@/ServerActions/Images/images";
 import { useRouter } from "next/navigation";
+import { compressFiles } from "@/Lib/helpers/clientHelpers";
 
 interface supabaseError extends Error {
-  code:string
+  code: string;
 }
 
 const page = () => {
@@ -41,13 +42,16 @@ const page = () => {
   const [toolOpen, setToolOpen]: [boolean, Dispatch<SetStateAction<boolean>>] =
     useState<boolean>(false);
   // handles error objects
-  const [error, setError]: [supabaseError, Dispatch<SetStateAction<supabaseError>>] = useState(null);
+  const [error, setError]: [
+    supabaseError,
+    Dispatch<SetStateAction<supabaseError>>
+  ] = useState(null);
   // handles loading state
   const [loading, setLoading]: [boolean, Dispatch<SetStateAction<boolean>>] =
-  useState<boolean>(false);
+    useState<boolean>(false);
   const [success, setSuccess]: [boolean, Dispatch<SetStateAction<boolean>>] =
-  useState<boolean>(false);
-  
+    useState<boolean>(false);
+
   // callback for adding files to list on Drop
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFilesToUpload((prev) => [...prev, ...acceptedFiles]);
@@ -62,38 +66,52 @@ const page = () => {
     maxFiles: 10,
   });
 
-
   /* Function to handle uploading each file */
-  const handleUpload = async():Promise<void> => {
+  const handleUpload = async (): Promise<void> => {
     try {
-      setLoading(true)
-    //TODO: Compress images  before requesting to upload
-    // note: current proj. upload limit 1MB
-      await Promise.all(filesToUpload.map(async (file) => {
-        try {
-          await uploadImage(file)
-        }catch(e){
-          throw new Error(e.message);
-        }
-      }))
+      setLoading(true);
 
-      setSuccess(true)
+      //TODO: Compress images before requesting to upload
+      const compressedFiles = await compressFiles(filesToUpload);
+
+      // upload each file
+      await Promise.all(
+        compressedFiles.map(async (file) => {
+          try {
+            // upload using uploadImage server action
+            await uploadImage(file);
+          } catch (e) {
+            // handle errors
+            throw new Error(e.message);
+          }
+        })
+      );
+
+      setSuccess(true);
       setFilesToUpload([]);
     } catch (e) {
-      setLoading(false)
-      console.log(e)
-      setError(e)
+      setLoading(false);
+      console.log(e);
+      setError(e);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
-
+  };
 
   return (
     <div className="flex flex-col bg-amber-950 w-full h-[92vh] max-[830px]:h-[94.5vh] max-[768px]:h-screen">
       {/* Images to upload */}
       <section className="h-[70%]  max-[768px]:h-[80%] overflow-y-scroll w-full bg-[#240d01] text-white">
-        {filesToUpload.length > 0 ? <div className="w-full pt-4 pl-4"><Button onClick={()=> setFilesToUpload([])} className="bg-white text-amber-900 uppercase cursor-pointer hover:scale-102 transition-all ease-in">Clear All</Button> </div>: null}
+        {filesToUpload.length > 0 ? (
+          <div className="w-full pt-4 pl-4">
+            <Button
+              onClick={() => setFilesToUpload([])}
+              className="bg-white text-amber-900 uppercase cursor-pointer hover:scale-102 transition-all ease-in"
+            >
+              Clear All
+            </Button>{" "}
+          </div>
+        ) : null}
         {filesToUpload.length > 0 ? (
           <div className="grid grid-cols-5 gap-4 max-[768px]:flex-wrap max-[768px]:flex max-[768px]:gap-4 max-[768px]:items-center max-[768px]:justify-center max-[768px]:pt-[1em] z-0 p-8 max-[768px]:p-1 overflow-hidden w-full">
             {filesToUpload.map((file, index) => (
@@ -160,7 +178,10 @@ const page = () => {
         <div className="w-full h-auto flex items-center pl-[1em] pr-[1em] justify-center">
           <a
             onClick={() => {
-              console.log(filesToUpload), setDialogOpen(true), setError(null), setSuccess(false);
+              console.log(filesToUpload),
+                setDialogOpen(true),
+                setError(null),
+                setSuccess(false);
             }}
             className="cursor-pointer p-[0.25em] rounded w-full mb-4 text-center bg-white text-amber-950"
           >
@@ -173,29 +194,58 @@ const page = () => {
         open={dialogOpen}
         setOpen={setDialogOpen}
         description={
-          error ? <span className="text-red-500">{error.message}<br></br>{error.code}</span>:
-              (!success ?<span className="text-black">
-            {loading ? "Loading...": "Are you sure you want to upload these images?"}
-            </span> : <span className="text-green-500">Success! Images have been uploaded</span>)
+          error ? (
+            <span className="text-red-500">
+              {error.message}
+              <br></br>
+              {error.code}
+            </span>
+          ) : !success ? (
+            <span className="text-black">
+              {loading
+                ? "Loading..."
+                : "Are you sure you want to upload these images?"}
+            </span>
+          ) : (
+            <span className="text-green-500">
+              Success! Images have been uploaded
+            </span>
+          )
         }
         customClose={
-          success ? <span></span> :
-            (!loading ?
-              (<Button variant="outline" className="text-black cursor-pointer">
-                {error ? "Cancel": "No"}
-              </Button>) :
-              null)
+          success ? (
+            <span></span>
+          ) : !loading ? (
+            <Button variant="outline" className="text-black cursor-pointer">
+              {error ? "Cancel" : "No"}
+            </Button>
+          ) : null
         }
         footer={
-          success ? <Button onClick={() => {setDialogOpen(false)}} variant='outline' className="cursor-pointer hover:scale-102 active-scale:100 text-green-500 outline-green-500 hover:bg-green-500 hover:text-white">Yes</Button>
-            :!loading ? (!error ? <Button
-            variant="outline"
-            className="bg-green-500 cursor-pointer text-white"
-            /* Invoke the server action uloadImages() */
-            onClick={() => {handleUpload()}}
-          >
-          Yes
-          </Button>:null):null
+          success ? (
+            <Button
+              onClick={() => {
+                setDialogOpen(false);
+              }}
+              variant="outline"
+              className="cursor-pointer hover:scale-102 active-scale:100 text-green-500 outline-green-500 hover:bg-green-500 hover:text-white"
+            >
+              Ok
+            </Button>
+          ) : !loading ? (
+            !error ? (
+              <Button
+                variant="outline"
+                className="bg-green-500 cursor-pointer text-white"
+                /* Invoke the server action uloadImages() */
+                onClick={() => {
+                  handleUpload();
+                }}
+              >
+                Yes
+              </Button>
+            ) : null
+          ) : null
         }
       />
     </div>

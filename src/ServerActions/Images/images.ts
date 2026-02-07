@@ -25,6 +25,7 @@ export const uploadImage = async (file: File): Promise<void> => {
         // upload the image to the CDN
         const blob: PutBlobResult = await put(file.name, file, {
             access: 'public',
+            addRandomSuffix:true
         });
             
         // insert the urls into the database

@@ -1,7 +1,8 @@
 /**
- * @file helpers.ts
+ * @file serverHelpers.ts
  * @author Kylee Brown
- * @description File to hold all helper functions
+ * @description File to hold all server helper functions
+ * SERVER HELPERS
  */
 
 
