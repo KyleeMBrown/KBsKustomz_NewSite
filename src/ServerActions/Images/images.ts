@@ -6,7 +6,7 @@
  * @description File that handles image uploads & retrievals
  */
 
-import { createClient } from "@/Lib/supabase/server";
+import { createClient } from "@/lib/supabase/server";
 import { SupabaseClient } from "@supabase/supabase-js";
 import { PutBlobResult, put } from "@vercel/blob";
 

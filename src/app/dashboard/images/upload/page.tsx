@@ -10,7 +10,7 @@ import { useDropzone } from "react-dropzone";
 import { useCallback, useState, Dispatch, SetStateAction } from "react";
 import { cn } from "@/Styling configs/utils";
 import ImagePreview from "@/components/ImagePreview";
-import { generateLocalURL } from "@/Lib/helpers/serverHelpers";
+import { generateLocalURL } from "@/lib/helpers/serverHelpers";
 import ModalPopup from "@/components/ModalPopup";
 import { Button } from "@/components/ui/button";
 
@@ -20,7 +20,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { uploadImage } from "@/ServerActions/Images/images";
-import { compressFiles } from "@/Lib/helpers/clientHelpers";
+import { compressFiles } from "@/lib/helpers/clientHelpers";
 
 interface supabaseError extends Error {
   code: string;

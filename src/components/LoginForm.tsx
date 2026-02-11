@@ -23,7 +23,7 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { createClient } from "@/Lib/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 import { Dispatch, SetStateAction, useState } from "react";
 import Spinner from "./Spinner";
 import { useRouter } from "next/navigation";

@@ -7,10 +7,10 @@
  *
  */
 
-import { createUser } from "@/Lib/helpers/supabaseHelpers";
-import { createAdminClient } from "@/Lib/supabase/admin";
-import { createClient } from "@/Lib/supabase/server";
-import { User } from "@/Lib/types/Types";
+import { createUser } from "@/lib/helpers/supabaseHelpers";
+import { createAdminClient } from "@/lib/supabase/admin";
+import { createClient } from "@/lib/supabase/server";
+import { User } from "@/lib/types/Types";
 import { JwtPayload, SupabaseClient } from "@supabase/supabase-js";
 
 /**
