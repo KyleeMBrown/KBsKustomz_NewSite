@@ -7,7 +7,7 @@
  */
 
 import Link from "next/link";
-import Navbar from "../Components/Navbar";
+import Navbar from "@/Components/Navbar"
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/Styling configs/utils";

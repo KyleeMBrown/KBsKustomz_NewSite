@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 /**
  * @route /dashboard/images/upload
@@ -20,7 +20,6 @@ import {
   TooltipTrigger,
 } from "@/Components/ui/tooltip";
 import { uploadImage } from "@/ServerActions/Images/images";
-import { useRouter } from "next/navigation";
 import { compressFiles } from "@/Lib/helpers/clientHelpers";
 
 interface supabaseError extends Error {

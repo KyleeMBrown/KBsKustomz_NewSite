@@ -7,7 +7,6 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/Components/ui/sidebar";
-import { JwtPayload } from "@supabase/supabase-js";
 import { getUser } from "@/ServerActions/User/user";
 
 export const metadata = {
