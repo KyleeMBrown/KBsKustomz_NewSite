@@ -10,7 +10,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/Components/ui/select";
+} from "@/components/ui/select";
 import { cn } from "@/Styling configs/utils";
 
 const DropDownSelect = ({

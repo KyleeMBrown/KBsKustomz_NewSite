@@ -274,7 +274,7 @@ const CreateUser = () => {
       )}
       {success ? (
         <SuccessfulSubmission
-          message={successMessage || "User has beem successfully created!"}
+          message={successMessage || "User has been successfully created!"}
           successURL="/dashboard/users/create"
         />
       ) : null}

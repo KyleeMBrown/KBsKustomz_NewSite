@@ -1,4 +1,3 @@
-
 "use client";
 
 /**
@@ -17,11 +16,9 @@ import { cn } from "@/Styling configs/utils";
 import { useRouter } from "next/navigation";
 import { Badge } from "./ui/badge";
 import { Spinner } from "./ui/spinner";
-import { createClient } from "@/Lib/supabase/client";
-
+import { createClient } from "@/lib/supabase/client";
 
 const LogoutButton = ({ user }): React.ReactElement => {
-
   // supabase browser client for handling logout
   const supabase = createClient();
 
@@ -37,14 +34,14 @@ const LogoutButton = ({ user }): React.ReactElement => {
     Dispatch<SetStateAction<string>>
   ] = useState<string>(null);
 
-  // helps with refresh 
+  // helps with refresh
   const router = useRouter();
 
   /* Function to handle user logout */
-  const handleLogOut = async ():Promise<void> => {
+  const handleLogOut = async (): Promise<void> => {
     try {
       // use supabase client to logout and destroy the session (default: GLOBAL logout)
-      const { error } = await supabase.auth.signOut(); 
+      const { error } = await supabase.auth.signOut();
       // if error signing out
       if (error) {
         throw error;
@@ -53,12 +50,11 @@ const LogoutButton = ({ user }): React.ReactElement => {
       router.refresh();
     } catch (err) {
       // set error message
-      setErrMessage(err.message)
+      setErrMessage(err.message);
       //open the error modal
-      setOpenLogout(true)
+      setOpenLogout(true);
       // log the error to the console
       console.error(err);
-      
     }
   };
 
@@ -74,18 +70,24 @@ const LogoutButton = ({ user }): React.ReactElement => {
         >
           Log out
         </Button>
-   
+
         {/* Fetch and display the current user role and email */}
-        {user ?
-        <div className="flex gap-0.5 mt-4 pb-1 items-center justify-center">
+        {user ? (
+          <div className="flex gap-0.5 mt-4 pb-1 items-center justify-center">
             <Badge className="bg-[#240d01] mb-2">
               <span className="text-[0.6em] text-white font-light tracking-wider">
                 {user?.user_metadata?.user_role}
               </span>
             </Badge>
-          <h4 className="text-white font-light opacity-45 text-xs text-center p-2 pt-0">{user?.email}</h4>
-        </div>
-          : <center className="pb-2 pt-0"><Spinner color="gray" /></center>}
+            <h4 className="text-white font-light opacity-45 text-xs text-center p-2 pt-0">
+              {user?.email}
+            </h4>
+          </div>
+        ) : (
+          <center className="pb-2 pt-0">
+            <Spinner color="gray" />
+          </center>
+        )}
       </center>
 
       {/* Modal Popup Component */}

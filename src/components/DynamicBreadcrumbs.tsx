@@ -14,7 +14,7 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/Components/ui/breadcrumb";
+} from "@/components/ui/breadcrumb";
 
 import { cn } from "@/Styling configs/utils";
 

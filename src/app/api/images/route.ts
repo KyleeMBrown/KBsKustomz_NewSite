@@ -4,7 +4,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { put } from '@vercel/blob';
-import { createClient } from "@/Lib/supabase/server";
+import { createClient } from "@/lib/supabase/server";
 
 
 export async function POST(req: NextRequest): Promise<NextResponse> {

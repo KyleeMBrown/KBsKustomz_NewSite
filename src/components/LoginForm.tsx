@@ -1,38 +1,36 @@
 "use client";
 
 /**
- * @returns User login form 
+ * @returns User login form
  * @used_in /auth/private/login -> page.tsx
  * @description a form that allows users to login with password or with google
  * CLIENT COMPONENT
  */
 
 import { cn } from "@/Styling configs/utils";
-import { Button } from "@/Components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/Components/ui/card";
+} from "@/components/ui/card";
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
-} from "@/Components/ui/field";
-import { Input } from "@/Components/ui/input";
-import { createClient } from "@/Lib/supabase/client";
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
+import { createClient } from "@/lib/supabase/client";
 import { Dispatch, SetStateAction, useState } from "react";
 import Spinner from "./Spinner";
 import { useRouter } from "next/navigation";
 import ModalPopup from "./ModalPopup";
 import { AuthApiError } from "@supabase/supabase-js";
 
-
-
-export function LoginForm ({
+export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -74,7 +72,6 @@ export function LoginForm ({
       router.replace("/dashboard");
       // stop loading state
       setLoading(false);
-
     } catch (err) {
       // set the error object
       setErr(err);
@@ -83,10 +80,9 @@ export function LoginForm ({
       // open modal to display error
       setOpen(true);
       // log error for dev
-      console.error(err)
+      console.error(err);
     }
   };
-
 
   /* Function to login with google */
   const loginWithGoogle = async (): Promise<void> => {
@@ -96,7 +92,7 @@ export function LoginForm ({
       /*TODO:  check the user is already in the users table
        *       Then signin with google if email has been found
        */
-      
+
       // request to signin with google using supabase browser client
       await supabase.auth.signInWithOAuth({
         provider: "google",
@@ -116,7 +112,7 @@ export function LoginForm ({
       // open modal to display error
       setOpen(true);
       // log error for dev
-      console.error(err)
+      console.error(err);
     }
   };
 
@@ -157,11 +153,11 @@ export function LoginForm ({
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </Field>
-                 {/* Password Input */}
+                {/* Password Input */}
                 <Field>
                   <div className="flex items-center">
                     <FieldLabel htmlFor="password">Password</FieldLabel>
-                     {/* Forgot Password Link */}
+                    {/* Forgot Password Link */}
                     <a
                       href="#"
                       className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
@@ -178,7 +174,7 @@ export function LoginForm ({
                       type={hidden ? "password" : "text"}
                       required
                     />
-                     {/* Hide/Reveal Password eye button */}
+                    {/* Hide/Reveal Password eye button */}
                     {hidden ? (
                       <svg
                         onClick={() => setHidden(false)}
@@ -222,7 +218,7 @@ export function LoginForm ({
                   >
                     {!loading ? "Login" : <Spinner className="w-5" />}
                   </Button>
-                   {/* Login with Google Button */}
+                  {/* Login with Google Button */}
                   <Button
                     onClick={loginWithGoogle}
                     className="text-amber-950  bg-white cursor-pointer flex items-center justify-center gap-4 hover:bg-amber-950 hover:text-white"
@@ -247,7 +243,7 @@ export function LoginForm ({
           </CardContent>
         </Card>
       </div>
-       {/* Pop up Modal */}
+      {/* Pop up Modal */}
       <ModalPopup
         open={open}
         setOpen={setOpen}

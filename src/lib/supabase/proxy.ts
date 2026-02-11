@@ -9,7 +9,7 @@
 
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
-import { whitelistColumns } from '../helpers/helpers'
+import { whitelistColumns } from '../helpers/serverHelpers'
 import { JwtPayload } from '@supabase/supabase-js'
 
 export async function updateSession(request: NextRequest) {

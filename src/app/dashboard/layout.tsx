@@ -1,13 +1,12 @@
-import DynamicBreadcrumbs from "@/Components/DynamicBreadcrumbs";
-import { AppSidebar } from "@/Components/app-sidebar";
+import DynamicBreadcrumbs from "@/components/DynamicBreadcrumbs";
+import { AppSidebar } from "@/components/app-sidebar";
 
-import { Separator } from "@/Components/ui/separator";
+import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/Components/ui/sidebar";
-import { JwtPayload } from "@supabase/supabase-js";
+} from "@/components/ui/sidebar";
 import { getUser } from "@/ServerActions/User/user";
 
 export const metadata = {
