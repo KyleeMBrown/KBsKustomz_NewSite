@@ -11,8 +11,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/Components/ui/dialog";
-import { Button } from "./ui/button";
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/Styling configs/utils";
 
 const ModalPopup = ({
@@ -31,7 +31,7 @@ const ModalPopup = ({
         <DialogHeader>
           {/* Title */}
           <DialogTitle>{title}</DialogTitle>
-           {/* Description */}
+          {/* Description */}
           <DialogDescription className="text-white">
             {description}
           </DialogDescription>

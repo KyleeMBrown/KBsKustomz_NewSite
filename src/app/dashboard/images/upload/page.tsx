@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 /**
  * @route /dashboard/images/upload
@@ -9,16 +9,16 @@
 import { useDropzone } from "react-dropzone";
 import { useCallback, useState, Dispatch, SetStateAction } from "react";
 import { cn } from "@/Styling configs/utils";
-import ImagePreview from "@/Components/ImagePreview";
+import ImagePreview from "@/components/ImagePreview";
 import { generateLocalURL } from "@/Lib/helpers/serverHelpers";
-import ModalPopup from "@/Components/ModalPopup";
-import { Button } from "@/Components/ui/button";
+import ModalPopup from "@/components/ModalPopup";
+import { Button } from "@/components/ui/button";
 
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/Components/ui/tooltip";
+} from "@/components/ui/tooltip";
 import { uploadImage } from "@/ServerActions/Images/images";
 import { compressFiles } from "@/Lib/helpers/clientHelpers";
 

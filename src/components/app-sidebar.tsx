@@ -1,17 +1,17 @@
 /**
  * @returns Side bar component for the Dashboard
  * @used_in /dashboard -> layout.tsx
- * @description renders the Sidebar navigation menu 
+ * @description renders the Sidebar navigation menu
  */
 
 import { Minus, Plus } from "lucide-react";
-import { SearchForm } from "@/Components/search-form";
+import { SearchForm } from "@/components/search-form";
 import Image from "next/image";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/Components/ui/collapsible";
+} from "@/components/ui/collapsible";
 import {
   Sidebar,
   SidebarContent,
@@ -24,7 +24,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   SidebarRail,
-} from "@/Components/ui/sidebar";
+} from "@/components/ui/sidebar";
 
 import LogoutButton from "./LogoutButton";
 import { JwtPayload } from "@supabase/supabase-js";
@@ -88,8 +88,7 @@ const data = {
   ],
 };
 
-export function AppSidebar ({ user, ...props }: Props) {
-  
+export function AppSidebar({ user, ...props }: Props) {
   return (
     <Sidebar {...props} className="bg-amber-950">
       <SidebarHeader className="bg-amber-950 text-white">
@@ -98,14 +97,19 @@ export function AppSidebar ({ user, ...props }: Props) {
             <SidebarMenuButton size="lg" asChild>
               <div>
                 <a href="/dashboard" className="cursor-pointer">
-                  <Image width={80} height={80} src="/images/logo.png" alt="KB's Kustomz Logo" fetchPriority="high"/>
+                  <Image
+                    width={80}
+                    height={80}
+                    src="/images/logo.png"
+                    alt="KB's Kustomz Logo"
+                    fetchPriority="high"
+                  />
                 </a>
                 <div className="flex flex-col gap-1 leading-none w-full">
-                  <h2 className="font-medium text-[14px] w-full">KB's Kustomz Dashboard</h2>
-                  <p className="">
-                    v1.0.0
-                  </p>
-                 
+                  <h2 className="font-medium text-[14px] w-full">
+                    KB's Kustomz Dashboard
+                  </h2>
+                  <p className="">v1.0.0</p>
                 </div>
               </div>
             </SidebarMenuButton>

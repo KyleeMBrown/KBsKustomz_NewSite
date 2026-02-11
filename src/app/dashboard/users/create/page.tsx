@@ -6,7 +6,7 @@
  * @author Kylee Brown
  */
 
-import CreateUser from "@/Components/CreateAUser";
+import CreateUser from "@/components/CreateAUser";
 
 const page = () => {
   return (
