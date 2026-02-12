@@ -49,11 +49,17 @@ const MobileNavbar = (): React.ReactElement => {
               About
             </DropdownMenuItem>
           </a>
+          <a href="/#gallery">
+            <DropdownMenuItem className="cursor-pointer">
+              Gallery
+            </DropdownMenuItem>
+          </a>
           <a href="/contact">
             <DropdownMenuItem className="cursor-pointer">
               Contact Us
             </DropdownMenuItem>
           </a>
+
         </DropdownMenuContent>
       </DropdownMenu>
     </>
