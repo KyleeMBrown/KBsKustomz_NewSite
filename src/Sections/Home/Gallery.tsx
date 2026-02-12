@@ -5,12 +5,12 @@ import { cn } from "@/Styling configs/utils";
 import LeftGallery from "@/components/LeftGallery";
 
 /**
- * @returns Main site navigation 
- * @used_in @Sections/Header
- * @description website navigation menu for desktop only users
- * @screen_size > 786px
+ * @returns Site Gallery
+ * @used_in @Sections/Home/Gallery
+ * @description Main website Gallery
  * CLIENT COMPONENT
  */
+
 const Gallery = () => {
     const [enabled, setEnabled] = useState(false);
 

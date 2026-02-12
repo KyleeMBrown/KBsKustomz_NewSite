@@ -2,6 +2,16 @@ import DarkLightModeToggle from "./DarkLightModeToggle";
 import { cn } from "@/Styling configs/utils";
 import { Badge } from "./ui/badge";
 
+/**
+ * @returns Left side of gallery
+ * @used_in @Sections/Home/Gallery
+ * @description Left side of the site gallery - includes
+ *              - Dark/Light mode toggle
+ *              - Paragraph
+ *              - Quick Links
+ * 
+ * SERVER COMPONENT
+ */
 
 const LeftGallery = ({enabled, setEnabled}) => {
 
