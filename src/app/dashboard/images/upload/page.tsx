@@ -1,4 +1,4 @@
-import {getImageCount, uploadImage } from '@/ServerActions/Images/images';
+import { getImageCount, uploadImage } from '@/ServerActions/Images/images';
 import Upload from '@/components/Upload';
 
 
