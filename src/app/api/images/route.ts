@@ -17,12 +17,16 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     try {
         //get search params
         const params = req.nextUrl.searchParams;
-        
+        const page = Number(params.get("page"))
+        const limit = 9;
+
 
         // query the databse using the client
         let { data: images, error } = await supabase
             .from('images')
             .select('*')
+            .order("image_order", { ascending: false })
+            .range(page*limit, page*limit + (limit - 1))
             
         
         // if supabase error

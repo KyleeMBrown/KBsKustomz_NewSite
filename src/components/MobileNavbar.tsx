@@ -34,7 +34,7 @@ const MobileNavbar = (): React.ReactElement => {
           </svg>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-[.75em] bg-black text-white">
-          <DropdownMenuLabel>Menu</DropdownMenuLabel>
+          <DropdownMenuLabel className="text-center bg-linear-to-t from-black from-15% to-90% to-[#3e3e3e]">Menu</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <a href="/">
             <DropdownMenuItem className="cursor-pointer">Home</DropdownMenuItem>
