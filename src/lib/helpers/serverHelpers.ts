@@ -5,13 +5,7 @@
  * SERVER HELPERS
  */
 
-import { SupabaseClient } from "@supabase/supabase-js";
-import { createClient } from "../supabase/client"
 import { Database } from "../types/supabaseKbs";
-
-import { unstable_cache } from "next/cache";
-
-type Images = Database["public"]["Tables"]["images"]["Row"]
 
 /**
  * Generates a local url from the client uploaded file
