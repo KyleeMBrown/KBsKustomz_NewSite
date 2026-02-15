@@ -72,9 +72,13 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url)
   } 
 
-  // if the client is trying to request the upload page and role has not been assigned 
-  if (request.nextUrl.pathname.startsWith('/dashboard/images/upload') && role !== "ADMIN" ||
-  request.nextUrl.pathname.startsWith('/dashboard/users/create') && role !== "GENERAL") {
+  /*
+  *  RBA SECURITY CHECK on route upload
+  * if the client is trying to request the upload page and role has not been assigned 
+  */
+ 
+  // if the client is requesting the upload page and role is not ADMIN
+  if (request.nextUrl.pathname.startsWith('/dashboard/images/upload') && role !== "ADMIN" && role !== "GENERAL") {
     // redirect the user to the unauthorized page
     const url = request.nextUrl.clone()
     url.pathname = '/dashboard/unauthorized'
