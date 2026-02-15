@@ -60,7 +60,7 @@ export async function updateSession(request: NextRequest) {
 
 
   /*
-  *  RBA SECURITY CHECK on route create a user tab in dashboard
+  *  RBA SECURITY CHECK on route create a user - tab in dashboard
  */
 
   // if the cleint is trying to request the create a user page and is NOT ADMIN role and is not the MASTER_EMAIL
@@ -73,11 +73,10 @@ export async function updateSession(request: NextRequest) {
   } 
 
   /*
-  *  RBA SECURITY CHECK on route upload
-  * if the client is trying to request the upload page and role has not been assigned 
+  *  RBA SECURITY CHECK on route upload - tab in dashboard
   */
  
-  // if the client is requesting the upload page and role is not ADMIN
+  // if the client is requesting the upload page and role is not ADMIN or GENERAL
   if (request.nextUrl.pathname.startsWith('/dashboard/images/upload') && role !== "ADMIN" && role !== "GENERAL") {
     // redirect the user to the unauthorized page
     const url = request.nextUrl.clone()
