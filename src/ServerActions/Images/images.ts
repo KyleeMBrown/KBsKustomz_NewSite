@@ -1,18 +1,15 @@
 'use server'
-
+import { createClientBrowser } from "@/lib/supabase/client";
 /**
  * @file images.ts
  * @author Kylee Brown
  * @description File that handles images
  */
-
 import { createClient } from "@/lib/supabase/server";
-import { SupabaseClient } from "@supabase/supabase-js";
 import { PutBlobResult, put } from "@vercel/blob";
-import { revalidateTag } from "next/cache";
+import { revalidateTag, unstable_cache } from "next/cache";
 
-
-
+const supabaseClient = createClientBrowser()
 
 /**
  * @name uploadImages
@@ -24,7 +21,7 @@ import { revalidateTag } from "next/cache";
 export const uploadImage = async (file: File, index:number, totalImageCount:number): Promise<void> => {
     try {
        
-        const supabase: SupabaseClient = await createClient();
+        const supabase = await createClient();
 
         // upload the image to the CDN
         const blob: PutBlobResult = await put(file.name, file, {
@@ -45,7 +42,9 @@ export const uploadImage = async (file: File, index:number, totalImageCount:numb
             throw e;
         }
         
-        index === totalImageCount ? revalidateTag("images", "max"):null
+        if (index === totalImageCount - 1) {
+            revalidateTag("images", "max");
+          }
     } catch (err) {
         
         throw err;

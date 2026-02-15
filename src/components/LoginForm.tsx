@@ -18,12 +18,11 @@ import {
 } from "@/components/ui/card";
 import {
   Field,
-  FieldDescription,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { createClient } from "@/lib/supabase/client";
+import { createClientBrowser } from "@/lib/supabase/client";
 import { Dispatch, SetStateAction, useState } from "react";
 import Spinner from "./Spinner";
 import { useRouter } from "next/navigation";
@@ -35,7 +34,7 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   // create the supabase browser client
-  const supabase = createClient();
+  const supabase = createClientBrowser();
   // router to handle refresh
   const router = useRouter();
 

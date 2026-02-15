@@ -2,7 +2,7 @@
 import { cn } from "@/Styling configs/utils";
 import LeftGallery from "@/components/LeftGallery";
 import RightGallery from "@/components/RightGallery";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * @returns Site Gallery
@@ -10,10 +10,25 @@ import { useState } from "react";
  * @description Main website Gallery
  */
 
-const Gallery = ({ images, count }) => {
+const Gallery = ({ count, page }) => {
+  const [images, setImages] = useState();
   // handle the dark/light state
   const [enabled, handleEnabled] = useState(false);
-   
+  const getImages = async () => {
+    const response = await fetch(`/api/images/?page=${page}`,
+      {
+        next: {
+          tags: ["images"]
+        }
+      })
+    const {images} = await response.json()
+    setImages(images)
+  }
+
+  useEffect(() => {
+   getImages()
+  }, [page])
+  
   return (
       <div id="gallery" className={cn((enabled ? "bg-white" : "bg-[#070707]"), "flex max-[768px]:flex-col w-full h-screen p-4 max-[768px]:h-[125vh]")}>
           {/* Left Side */}
