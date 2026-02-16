@@ -1,5 +1,6 @@
 'use client'
 import imageCompression from 'browser-image-compression';
+import { useEffect, useState } from 'react';
 /**
  * @file clientHelpers.ts
  * @author Kylee Brown
@@ -53,4 +54,33 @@ export const compressFiles = async (files: File[]): Promise<File[]> => {
         // handle error
         throw err;
     }
+}
+
+/**
+ * Function to detect when screen is mobile
+ * @param breakpoint - the screen size for mobile to be true
+ * @returns {boolean} - a boolean representing if breakpoint has been met
+ */
+
+export function useIsMobile(breakpoint = 768): boolean {
+    // for handling isMobile state
+    const [isMobile, setIsMobile] = useState(false);
+    
+    //check screen resize
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < breakpoint);
+        };
+  
+        // Initial check
+        checkMobile();
+  
+        // Listen to resize events
+        window.addEventListener('resize', checkMobile);
+  
+        // Cleanup
+        return () => window.removeEventListener('resize', checkMobile);
+    }, [breakpoint]);
+  
+    return isMobile;
 }

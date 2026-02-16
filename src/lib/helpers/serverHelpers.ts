@@ -5,6 +5,7 @@
  * SERVER HELPERS
  */
 
+import { Database } from "../types/supabaseKbs";
 
 /**
  * Generates a local url from the client uploaded file
@@ -13,8 +14,8 @@
  */
 
 export const generateLocalURL = (file: File):string => { 
-    const url = URL.createObjectURL(file);
-    return url;
+  const url = URL.createObjectURL(file);
+  return url;
 }
 
 /**

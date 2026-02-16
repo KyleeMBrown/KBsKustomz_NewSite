@@ -16,11 +16,11 @@ import { cn } from "@/Styling configs/utils";
 import { useRouter } from "next/navigation";
 import { Badge } from "./ui/badge";
 import { Spinner } from "./ui/spinner";
-import { createClient } from "@/lib/supabase/client";
+import { createClientBrowser } from "@/lib/supabase/client";
 
 const LogoutButton = ({ user }): React.ReactElement => {
   // supabase browser client for handling logout
-  const supabase = createClient();
+  const supabase = createClientBrowser();
 
   // handles logout modal state
   const [openLogout, setOpenLogout]: [

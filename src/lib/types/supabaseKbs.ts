@@ -44,6 +44,7 @@ export type Database = {
           alt_text: string | null
           comparison: boolean | null
           id: string
+          image_order: number
           image_url: string | null
           updated_at: string
           upload_date: string
@@ -51,7 +52,8 @@ export type Database = {
         Insert: {
           alt_text?: string | null
           comparison?: boolean | null
-          id: string
+          id?: string
+          image_order: number
           image_url?: string | null
           updated_at?: string
           upload_date?: string
@@ -60,6 +62,7 @@ export type Database = {
           alt_text?: string | null
           comparison?: boolean | null
           id?: string
+          image_order?: number
           image_url?: string | null
           updated_at?: string
           upload_date?: string
@@ -69,29 +72,32 @@ export type Database = {
       users: {
         Row: {
           created_at: string
+          created_by: string
           email: string | null
           first_name: string | null
           id: string
           last_name: string | null
-          role: Database["public"]["Enums"]["user_role"] | null
+          role: Database["public"]["Enums"]["user_role"]
           updated_at: string
         }
         Insert: {
           created_at?: string
+          created_by: string
           email?: string | null
           first_name?: string | null
           id: string
           last_name?: string | null
-          role?: Database["public"]["Enums"]["user_role"] | null
+          role?: Database["public"]["Enums"]["user_role"]
           updated_at?: string
         }
         Update: {
           created_at?: string
+          created_by?: string
           email?: string | null
           first_name?: string | null
           id?: string
           last_name?: string | null
-          role?: Database["public"]["Enums"]["user_role"] | null
+          role?: Database["public"]["Enums"]["user_role"]
           updated_at?: string
         }
         Relationships: []

@@ -1,3 +1,4 @@
+export const revalidate = 0;
 import DynamicBreadcrumbs from "@/components/DynamicBreadcrumbs";
 import { AppSidebar } from "@/components/app-sidebar";
 

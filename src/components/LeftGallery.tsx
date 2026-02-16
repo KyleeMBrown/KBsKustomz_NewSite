@@ -1,0 +1,49 @@
+import DarkLightModeToggle from "./DarkLightModeToggle";
+import { cn } from "@/Styling configs/utils";
+import { Badge } from "./ui/badge";
+
+/**
+ * @returns Left side of gallery
+ * @used_in @Sections/Home/Gallery
+ * @description Left side of the site gallery - includes
+ *              - Dark/Light mode toggle
+ *              - Paragraph
+ *              - Quick Links
+ * 
+ * SERVER COMPONENT
+ */
+
+const LeftGallery = ({enabled, setEnabled}) => {
+
+  return (
+        <div className="w-[30%] max-[768px]:w-full h-full justify-center pr-4">
+              {/* Light dark mode switch */}
+              <div className="flex items-center gap-2 text-white mb-[3em] max-[768px]:mb-[1em]">
+                  <DarkLightModeToggle checked={enabled} onCheckedChange={setEnabled} />
+              </div>
+
+
+              {/* Gallery Paragraph + Title */}
+              <div className={cn(enabled ? "text-black" : "text-white","mb-[3em] max-[768px]:mb-[1em]")}>
+                  <h2 className="text-[1.5em] font-normal mb-[0.5em] ">Gallery</h2>
+                
+                  <p className="font-light text-[0.95em]">Welcome to our gallery! At <strong>KBS Kustomz</strong>, we love bringing cars to life with custom paint jobs and flawless auto body work. Take a look at some of our favorite projects and get inspired to create a ride that’s truly your own.</p>
+              </div>
+              
+              {/* Gallery CTAs */}
+              <div className={cn(enabled? "text-black" : "text-white", "flex flex-col gap-2 justify-end h-[54%] max-[768px]:h-auto max-[768px]:mb-[1em]")}>
+                  <h2 className="text-lg">Quick Links</h2>
+                  <div className="flex gap-2 flex-wrap w-80 max-[768px]:w-full">
+                      <a href="/contact"><Badge className={cn(enabled ? "text-black" : "text-gray-500 hover:text-white")} variant="outline">Contact Us</Badge></a>
+                      <a href="/about"><Badge className={cn(enabled ? "text-black" : "text-gray-500 hover:text-white")} variant="outline">Hours</Badge></a>
+                      <a href="https://www.google.com/maps/place/KB's+Kustomz/@41.388281,-89.5942745,1350m/data=!3m1!1e3!4m6!3m5!1s0x88098fe3e725c8bf:0x2ae78e393bcc4d23!8m2!3d41.3879585!4d-89.5909702!16s%2Fg%2F11y522h0mc?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D"><Badge className={cn(enabled ? "text-black" : "text-gray-500 hover:text-white")} variant="outline">Directions</Badge></a>
+                    <a href="/services"><Badge className={cn(enabled ? "text-black" : "text-gray-500 hover:text-white")} variant="outline">Services</Badge></a>
+                    <a href="/about"><Badge className={cn(enabled ? "text-black" : "text-gray-500 hover:text-white")} variant="outline">About Us</Badge></a>
+                  </div>
+              </div>
+             
+          </div>
+  )
+}
+
+export default LeftGallery
