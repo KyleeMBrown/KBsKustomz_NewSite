@@ -62,7 +62,7 @@ export const Upload = ({imageCount, uploadImage}:{imageCount:number, uploadImage
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: { "image/*": [] },
-    maxFiles: 10,
+    maxFiles: 0,
   });
 
   /* Function to handle uploading each file */
