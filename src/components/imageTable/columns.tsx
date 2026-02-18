@@ -13,6 +13,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { formatDate } from "@/lib/helpers/clientHelpers"
 
 
 export const columns: ColumnDef<Images>[] = [
@@ -31,10 +32,16 @@ export const columns: ColumnDef<Images>[] = [
   {
     accessorKey: "updated_at",
     header: "Last Updated",
+    cell: ({ row }) => {
+      return formatDate(row.getValue('updated_at') as string)
+    }
   },
   {
     accessorKey: "upload_date",
     header: "Upload Date",
+    cell: ({ row }) => {
+      return formatDate(row.getValue('upload_date') as string)
+    }
   },
   {
     id: "actions",
