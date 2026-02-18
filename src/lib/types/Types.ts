@@ -1,6 +1,7 @@
 /********************************************************************/
 /***************************** Custom Types *************************/
 /********************************************************************/
+import { Database } from "./supabaseKbs"
 
 export type User =
     {
@@ -11,3 +12,5 @@ export type User =
         role: string,
         created_by:string
     }
+
+ export type Images = Database["public"]["Tables"]["images"]["Row"]

@@ -20,16 +20,30 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
         const page = Number(params.get("page"))
         const limit = 9;
 
-
-        // query the databse using the client
-        let { data: images, error } = await supabase
-            .from('images')
-            .select('*')
-            .order("image_order", { ascending: false })
-            .range(page*limit, page*limit + (limit - 1))
+        if (page != -1) {
+            // query the databse using the client
+            let { data: images, error } = await supabase
+                .from('images')
+                .select('*')
+                .order("image_order", { ascending: true })
+                .range(page * limit, page * limit + (limit - 1))
             
+            // if supabase error
+            if (error) {
+                // return the error
+                return NextResponse.json(error, { status: 404 })
+            }
+            
+            // return 
+            return NextResponse.json({ message: "Images Successfully Retrieved!", images }, { status: 200 })
+        } else {
+            // query the databse using the client
+            let { data: images, error } = await supabase
+                .from('images')
+                .select('*')
+                .order("image_order", { ascending: true })
         
-        // if supabase error
+         // if supabase error
         if (error) {
             // return the error
             return NextResponse.json(error, {status:404})
@@ -37,6 +51,8 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 
         // return 
         return NextResponse.json({ message:"Images Successfully Retrieved!", images }, {status:200})
+        }
+
 
     } catch (err) {
         return NextResponse.json(err, {status:404}) 

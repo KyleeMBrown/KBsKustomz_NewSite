@@ -27,7 +27,7 @@ const DynamicBreadcrumbs = () => {
   const nameMap = {
     "/dashboard": ["Dashboard"],
     "/dashboard/images/upload": ["Dashboard", "Images", "Upload"],
-    "/dashboard/images/edit": ["Dashboard", "Images", "Edit"],
+    "/dashboard/images/manage": ["Dashboard", "Images", "Manage"],
     "/dashboard/settings/general": ["Dashboard, Settings, General"],
     "/dashboard/users/create": [
       "Dashboard",
