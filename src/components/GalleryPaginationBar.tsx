@@ -18,9 +18,10 @@ export const GalleryPaginationBar = ({totalImages, enabled}:{totalImages:number,
   const [activeIndex, setActiveIndex] = useState(0)
   const router = useRouter()
 
-   // find the total amount of pages
-   const pages: number = (totalImages - (totalImages % 9)) / 9 || 0
+  // find the total amount of pages
+  const pages: number = Math.ceil(totalImages/9) || 0
 
+  console.log(pages, totalImages)// debug
   const handleNext = (page: number) => {
     if (page < pages - 1) {
       setActiveIndex(page + 1)

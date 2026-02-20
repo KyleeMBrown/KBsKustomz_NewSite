@@ -5,7 +5,6 @@
  * SERVER HELPERS
  */
 
-import { Database } from "../types/supabaseKbs";
 
 /**
  * Generates a local url from the client uploaded file

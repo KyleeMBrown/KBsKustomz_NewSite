@@ -25,7 +25,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
             let { data: images, error } = await supabase
                 .from('images')
                 .select('*')
-                .order("image_order", { ascending: true })
+                .order("image_order", { ascending: false })
                 .range(page * limit, page * limit + (limit - 1))
             
             // if supabase error
@@ -41,7 +41,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
             let { data: images, error } = await supabase
                 .from('images')
                 .select('*')
-                .order("image_order", { ascending: true })
+                .order("image_order", { ascending: false })
         
          // if supabase error
         if (error) {

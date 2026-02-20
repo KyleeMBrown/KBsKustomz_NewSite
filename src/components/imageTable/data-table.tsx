@@ -15,9 +15,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Images } from "@/lib/types/Types"
 import { Spinner } from "../ui/spinner"
-import Image from "next/image"
+import Sortable from "./Sortable"
+import {DragDropProvider, DragOverlay} from '@dnd-kit/react';
+import { useState } from "react"
+import { isSortable} from '@dnd-kit/react/sortable';
+import { Button } from "../ui/button"
+import { cn } from "@/Styling configs/utils"
 
 interface DataTableProps<TData> {
   columns: ColumnDef<TData>[]
@@ -36,18 +40,19 @@ export function DataTable<TData>({
     getCoreRowModel: getCoreRowModel(),
   },
   )
-
-
+  const [items, setItems] = useState(data);
+   const [disabled, setDisabled] = useState(true);
+  console.log(items)
     return (
 
-    <div className="h-[38.5em] overflow-auto relative rounded-md border bg-[#0f0500]">
-      <Table className="">
-        <TableHeader className="border-b-white sticky top-0 z-20 bg-[#0f0500]">
+    <div className="h-[38.5em] overflow-auto relative rounded-md border">
+      <Table className="bg-[#150a04] border-separate border-spacing-x-0 border-spacing-y-3 p-4 pt-0">
+        <TableHeader className=" sticky top-0 z-20 bg-transparent w-full h-[4em]">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id} className="text-center align-middle ">
+                  <TableHead key={header.id} className="text-center bg-[#150a04]">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -57,36 +62,57 @@ export function DataTable<TData>({
                   </TableHead>
                 )
               })}
+              <TableCell className="absolute -right-2">
+                {/* SAVE Button */}
+                <Button disabled={disabled} className={cn(disabled ? 'text-gray-700' : 'text-green-600', "bg-white  hover:bg-green-600 hover:text-white mr-2")}>Save</Button>
+                <Button disabled={disabled} className={cn(disabled ? 'text-gray-700' : 'text-red-600', "bg-white  hover:bg-red-600 hover:text-white")}>Reset</Button>
+              </TableCell>
             </TableRow>
-          ))}
-        </TableHeader>
-        <TableBody className="">
-                  {table.getRowModel().rows?.length ? (
-                      table.getRowModel().rows.map((row) => (
-                          <TableRow
-                              key={row.id}
-                              data-state={row.getIsSelected() && "selected"}
-                          >
-                              {row.getVisibleCells().map((cell, i) => (
-                                  
-                                  cell.column.id !== "image_url" ? <TableCell key={cell.id} className="text-center align-middle">
-                                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                  </TableCell> :
-                                      <TableCell key={cell.id} className="flex justify-center items-center">
-                                          <a href={cell.getValue() as string} target="_blank"><Image loading="lazy" alt="" style={{ objectFit: "cover", width: "50px", height: "40px" }} src={cell.getValue() as string} width={30} height={30} /></a>
-                                      
-                                  </TableCell>
-                              ))}
-                          </TableRow>
-                      ))
-                  ) : (
-                      <TableRow>
-                          <TableCell colSpan={columns.length} className="h-24 text-center">
-                              {loading ? <center><Spinner /></center> : "Please Upload Images"}
-                          </TableCell>
-                      </TableRow>
-                  )}
-        </TableBody>
+          ))}     
+          </TableHeader>
+          <TableBody>
+            <DragDropProvider
+               onDragEnd={(event) => {
+              if (event.canceled) return;
+
+               const {source} = event.operation;
+
+              if (isSortable(source)) {
+                const {initialIndex, index} = source;
+
+              if (initialIndex !== index) {
+                setItems((items) => {
+                  const newItems = [...items];
+                  const [removed] = newItems.splice(initialIndex, 1);
+                  newItems.splice(index, 0, removed);
+                  console.log(data, newItems)
+                  return newItems;
+
+                });
+                
+
+              }
+               
+                 
+                }
+              }}
+            >
+            
+              {table.getRowModel().rows?.length ? (
+                  table.getRowModel().rows.map((row, index) => (
+                    <Sortable key={row.id} id={row.id} row={row} index={index} />
+                  ))
+              ) : (
+                  <TableRow>
+                      <TableCell colSpan={columns.length} className="h-[73vh] text-center">
+                          {loading ? <center><Spinner /></center> : "Please Upload Images"}
+                      </TableCell>
+                  </TableRow>
+                )}
+              
+          </DragDropProvider>
+            </TableBody>
+            
       </Table>
             </div>
   )
