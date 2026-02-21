@@ -41,7 +41,7 @@ const ImageTable = () => {
     }, [])
     
   return (
-    <div className="w-[90%] container mx-auto"><DataTable loading={loading} columns={columns} data={data}/></div>
+      <div className="w-[90%] container mx-auto"><DataTable loading={loading} columns={columns} data={data} /></div>
   )
 }
 

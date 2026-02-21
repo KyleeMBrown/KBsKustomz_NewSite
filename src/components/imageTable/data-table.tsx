@@ -18,34 +18,46 @@ import {
 import { Spinner } from "../ui/spinner"
 import Sortable from "./Sortable"
 import {DragDropProvider, DragOverlay} from '@dnd-kit/react';
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { isSortable} from '@dnd-kit/react/sortable';
 import { Button } from "../ui/button"
 import { cn } from "@/Styling configs/utils"
 
 interface DataTableProps<TData> {
   columns: ColumnDef<TData>[]
-    data: TData[]
-    loading:boolean
+  data: TData[]
+  loading: boolean
 }
 
 export function DataTable<TData>({
     columns,
     data,
-    loading
+  loading
 }: DataTableProps<TData>) {
+
+
+  // items in the table
+  const [items, setItems] = useState([...data]);
+  // disabled cta's 
+   const [disabled, setDisabled] = useState(true);
+
+  // create table 
   const table = useReactTable({
-    data,
+    data:items,
     columns,
     getCoreRowModel: getCoreRowModel(),
-  },
-  )
-  const [items, setItems] = useState(data);
-   const [disabled, setDisabled] = useState(true);
-  console.log(items)
+    getRowId: (row: any) => row.id
+  });
+
+  useEffect(() => {
+   
+      setItems([...data]);
+
+  }, [data])
+
     return (
 
-    <div className="h-[38.5em] overflow-auto relative rounded-md border">
+    <div className="h-[38.5em] overflow-y-auto relative rounded-md border">
       <Table className="bg-[#150a04] border-separate border-spacing-x-0 border-spacing-y-3 p-4 pt-0">
         <TableHeader className=" sticky top-0 z-20 bg-transparent w-full h-[4em]">
           {table.getHeaderGroups().map((headerGroup) => (
@@ -64,15 +76,17 @@ export function DataTable<TData>({
               })}
               <TableCell className="absolute -right-2">
                 {/* SAVE Button */}
-                <Button disabled={disabled} className={cn(disabled ? 'text-gray-700' : 'text-green-600', "bg-white  hover:bg-green-600 hover:text-white mr-2")}>Save</Button>
-                <Button disabled={disabled} className={cn(disabled ? 'text-gray-700' : 'text-red-600', "bg-white  hover:bg-red-600 hover:text-white")}>Reset</Button>
+                
+                <Button disabled={disabled} className={cn(disabled ? 'text-gray-700' : 'text-green-600', "bg-white  hover:bg-green-600 hover:text-white mr-2 cursor-pointer")}>Save</Button>
+                <Button disabled={disabled} onClick={() => {setItems([...data]), setDisabled(true)}} className={cn(disabled ? 'text-gray-700' : 'text-red-600', "bg-white  hover:bg-red-600 hover:text-white pr-8 pl-8 cursor-pointer")}>Reset</Button>
               </TableCell>
             </TableRow>
           ))}     
           </TableHeader>
           <TableBody>
             <DragDropProvider
-               onDragEnd={(event) => {
+              onDragEnd={(event) => {
+              
               if (event.canceled) return;
 
                const {source} = event.operation;
@@ -86,14 +100,10 @@ export function DataTable<TData>({
                   const [removed] = newItems.splice(initialIndex, 1);
                   newItems.splice(index, 0, removed);
                   console.log(data, newItems)
+                  setDisabled(JSON.stringify(newItems) === JSON.stringify(data));
                   return newItems;
-
                 });
-                
-
-              }
-               
-                 
+                }            
                 }
               }}
             >

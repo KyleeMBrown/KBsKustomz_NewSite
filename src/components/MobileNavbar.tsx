@@ -18,7 +18,7 @@ const MobileNavbar = (): React.ReactElement => {
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger className="bg-black cursor-pointer hover:scale-102 active:scale-100 rounded hidden max-[768px]:block mr-1">
+        <DropdownMenuTrigger suppressHydrationWarning className="bg-black cursor-pointer hover:scale-102 active:scale-100 rounded hidden max-[768px]:block mr-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="45"
