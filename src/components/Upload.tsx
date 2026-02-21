@@ -54,8 +54,6 @@ export const Upload = ({imageCount, uploadImage}:{imageCount:number, uploadImage
   // callback for adding files to list on Drop
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setFilesToUpload((prev) => [...prev, ...acceptedFiles]);
-    // Do something with the files
-    acceptedFiles.map((file) => console.log(file));
   }, []);
 
   // Drop zone config
@@ -102,7 +100,7 @@ export const Upload = ({imageCount, uploadImage}:{imageCount:number, uploadImage
   };
 
   return (
-    <div className="flex flex-col bg-amber-950 w-full h-[92vh] max-[830px]:h-[94.5vh] max-[768px]:h-screen">
+    <div className="flex flex-col bg-amber-950 w-full h-[92vh] max-[830px]:h-[94.5vh] max-[768px]:h-screen custom-scrollbar">
       {/* Images to upload */}
       <section className="h-[70%]  max-[768px]:h-[80%] overflow-y-scroll w-full bg-[#240d01] text-white">
         {filesToUpload.length > 0 ? (
@@ -181,7 +179,6 @@ export const Upload = ({imageCount, uploadImage}:{imageCount:number, uploadImage
         <div className="w-full h-auto flex items-center pl-[1em] pr-[1em] justify-center">
           <a
             onClick={() => {
-              console.log(filesToUpload),
                 setDialogOpen(true),
                 setError(null),
                 setSuccess(false);

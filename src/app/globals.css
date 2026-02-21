@@ -21,6 +21,16 @@
     scroll-behavior: smooth;
   }
   
+  /* Target the track (the background) */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #150a04 !important;
+
+}
+/* For Firefox (standard property) */
+.custom-scrollbar {
+  scrollbar-width: thin; /* auto or thin */
+  scrollbar-color: #888 #150a04; /* thumb color track color */
+}
 
   :root {
     --radius: 0.625rem;

@@ -33,8 +33,6 @@ export const compressFiles = async (files: File[]): Promise<File[]> => {
                 try {
                     // compress the file
                     const compressedFile: File = await imageCompression(file, options)
-                    // log the file size
-                    console.log(compressedFile.name)
                     // add to new list
                     compressedFiles.push(compressedFile)
                 } catch (e) {

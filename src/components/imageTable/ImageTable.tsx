@@ -2,13 +2,21 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react"
 import { columns } from "./columns"
 import { DataTable } from "./data-table"
-import { Database } from "@/lib/types/supabaseKbs"
 import { Images } from "@/lib/types/Types"
+import ModalPopup from "../ModalPopup"
+import { Button } from "../ui/button"
 
-const ImageTable = () => {
+const ImageTable = ():React.ReactElement => {
 
-    const [data, setData]: [Images[], Dispatch<SetStateAction<Images[]>>] = useState([]);
-    const [loading, setLoading]: [boolean, Dispatch<SetStateAction<boolean>>] = useState(false);
+    // handle state of fetched images
+    const [data, setData]: [Images[], Dispatch<SetStateAction<Images[]>>] = useState<Images[]>([]);
+    // handle the loading state
+    const [loading, setLoading]: [boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(false);
+    // handle the popup modal state
+    const [open, setOpen]: [boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(false);
+    // handle the error state
+    const [error, setError]:[Error, Dispatch<SetStateAction<Error>>]  = useState(null);
+    
     /* Function to fetch images */ 
     const fetchImages = async () => {
         try {
@@ -29,6 +37,8 @@ const ImageTable = () => {
             setLoading(false)
         } catch (err) {
             setLoading(false)
+            setOpen(true)
+            setError(err)
             // log error
             console.log(err)
         }
@@ -40,8 +50,14 @@ const ImageTable = () => {
         fetchImages()
     }, [])
     
-  return (
-      <div className="w-[90%] container mx-auto"><DataTable loading={loading} columns={columns} data={data} /></div>
+    return (
+      <>
+            <div className="w-[90%] container mx-auto">
+                <DataTable loading={loading} columns={columns} data={data} refresh={fetchImages} />
+            </div>
+            {/* Error Popup */}
+            <ModalPopup className="bg-white" open={open} setOpen={setOpen} title={<p className="text-red-500">ERROR</p>} description={<span className="text-red-500">{error?.message}</span>} customClose={<Button variant="outline" className="cursor-pointer" onClick={() => { setOpen(false) }}>Close</Button>} />
+      </>
   )
 }
 

@@ -9,8 +9,6 @@ import { createClient } from "@/lib/supabase/server";
 import { PutBlobResult, put } from "@vercel/blob";
 import { revalidateTag, unstable_cache } from "next/cache";
 
-const supabaseClient = createClientBrowser()
-
 /**
  * @name uploadImages
  * @description - Function that uploads images to the CDN + Database
@@ -46,7 +44,42 @@ export const uploadImage = async (file: File, index:number, totalImageCount:numb
             revalidateTag("images", "max");
           }
     } catch (err) {
-        
+        // throw error
+        throw err;
+    }
+}
+
+
+/**
+ * @name saveImages
+ * @description - Function that updates the order of images
+ * @async
+ * SERVER ACTION
+ */
+
+export const saveImages = async (images:any) => { 
+    // create a supabase client
+    const supabase = await createClient();
+    try { 
+    
+    const { data, error } = await supabase
+        .from('images')
+        .upsert(images)
+        .select()
+    
+        // if error inserting into DB
+        if (error) {
+        // create a new error obj
+            const e = new Error(error.message);
+            (e as any).code = error.code;
+            (e as any).details = error.details;
+            throw e;
+        }    
+        // revalidate the image fetch tag
+        revalidateTag("images", "max");
+        return data;
+    } catch (err) {
+         // handle error
         throw err;
     }
 }

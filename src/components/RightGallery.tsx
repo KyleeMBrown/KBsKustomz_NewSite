@@ -16,9 +16,8 @@ type Images = Database["public"]["Tables"]["images"]["Row"]
 export const RightGallery = ({ images, enabled, count }: { images: Images[], enabled: boolean, count: number }):ReactElement => {
 
   return (
-    <div className="w-full flex flex-col gap-4 items-center overflow-y-scroll overflow-x-hidden">
+    <div className="w-full flex flex-col gap-4 items-center overflow-hidden custom-scrollbar">
       {/* Gallery Image List*/}
-     
       {images ? <GalleryImageList images={(images)} />:<div className="h-full w-full flex items-center justify-center"><Spinner className="w-9" color="white"/></div>}
 
       {/* Pagination Bar */}
