@@ -21,7 +21,7 @@ export const GalleryPaginationBar = ({totalImages, enabled}:{totalImages:number,
   // find the total amount of pages
   const pages: number = Math.ceil(totalImages/9) || 0
 
-  console.log(pages, totalImages)// debug
+  // handle next page
   const handleNext = (page: number) => {
     if (page < pages - 1) {
       setActiveIndex(page + 1)
@@ -30,10 +30,12 @@ export const GalleryPaginationBar = ({totalImages, enabled}:{totalImages:number,
     }
   }
 
+  // handle number click
   const handleClick = (page: number) => {
     router.push(`?page=${page}`, {scroll:false})
   }
 
+  // handle previous page
   const handlePrev = (page:number) => {
     if (page !== 0) {
       setActiveIndex(page - 1)

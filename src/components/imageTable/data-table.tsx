@@ -24,10 +24,11 @@ import { Button } from "../ui/button"
 import { cn } from "@/Styling configs/utils"
 import ModalPopup from "../ModalPopup"
 import { saveImages } from "@/ServerActions/Images/images"
+import { Images } from "@/lib/types/Types"
 
 interface DataTableProps<TData> {
   columns: ColumnDef<TData>[]
-  data: TData[]
+  data: Images[]
   loading: boolean,
   refresh:Function
   
@@ -65,7 +66,14 @@ export function DataTable<TData>({
 
   // set items after images are fetched
   useEffect(() => {
+    const same =
+    items.length === data.length &&
+    items.every((item, i) => item.id === data[i]?.id);
+
+    if (!same) {
       setItems([...data]);
+      setDisabled(true);
+    }
   }, [data])
 
   const handleSave = async () => { 
@@ -79,20 +87,29 @@ export function DataTable<TData>({
       }));
 
       // update image orders
-      const newImages = await saveImages([...reordered]);
+      await saveImages([...reordered]);
       // stop load
       setLoad(false)
       setSuccess(true)
       // re-fetch the images
-      refresh();
+      await refresh();
       setDisabled(true);
-  
-      //setItems([...newImages])
+
     } catch (e) {
       setLoad(false)
       setError(e)
     }
   }
+
+  const handleDelete = async () => {
+   
+    try {
+       //TODO: handle deleting the selected images
+    } catch {
+      
+    }
+  }
+
     return (
 
     <div className="h-[38.5em] overflow-y-auto relative rounded-md border custom-scrollbar">
