@@ -25,6 +25,9 @@ import { cn } from "@/Styling configs/utils"
 import ModalPopup from "../ModalPopup"
 import { saveImages } from "@/ServerActions/Images/images"
 import { Images } from "@/lib/types/Types"
+import { deleteImages } from "@/ServerActions/Images/images"
+
+import { RowData } from "@tanstack/react-table"
 
 interface DataTableProps<TData> {
   columns: ColumnDef<TData>[]
@@ -42,27 +45,37 @@ export function DataTable<TData>({
 
 
   // handles the state of items in the table
-  const [items, setItems] = useState([...data]);
+  const [items, setItems]:[Images[], Dispatch<SetStateAction<Images[]>>]  = useState<Images[]>([...data]);
   // handles the state of disabled cta's 
-  const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled]:[boolean, Dispatch<SetStateAction<boolean>>]  = useState<boolean>(true);
   // handle the popup modal state
   const [open, setOpen]: [boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(false);
   // handle load state of save
   const [load, setLoad]: [boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(false);
 
   // handle the error state
-  const [error, setError]: [Error, Dispatch<SetStateAction<Error>>] = useState(null);
+  const [error, setError]: [Error, Dispatch<SetStateAction<Error>>] = useState<Error>(null);
    // handle the success state
-  const [success, setSuccess]:[boolean, Dispatch<SetStateAction<boolean>>]  = useState(false);
-  
+  const [success, setSuccess]: [boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(false);
+  // handle selected rows
+  const [rowSelection, setRowSelection] = useState({});
+   // handle the delete popup modal state
+  const [deleteOpen, setDeleteOpen]: [boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(false);
+
 
   // create table 
   const table = useReactTable({
     data:items,// use items
     columns,
+    state: { rowSelection },
+    onRowSelectionChange: setRowSelection,
     getCoreRowModel: getCoreRowModel(),
+    meta: { setDeleteOpen },
     getRowId: (row: any) => row.id // id for each item
   });
+
+const imagesToDelete = table.getFilteredSelectedRowModel().rows.map(row=>row.original)
+
 
   // set items after images are fetched
   useEffect(() => {
@@ -92,6 +105,7 @@ export function DataTable<TData>({
       setLoad(false)
       setSuccess(true)
       // re-fetch the images
+      setRowSelection({})
       await refresh();
       setDisabled(true);
 
@@ -104,9 +118,15 @@ export function DataTable<TData>({
   const handleDelete = async () => {
    
     try {
-       //TODO: handle deleting the selected images
-    } catch {
-      
+      setLoad(true)
+      //TODO: handle deleting the selected images
+      await deleteImages([...imagesToDelete])
+      refresh()
+      setLoad(false)
+      setSuccess(true)
+    } catch(e) {
+      setError(e);
+      setLoad(false)
     }
   }
 
@@ -123,7 +143,7 @@ export function DataTable<TData>({
                   <TableHead key={header.id} className="text-center bg-[#150a04]">
                     {header.isPlaceholder
                       ? null
-                      : flexRender(
+                      :flexRender(
                           header.column.columnDef.header,
                           header.getContext()
                         )}
@@ -132,10 +152,22 @@ export function DataTable<TData>({
               })}
               {/* Buttons */}
               <TableCell className="absolute -right-2">
+              { table.getFilteredSelectedRowModel().rows.length === 0 ?
+                <>
                 {/* SAVE Button */}
                 <Button disabled={disabled} onClick={() => { setOpen(true), setSuccess(false), setError(null) }} className={cn(disabled ? 'text-gray-700' : 'text-green-600', "bg-white  hover:bg-green-600 hover:text-white mr-2 cursor-pointer")}>Save</Button>
-                {/* RESET BUTTON */} 
-                <Button disabled={disabled} onClick={() => {setItems([...data]), setDisabled(true) }} className={cn(disabled ? 'text-gray-700' : 'text-red-600', "bg-white  hover:bg-red-600 hover:text-white pr-8 pl-8 cursor-pointer")}>Reset</Button>
+                {/* RESET BUTTON */}
+                <Button disabled={disabled} onClick={() => { setItems([...data]), setSuccess(false), setDisabled(true) }} className={cn(disabled ? 'text-gray-700' : 'text-red-600', "bg-white  hover:bg-red-600 hover:text-white pr-8 pl-8 cursor-pointer")}>Reset</Button>
+                </>:
+                /* DELETE SELECTED BUTTON */
+                  <Button onClick={() => {setDeleteOpen(true), setSuccess(false), console.log(imagesToDelete)}} className="bg-red-500 text-white hover:bg-red-600 transition-all ease-in duration-200 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" className="bi bi-trash cursor-pointer" viewBox="0 0 16 16">
+                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                    </svg>
+                    {table.getFilteredSelectedRowModel().rows.length}
+                  </Button>
+              }
               </TableCell>
             </TableRow>
           ))}     
@@ -174,7 +206,7 @@ export function DataTable<TData>({
               ) : (
                   <TableRow>
                       <TableCell colSpan={columns.length} className="h-[73vh] text-center">
-                          {loading ? <center><Spinner /></center> : "Please Upload Images"}
+                          {loading ? <center><Spinner /></center> : "Loading Images..."}
                       </TableCell>
                   </TableRow>
                 )}
@@ -190,7 +222,14 @@ export function DataTable<TData>({
             <span className={cn(error?"text-black":null, success?'text-green-500':null)}>{error ? error?.message: success?"Images Saved Successfully":null}</span>
             
           }
-          customClose={<Button variant="outline" className="cursor-pointer" onClick={() => { setOpen(false) }}>{success || error ? "Ok": "Cancel"}</Button>} footer={!success ? <Button onClick={()=>{handleSave()}} className="bg-green-500 text-white cursor-pointer">Save</Button>: null} />
+          customClose={<Button variant="outline" className="cursor-pointer" onClick={() => { setOpen(false) }}>{success || error ? "Ok" : "Cancel"}</Button>} footer={!success ? <Button onClick={() => { handleSave() }} className="bg-green-500 text-white cursor-pointer">Save</Button> : null} />
+        
+        <ModalPopup className="bg-white border-0" open={deleteOpen} setOpen={setDeleteOpen}
+          title={<p>Are you sure?</p>}
+          description={load ? <Spinner className="w-4" color="black" /> : <span className="text-red-400">{error ? error?.message : success ? "Image(s) deleted" : "This cannot be undone"}</span>}
+          customClose={<Button variant="outline" className="cursor-pointer" onClick={() => { setDeleteOpen(false) }}>{success || error ? "Ok" : "Cancel"}</Button>} footer={!success ? <Button onClick={() => {handleDelete()}} className="bg-red-500 text-white cursor-pointer">Confirm Delete</Button> : null}
+        
+        />
         </div>
   )
 }

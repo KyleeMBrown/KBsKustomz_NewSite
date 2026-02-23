@@ -6,8 +6,10 @@ import { createClientBrowser } from "@/lib/supabase/client";
  * @description File that handles images
  */
 import { createClient } from "@/lib/supabase/server";
+import { Images } from "@/lib/types/Types";
 import { PutBlobResult, put } from "@vercel/blob";
-import { revalidateTag, unstable_cache } from "next/cache";
+import { revalidateTag } from "next/cache";
+import { del } from "@vercel/blob";
 
 /**
  * @name uploadImages
@@ -57,7 +59,7 @@ export const uploadImage = async (file: File, index:number, totalImageCount:numb
  * SERVER ACTION
  */
 
-export const saveImages = async (images:any) => { 
+export const saveImages = async (images:Images[]) => { 
     // create a supabase client
     const supabase = await createClient();
     try { 
@@ -83,6 +85,42 @@ export const saveImages = async (images:any) => {
         throw err;
     }
 }
+
+/**
+ * @name deleteImages
+ * @description - Function that deletes images
+ * @async
+ * SERVER ACTION
+ */
+
+export const deleteImages = async (images:Images[]) => {
+    const supabase = await createClient();
+    const ids:String[] = images.map(image=>image.id)
+    try { 
+        // delete the images from supabase
+        const response = await supabase
+        .from('images')
+        .delete()
+        .in('id', ids)
+        
+        // supabase deletion is successful 
+        if (response.status === 204) {
+            await Promise.all(
+                // delete each image
+                images.map(async (image) => {
+                    await del(image.image_url)
+                })
+            )
+            return;
+        }
+
+        throw new Error(response.statusText)
+
+    } catch (err) {
+        throw err;
+    }
+}
+
 
 /**
  * @name getImageCount
