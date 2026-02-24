@@ -33,8 +33,6 @@ export const compressFiles = async (files: File[]): Promise<File[]> => {
                 try {
                     // compress the file
                     const compressedFile: File = await imageCompression(file, options)
-                    // log the file size
-                    console.log(compressedFile.name)
                     // add to new list
                     compressedFiles.push(compressedFile)
                 } catch (e) {
@@ -83,4 +81,26 @@ export function useIsMobile(breakpoint = 768): boolean {
     }, [breakpoint]);
   
     return isMobile;
+}
+
+/**
+ * Function to format the date and time
+ * @param {string} timeStamp
+ * @returns the formatted date as a string
+ */
+
+export const formatDate = (timeStamp: string): string => {
+    // create a date object from the timestamp
+    const date = new Date(timeStamp);
+    // format the timestamp 
+  const formatted = date.toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+    
+  return formatted
 }
