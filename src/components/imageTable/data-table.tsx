@@ -26,8 +26,8 @@ import ModalPopup from "../ModalPopup"
 import { saveImages } from "@/ServerActions/Images/images"
 import { Images } from "@/lib/types/Types"
 import { deleteImages } from "@/ServerActions/Images/images"
-
-import { RowData } from "@tanstack/react-table"
+import { useIsMobile } from "@/lib/helpers/clientHelpers"
+import SortableMobile from "./SortableMobile"
 
 interface DataTableProps<TData> {
   columns: ColumnDef<TData>[]
@@ -61,7 +61,7 @@ export function DataTable<TData>({
   const [rowSelection, setRowSelection] = useState({});
    // handle the delete popup modal state
   const [deleteOpen, setDeleteOpen]: [boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(false);
-
+  const isMobile = useIsMobile();
 
   // create table 
   const table = useReactTable({
@@ -131,44 +131,54 @@ const imagesToDelete = table.getFilteredSelectedRowModel().rows.map(row=>row.ori
   }
 
     return (
-
-    <div className="h-[38.5em] overflow-y-auto relative rounded-md border custom-scrollbar">
-      <Table className="bg-[#150a04] border-separate border-spacing-x-0 border-spacing-y-3 p-4 pt-0">
+      <>
+        {/* Save & Reset Action Buttons */}
+        <div className="w-full mb-2">
+          {table.getFilteredSelectedRowModel().rows.length === 0 ?
+            <>
+              {/* SAVE Button */}
+              <Button disabled={disabled} onClick={() => { setOpen(true), setSuccess(false), setError(null) }} className={cn(disabled ? 'text-gray-700' : 'text-green-600', "bg-white  hover:bg-green-600 hover:text-white mr-2 cursor-pointer")}>Save</Button>
+              {/* RESET BUTTON */}
+              <Button disabled={disabled} onClick={() => { setItems([...data]), setSuccess(false), setDisabled(true) }} className={cn(disabled ? 'text-gray-700' : 'text-red-600', "bg-white  hover:bg-red-600 hover:text-white pr-8 pl-8 cursor-pointer")}>Reset</Button>
+            </> :
+            /* DELETE SELECTED BUTTON */
+            <Button onClick={() => { setDeleteOpen(true), setSuccess(false), console.log(imagesToDelete) }} className="bg-red-500 text-white hover:bg-red-600 transition-all ease-in duration-200 cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" className="bi bi-trash cursor-pointer" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+              </svg>
+              {table.getFilteredSelectedRowModel().rows.length}
+            </Button>
+          }</div>
+         {/* TABLE WRAPPER */}
+      <div className="h-[38.5em] max-[768px]:h-[35em] max-[440px]:h-[46em]  max-[400px]:h-[43em] max-[380px]:h-[35em]  max-[376px]:h-[32em] max-[350px]:h-[45em]  max-[330px]:h-[32em] overflow-y-auto bg-[#150a04] relative max-[768px]:overflow-x-hidden  rounded-md border no-scrollbar">
+        {/* TABLE */}
+        <Table className="bg-[#150a04] border-separate border-spacing-x-0 border-spacing-y-3 max-[768px]:border-spacing-y-2 p-4 max-[768px]:p-2 pt-0">
           {/* HEADER */}
-          <TableHeader className=" sticky top-0 z-20 bg-transparent w-full h-[4em]">
-          {table.getHeaderGroups().map((headerGroup) => (
+          <TableHeader className="sticky top-0 z-20 bg-transparent w-full h-[4em]">
+          
+            {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id} className="text-center bg-[#150a04]">
+                 !isMobile? <TableHead key={header.id} className="text-center bg-[#150a04]">
                     {header.isPlaceholder
                       ? null
-                      :flexRender(
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>:<TableHead key={header.id} className="text-center bg-[#150a04]">
+                    {header.column.id !== "select"
+                      ? null
+                      : flexRender(
                           header.column.columnDef.header,
                           header.getContext()
                         )}
                   </TableHead>
+                  
                 )
               })}
-              {/* Buttons */}
-              <TableCell className="absolute -right-2">
-              { table.getFilteredSelectedRowModel().rows.length === 0 ?
-                <>
-                {/* SAVE Button */}
-                <Button disabled={disabled} onClick={() => { setOpen(true), setSuccess(false), setError(null) }} className={cn(disabled ? 'text-gray-700' : 'text-green-600', "bg-white  hover:bg-green-600 hover:text-white mr-2 cursor-pointer")}>Save</Button>
-                {/* RESET BUTTON */}
-                <Button disabled={disabled} onClick={() => { setItems([...data]), setSuccess(false), setDisabled(true) }} className={cn(disabled ? 'text-gray-700' : 'text-red-600', "bg-white  hover:bg-red-600 hover:text-white pr-8 pl-8 cursor-pointer")}>Reset</Button>
-                </>:
-                /* DELETE SELECTED BUTTON */
-                  <Button onClick={() => {setDeleteOpen(true), setSuccess(false), console.log(imagesToDelete)}} className="bg-red-500 text-white hover:bg-red-600 transition-all ease-in duration-200 cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" className="bi bi-trash cursor-pointer" viewBox="0 0 16 16">
-                      <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                      <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                    </svg>
-                    {table.getFilteredSelectedRowModel().rows.length}
-                  </Button>
-              }
-              </TableCell>
             </TableRow>
           ))}     
           </TableHeader>
@@ -201,7 +211,8 @@ const imagesToDelete = table.getFilteredSelectedRowModel().rows.map(row=>row.ori
             
               {table.getRowModel().rows?.length ? (
                   table.getRowModel().rows.map((row, index) => (
-                    <Sortable key={row.id} id={row.id} row={row} index={index} />
+                    !isMobile ? <Sortable key={row.id} id={row.id} row={row} index={index} />
+                      : <SortableMobile row={ row} id={row.id} key={row.id} index={index} />
                   ))
               ) : (
                   <TableRow>
@@ -227,9 +238,10 @@ const imagesToDelete = table.getFilteredSelectedRowModel().rows.map(row=>row.ori
         <ModalPopup className="bg-white border-0" open={deleteOpen} setOpen={setDeleteOpen}
           title={<p>Are you sure?</p>}
           description={load ? <Spinner className="w-4" color="black" /> : <span className="text-red-400">{error ? error?.message : success ? "Image(s) deleted" : "This cannot be undone"}</span>}
-          customClose={<Button variant="outline" className="cursor-pointer" onClick={() => { setDeleteOpen(false) }}>{success || error ? "Ok" : "Cancel"}</Button>} footer={!success ? <Button onClick={() => {handleDelete()}} className="bg-red-500 text-white cursor-pointer">Confirm Delete</Button> : null}
+          customClose={<Button variant="outline" className="cursor-pointer" onClick={() => { setDeleteOpen(false), setRowSelection({}) }}>{success || error ? "Ok" : "Cancel"}</Button>} footer={!success ? <Button onClick={() => {handleDelete()}} className="bg-red-500 text-white cursor-pointer">Confirm Delete</Button> : null}
         
         />
         </div>
+        </>
   )
 }

@@ -31,6 +31,30 @@
   scrollbar-width: thin; /* auto or thin */
   scrollbar-color: #888 #150a04; /* thumb color track color */
 }
+.custom-scrollbar-white::-webkit-scrollbar-track {
+  background: #fff !important;
+}
+/* For Firefox (standard property) */
+.custom-scrollbar-white {
+  scrollbar-width: thin; /* auto or thin */
+  scrollbar-color: #000 #fff; /* thumb color track color */
+}
+.custom-scrollbar-black::-webkit-scrollbar-track {
+  background: #000 !important;
+}
+/* For Firefox (standard property) */
+.custom-scrollbar-black {
+  scrollbar-width: thin; /* auto or thin */
+  scrollbar-color: #fff #000; /* thumb color track color */
+}
+.no-scrollbar::-webkit-scrollbar{
+  display: none !important;
+  background-color:transparent !important;
+}
+.no-scrollbar {
+  scrollbar-width: 0px !important; /* auto or thin */
+  scrollbar-color: #fff #00000000; /* thumb color track color */
+}
 
   :root {
     --radius: 0.625rem;

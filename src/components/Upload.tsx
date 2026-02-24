@@ -100,7 +100,7 @@ export const Upload = ({imageCount, uploadImage}:{imageCount:number, uploadImage
   };
 
   return (
-    <div className="flex flex-col bg-amber-950 w-full h-[92vh] max-[830px]:h-[94.5vh] max-[768px]:h-screen custom-scrollbar">
+    <div className="flex flex-col bg-amber-950 w-full h-[92vh] max-[830px]:h-[94.5vh] max-[768px]:h-screen no-scrollbar">
       {/* Images to upload */}
       <section className="h-[70%]  max-[768px]:h-[80%] overflow-y-scroll w-full bg-[#240d01] text-white">
         {filesToUpload.length > 0 ? (
