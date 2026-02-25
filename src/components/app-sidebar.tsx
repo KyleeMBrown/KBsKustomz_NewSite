@@ -60,18 +60,8 @@ const data = {
           url: "/dashboard/users/create",
         },
         {
-          title: "Manage Users",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Site Analytics",
-      url: "#",
-      items: [
-        {
-          title: "General",
-          url: "#",
+          title: "Manage",
+          url: "/dashboard/users/manage",
         },
       ],
     },
