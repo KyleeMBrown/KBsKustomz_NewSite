@@ -105,7 +105,7 @@ export function AppSidebar({ user, ...props }: Props) {
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
-        <SearchForm />
+      
       </SidebarHeader>
       <SidebarContent className="bg-amber-950 text-white">
         <SidebarGroup>
