@@ -1,3 +1,9 @@
+/**
+ * @route /dashboard/users/manage
+ * @role ADMIN level access only
+ * Page where users with ADMIN level permissions can manage users
+ * @author Kylee Brown
+ */
 import UsersTable from "@/components/usersTable/UsersTable"
 
 const page = () => {
