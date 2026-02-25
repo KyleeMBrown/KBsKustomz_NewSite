@@ -151,7 +151,7 @@ const imagesToDelete = table.getFilteredSelectedRowModel().rows.map(row=>row.ori
             </Button>
           }</div>
          {/* TABLE WRAPPER */}
-      <div className="h-[38.5em] max-[768px]:h-[35em] max-[440px]:h-[46em]  max-[400px]:h-[43em] max-[380px]:h-[35em]  max-[376px]:h-[32em] max-[350px]:h-[45em]  max-[330px]:h-[32em] overflow-y-auto bg-[#150a04] relative max-[768px]:overflow-x-hidden  rounded-md border no-scrollbar">
+      <div className="h-[38.5em] max-[768px]:h-[35em] max-[440px]:h-[46em] max-[415px]:h-[43em]  max-[400px]:h-[43em] max-[380px]:h-[35em]  max-[376px]:h-[32em] max-[350px]:h-[45em]  max-[330px]:h-[32em] overflow-y-auto bg-[#150a04] relative max-[768px]:overflow-x-hidden  rounded-md border no-scrollbar">
         {/* TABLE */}
         <Table className="bg-[#150a04] border-separate border-spacing-x-0 border-spacing-y-3 max-[768px]:border-spacing-y-2 p-4 max-[768px]:p-2 pt-0">
           {/* HEADER */}
