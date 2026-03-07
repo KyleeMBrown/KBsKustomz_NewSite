@@ -128,3 +128,7 @@
 input {
   --tw-ring-shadow: 0 0 #000 !important;
 }
+
+.group-data-\[vaul-drawer-direction\=bottom\]\/drawer-content\:block:is(:where(.group\/drawer-content)[data-vaul-drawer-direction="bottom"] *) {
+    background-color: #ffffff22;
+}

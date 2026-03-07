@@ -14,7 +14,7 @@ const page = () => {
             <p className="text-white font-thin">Manage the dashboard users here</p>
         </div>
         {/* Table here */}
-          <div className="w-full h-[80%] flex items-start justify-center">
+          <div className="w-full h-[80%]  max-[768px]:h-auto  max-[768px]:max-h-[50%] flex items-start justify-center">
             <UsersTable />
           </div> 
     </div>
