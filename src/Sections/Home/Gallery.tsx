@@ -30,7 +30,7 @@ const Gallery = ({ count, page }) => {
   }, [page])
   
   return (
-      <div id="gallery" className={cn((enabled ? "bg-white" : "bg-[#070707]"), "flex max-[768px]:flex-col w-full h-screen p-4 max-[768px]:h-[125vh]")}>
+      <div id="gallery" className={cn((enabled ? "bg-white" : "bg-[#070707]"), "flex max-[768px]:flex-col w-full h-screen relative p-4 max-[768px]:h-[125vh]")}>
           {/* Left Side */}
           <LeftGallery enabled={enabled} setEnabled={handleEnabled}/>
           {/* Right Side Gallery */}

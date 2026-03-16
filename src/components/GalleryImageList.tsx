@@ -1,25 +1,33 @@
-import { ImageListItem } from '@mui/material'
-import ImageList from '@mui/material/ImageList'
 import { useIsMobile } from '@/lib/helpers/clientHelpers';
+import { Images } from '@/lib/types/Types';
 
 const GalleryImageList = ({ images }) => {
-  const isMobile = useIsMobile();
+  const isMobile = useIsMobile(768);
 
   return (
-      <ImageList variant="masonry" cols={isMobile ? 1 : 3} gap={8}>
-        {images.map((item: any, i: number) => (
-          <ImageListItem key={i}>
-            <img
-              srcSet={`${item.image_url}?w=248&fit=crop&auto=format&dpr=2 2x`}
-              src={`${item.image_url}?w=248&fit=crop&auto=format`}
-              alt={item.alt_text}
-              loading="lazy"
-            />
-          </ImageListItem>
-        ))}
-      </ImageList >
-      
-  )
-}
+    <div
+      className={`
+        w-full
+        columns-1 sm:columns-2 md:columns-3
+        gap-2
+        mb-[2em]
+      `}
+    >
+      {images.map((item:Images) => (
+        <div
+          key={item.id}
+          className="mb-2 break-inside-avoid"
+        >
+          <img
+            src={item.image_url}
+            alt={item.alt_text}
+            className="w-full h-auto object-cover"
+            loading="lazy"
+          />
+        </div>
+      ))}
+    </div>
+  );
+};
 
-export default GalleryImageList
+export default GalleryImageList;

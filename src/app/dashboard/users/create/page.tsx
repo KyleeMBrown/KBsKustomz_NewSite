@@ -10,7 +10,7 @@ import CreateUser from "@/components/CreateAUser";
 
 const page = () => {
   return (
-    <div className="flex items-center justify-center w-full p-5 h-[92vh] bg-[#240d01]">
+    <div className="flex items-center justify-center w-full p-4 h-[92vh] bg-[#240d01]">
       <div className="bg-amber-950 flex max-[768px]:flex-col w-full h-full">
         <div className="w-[60%] max-[768px]:w-full h-full">
           <CreateUser />

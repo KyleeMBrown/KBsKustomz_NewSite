@@ -47,8 +47,16 @@ const EditDrawer = ({ open, setOpen, currentUser }: { open: boolean, setOpen: Di
   // handle tooltip state
   const [toolOpen, setToolOpen]: [boolean, Dispatch<SetStateAction<boolean>>] = useState<boolean>(false)
 
+  // reset the form state
+  const reset = () => {
+    setNewRole("")
+    setNewFirstName("")
+    setNewLastName("")
+    setNewEmail("")
+  }
+
   return (
-    <Drawer open={open} onOpenChange={setOpen} onClose={() => { setNewRole("") }} direction={mobile? "bottom" : "right"} >
+    <Drawer open={open} onOpenChange={setOpen} onClose={() => { reset() }} direction={mobile? "bottom" : "right"} >
       <DrawerContent className="bg-[#240d01] text-white">
         <DrawerHeader>
           <div className="flex max-[768px]:justify-center">
@@ -95,10 +103,20 @@ const EditDrawer = ({ open, setOpen, currentUser }: { open: boolean, setOpen: Di
               placeholder={currentUser?.first_name} className="w-[90%]"></Input>
               {/* Last Name */}
               <FieldLabel htmlFor="lastName">Last Name</FieldLabel>
-            <Input id="lastName" placeholder={currentUser?.last_name} className="w-[90%]"></Input>
-            {/* Last Name */}
-              <FieldLabel htmlFor="lastName">Email</FieldLabel>
-              <Input id="lastName" placeholder={currentUser?.email} className="w-[90%]"></Input>
+            <Input id="lastName"
+              value={newLastName}
+              onChange={(e) => {
+                setNewLastName(e.target.value);
+              }}
+              placeholder={currentUser?.last_name} className="w-[90%]"></Input>
+            {/* Email */}
+              <FieldLabel htmlFor="email">Email</FieldLabel>
+            <Input id="email"
+              value={newEmail}
+              onChange={(e) => {
+                setNewEmail(e.target.value);
+              }}
+              placeholder={currentUser?.email} className="w-[90%]"></Input>
             {/* Role Select Dropdown Input*/}
             <FieldLabel>Role</FieldLabel>
             <DropDownSelect
@@ -118,7 +136,10 @@ const EditDrawer = ({ open, setOpen, currentUser }: { open: boolean, setOpen: Di
           </Field>
         </FieldGroup>
         <DrawerFooter>
-          <Button className="text-green-600 bg-white">Save Changes</Button>
+          {/* SAVE Button */}
+          <Button className="text-green-600 bg-white mb-2 hover:bg-[#ffffffe1] cursor-pointer">Save Changes</Button>
+          {/* DELETE Button */}
+          <Button className="bg-red-800 hover:bg-[#ff0000a1] text-white cursor-pointer">Delete User</Button>
           <br></br>
            <center><p className="text-xs text-[#ffffff51] italic">Last modified: {formatDate(currentUser?.updated_at) }</p></center>
         </DrawerFooter>

@@ -117,7 +117,7 @@ const CreateUser = () => {
     <div className="w-full h-full">
       {!loading ? (
         <div className={cn(success && "hidden")}>
-          <center className="p-6 max-[768px]:pb-2">
+          <center className="pt-6 max-[768px]:pt-4">
             <h1 className="text-white uppercase">Create a User</h1>
           </center>
           <form
@@ -265,6 +265,7 @@ const CreateUser = () => {
             >
               Create User
             </Button>
+            
           </form>
         </div>
       ) : (
