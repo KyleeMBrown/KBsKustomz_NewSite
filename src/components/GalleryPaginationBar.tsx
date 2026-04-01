@@ -50,7 +50,7 @@ export const GalleryPaginationBar = ({totalImages, enabled}:{totalImages:number,
   
   return (
   
-      <Pagination className={cn(enabled? "text-black" :"text-white", "absolute bottom-0 bg-black p-2")}>
+      <Pagination className={cn(enabled? "text-black bg-white" :"text-white bg-black", "absolute bottom-0 p-2")}>
         <PaginationContent className="flex items-center justify-center">
           <PaginationItem>
             <PaginationPrevious className="cursor-pointer" onClick={() => {handlePrev(activeIndex)}} />
