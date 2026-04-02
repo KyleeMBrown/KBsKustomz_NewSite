@@ -1,4 +1,4 @@
-'dynamic'
+export const dynamic = 'force-dynamic';
 import DynamicBreadcrumbs from "@/components/DynamicBreadcrumbs";
 import { AppSidebar } from "@/components/app-sidebar";
 
