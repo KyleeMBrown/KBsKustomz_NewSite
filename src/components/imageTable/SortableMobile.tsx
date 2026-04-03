@@ -1,7 +1,7 @@
+'use client'
 import { useSortable } from "@dnd-kit/react/sortable";
 import { TableCell, TableRow } from "../ui/table";
 import { Checkbox } from "../ui/checkbox";
-import { useIsMobile } from "@/lib/helpers/clientHelpers";
 
 const SortableMobile = ({row, id, index}) => {
     const sortable = useSortable({
@@ -9,7 +9,6 @@ const SortableMobile = ({row, id, index}) => {
     index
   });
 
-    const isMobile = useIsMobile(325);
     return (
         <TableRow ref={sortable.ref} data-state={row.getIsSelected() && "selected"} className="w-full!">
             <TableCell colSpan={1} className="w-[10%]">

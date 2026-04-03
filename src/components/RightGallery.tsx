@@ -17,12 +17,14 @@ type Images = Database["public"]["Tables"]["images"]["Row"]
 export const RightGallery = ({ images, enabled, count }: { images: Images[], enabled: boolean, count: number }):ReactElement => {
 
   return (
-    <div className={cn(enabled ? "custom-scrollbar-white" : "custom-scrollbar-black","w-full flex flex-col gap-4 items-center overflow-hidden")}>
+    <div className={cn(enabled ? "custom-scrollbar-white" : "custom-scrollbar-black","w-full flex flex-col gap-4 overflow-hidden overflow-y-scroll")}>
       {/* Gallery Image List*/}
       {images ? <GalleryImageList images={(images)} />:<div className="h-full w-full flex items-center justify-center"><Spinner className="w-9" color="white"/></div>}
 
       {/* Pagination Bar */}
-      <GalleryPaginationBar totalImages={count} enabled={enabled} />
+      <div className="flex items-center justify-center w-full">
+        <GalleryPaginationBar totalImages={count} enabled={enabled} />
+      </div>
     </div>
   )
 }

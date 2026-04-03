@@ -32,7 +32,7 @@ const LeftGallery = ({enabled, setEnabled}) => {
               </div>
               
               {/* Gallery CTAs */}
-              <div className={cn(enabled? "text-black" : "text-white", "flex flex-col gap-2 justify-end h-[54%] max-[768px]:h-auto max-[768px]:mb-[1em]")}>
+              <div className={cn(enabled? "text-black" : "text-white", "flex flex-col gap-2 justify-end h-[42%] max-[768px]:h-auto max-[768px]:mb-[1em]")}>
                   <h2 className="text-lg">Quick Links</h2>
                   <div className="flex gap-2 flex-wrap w-80 max-[768px]:w-full">
                       <a href="/contact"><Badge className={cn(enabled ? "text-black" : "text-gray-500 hover:text-white")} variant="outline">Contact Us</Badge></a>

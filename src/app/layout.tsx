@@ -11,6 +11,7 @@ import Head from "next/head";
 
 const workSans = Work_Sans({
   subsets: ["latin"],
+  display:"swap"
 });
 
 

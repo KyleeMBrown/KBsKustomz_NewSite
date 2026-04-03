@@ -44,11 +44,14 @@ export async function updateSession(request: NextRequest) {
 
   // IMPORTANT: If you remove getClaims() and you use server-side rendering
   // with the Supabase client, your users may be randomly logged out.
+  // refresh session
+  await supabase.auth.refreshSession()
+
+  // get user claims
   const { data } = await supabase.auth.getClaims()
 
   const user:JwtPayload = data?.claims // the user object
   const role: string = user?.user_metadata?.user_role // the role the user was assigned
-  const email: string = user?.email // the user email
   
   if (!user && request.nextUrl.pathname.startsWith('/dashboard')) {
     // no user, potentially respond by redirecting the user to the login page

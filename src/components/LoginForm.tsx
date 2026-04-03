@@ -158,7 +158,7 @@ export function LoginForm({
                     <FieldLabel htmlFor="password">Password</FieldLabel>
                     {/* Forgot Password Link */}
                     <a
-                      href="#"
+                      href="/auth/private/send-reset-email"
                       className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                     >
                       Forgot your password?
@@ -180,7 +180,7 @@ export function LoginForm({
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
                         height="20"
-                        fill="black"
+                        fill="white"
                         className={cn(
                           !hidden && "hidden",
                           "x bi bi-eye absolute mr-2 cursor-pointer hover:scale-106 active:scale-100"
@@ -196,7 +196,7 @@ export function LoginForm({
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
                         height="20"
-                        fill="black"
+                        fill="white"
                         className={cn(
                           hidden && "hidden",
                           "bi bi-eye-fill absolute mr-2 cursor-pointer hover:scale-106 active:scale-100"

@@ -15,6 +15,7 @@ export type User =
     }
 
 export type Images = Database["public"]["Tables"]["images"]["Row"]
+export type Users = Database["public"]["Tables"]["users"]["Row"]
  
 import { RowData } from "@tanstack/react-table";
 

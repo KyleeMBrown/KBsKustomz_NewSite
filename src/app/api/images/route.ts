@@ -1,5 +1,5 @@
 /********************************************************************/
-/**************** Routes that handle image retrieval ****************/
+/**************** Route that handles image retrieval ****************/
 /********************************************************************/
 
 import { NextRequest, NextResponse } from "next/server";
