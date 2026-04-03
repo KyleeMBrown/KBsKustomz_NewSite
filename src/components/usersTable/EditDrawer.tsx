@@ -233,10 +233,11 @@ const EditDrawer = ({ open, setOpen, currentUser, refresh }: { open: boolean, se
             />
           </Field>
           <Field className="w-[90%] max-[768px]:hidden">
+            {/* SAVE CHANGES Button */}
+          <Button onClick={() => { handleUpdate() }} disabled={isEmpty} className="text-green-600 bg-white mb-2 max-[768px]:mb-0 hover:bg-[#ffffffe1] cursor-pointer">Save Changes</Button>
             {/* DELETE USER Button */}
             <Button onClick={()=>{ setOpenDeleteModal(true)}} className="bg-red-800 hover:bg-[#ff0000a1] text-white cursor-pointer">Delete User</Button>
-             {/* SAVE CHANGES Button */}
-          <Button onClick={() => { handleUpdate() }} disabled={isEmpty} className="text-green-600 bg-white mb-2 max-[768px]:mb-0 hover:bg-[#ffffffe1] cursor-pointer">Save Changes</Button>
+             
        
           </Field>
           <div className="w-[90%] hidden max-[768px]:flex gap-3 items-center justify-center">
