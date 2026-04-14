@@ -30,6 +30,7 @@ strong{
 
   html, body {
     scroll-behavior: smooth;
+    background-color:#461901;
   }
   
   /* Target the track (the background) */

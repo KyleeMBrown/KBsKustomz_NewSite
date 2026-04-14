@@ -1,4 +1,5 @@
 'use client'
+import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 
 const NotFound = () => {
@@ -19,7 +20,9 @@ const NotFound = () => {
                 <div className="bg-[#fffffff7] w-full h-screen flex flex-col items-center justify-center">
                 <h2 className="text-xl">404</h2>
                 <br></br>
-                <h3>uh oh!...Dashboard page does not exist</h3>
+                 <h3>uh oh!...Dashboard page does not exist</h3>
+                 <br></br>
+                 <a href="/dashboard/" className="bg-black text-white p-2 pr-4 pl-4 rounded-2xl">Back</a>
             </div>
             </>
     }

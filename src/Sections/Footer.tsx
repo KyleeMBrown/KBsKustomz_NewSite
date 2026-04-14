@@ -17,7 +17,7 @@ const Footer = () => {
   return (
     <div
       className={cn(
-        "w-full p-[2em] text-white max-[768px]:h-[9.5em] h-[8em] flex flex-col items-center justify-center  gap-1 border-t border-white",
+        "w-full p-[2em] text-white max-[768px]:h-[9.5em] h-[8em] flex flex-col items-center justify-center  gap-1 border-t border-white bg-black",
         hideFooter && "hidden"
       )}
     >

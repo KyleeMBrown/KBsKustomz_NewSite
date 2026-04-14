@@ -168,7 +168,7 @@ export const batchDelete = async (userIdList:string[]):Promise<{message:string}>
  * @role - ADMIN
  */
 
-export const sendPasswordResetEmail = async(email:string) => {
+export const sendPasswordResetEmail = async(email:string):Promise<{message:string}> => {
   try {
     // create the supabase client
     const supabse = await createClient();
@@ -177,6 +177,35 @@ export const sendPasswordResetEmail = async(email:string) => {
 
     // return a success message
     return {message:"Email Successfully Sent! \n Be sure to check your spam!"}
+  } catch (e) {
+    throw e;
+  }
+}
+
+/**
+ * @name updatePassword
+ * @description - Function that sends a password reset email
+ * @param newPassword - new user password
+ * @async
+ * SERVER ACTION
+ * @role - ADMIN
+ */
+
+export const updatePassword = async (newPassword:string):Promise<{message:string}>=> {
+  try {
+    // create the supabase client
+    const supabase = await createClient();
+
+    const { data, error } = await supabase.auth.updateUser({
+      password: newPassword
+    })
+
+    if (error) {
+      throw error;
+    }
+      // return success message
+      return { message: "Password Successfully Changed!" }
+    
   } catch (e) {
     throw e;
   }
