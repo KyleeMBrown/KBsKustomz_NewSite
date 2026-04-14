@@ -28,20 +28,19 @@ const DynamicBreadcrumbs = () => {
     "/dashboard": ["Dashboard"],
     "/dashboard/images/upload": ["Dashboard", "Images", "Upload"],
     "/dashboard/images/manage": ["Dashboard", "Images", "Manage"],
-    "/dashboard/settings/general": ["Dashboard, Settings, General"],
+    "/dashboard/settings/general": ["Dashboard", "Settings", "General"],
     "/dashboard/users/create": [
       "Dashboard",
       "Manage Users",
       "Create a New User",
     ],
     "/dashboard/users/edit": ["Dashboard", "Manage Users", "Edit Users"],
-    "/dashboard/analytics/general": ["Dashboard", "Site Analytics", "General"],
   };
   return (
     <Breadcrumb>
       <BreadcrumbList className="text-white">
         {nameMap[path]?.map((name: string, index: number) => (
-          <div key={index} className="flex items-center gap-3">
+          <div key={index} className="flex items-center gap-3 max-[325px]:text-[12px]">
             <BreadcrumbItem>
               {index === 1 ? (
                 <BreadcrumbPage className="text-white">{name}</BreadcrumbPage>

@@ -27,8 +27,8 @@ const LeftGallery = ({enabled, setEnabled}) => {
               <div className={cn(enabled ? "text-black" : "text-white","mb-[3em] max-[768px]:mb-[1em]")}>
                   <h2 className="text-[1.5em] font-normal mb-[0.5em] ">Gallery</h2>
                 
-              <p className="font-light text-[0.95em]">Welcome to our gallery! <br></br><br></br>At <strong>KBS Kustomz</strong>, we love bringing cars to life with custom paint jobs and flawless auto body work.
-                  <br></br><br></br>Take a look at some of our favorite projects and get inspired to create a ride that’s truly your own.</p>
+              <p className="font-light text-[0.95em]">Welcome to the gallery! <br></br><br></br>At <strong>KBS Kustomz</strong>, we love bringing cars to life with custom paint jobs and flawless auto body work.
+                  <br></br><br></br>Take a look at some of my favorite projects and get inspired to create a ride that’s truly your own.</p>
               </div>
               
               {/* Gallery CTAs */}
