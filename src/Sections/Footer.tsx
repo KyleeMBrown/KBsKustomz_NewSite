@@ -63,7 +63,7 @@ const Footer = () => {
         </div>
       </a>
       <p className="text-[0.75em] font-thin">
-        © 2023 KB’s Kustomz. All rights reserved.
+        © 2023 KB’s Kustomz. All rights reserved | Website developed by <a target="blank" className="font-medium underline text-[#ffffffc4]" href="https://www.linkedin.com/in/kylee-brown-7167b9274/">Kylee</a>
       </p>
     </div>
   );
