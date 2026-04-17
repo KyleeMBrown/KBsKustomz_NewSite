@@ -1,9 +1,18 @@
 'use client'
-import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 
 const NotFound = () => {
     const pathname = usePathname();
+
+       if (pathname?.startsWith("/auth/private/update-password")) {
+        return <><div className="bg-[#fffffff7] w-full h-screen flex flex-col items-center justify-center">
+        <h2 className="text-xl">404</h2>
+        <br></br>
+        <h3>Trouble resetting your password?</h3>
+        <br></br>
+        <p>Plese contact <strong>Kylee Brown</strong> for further help</p>
+    </div></>
+    }
 
     if (pathname?.startsWith("/auth")) {
         return <><div className="bg-[#fffffff7] w-full h-screen flex flex-col items-center justify-center">

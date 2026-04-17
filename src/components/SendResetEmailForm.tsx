@@ -1,11 +1,12 @@
 'use client'
 
-import { sendPasswordResetEmail } from '@/ServerActions/User/user'
+import { sendMagicLinkEmail } from '@/ServerActions/User/user'
 import { Dispatch, SetStateAction, useState } from 'react'
 import { Input } from './ui/input'
-import { Field, FieldGroup, FieldLabel } from './ui/field'
+import { Field, FieldGroup } from './ui/field'
 import { Button } from './ui/button'
 import ModalPopup from './ModalPopup'
+import { createClientBrowser } from '@/lib/supabase/client'
 
 const SendResetEmailForm = () => {
     // handle email state
@@ -18,9 +19,22 @@ const SendResetEmailForm = () => {
   /* Function to handle sending a password reset email to the sepecified user */
   const handleSendPasswordResetEmail = async() => {
     try {
-      const { message } = await sendPasswordResetEmail(email)
-      // set error message
-      setMessage(message)
+      const supabase = createClientBrowser()
+      // send the magic link
+         // magic link email via Supabase
+        const { data, error } = await supabase.auth.signInWithOtp({
+            email: email,
+            options: {
+                emailRedirectTo: `http://localhost:3000/api/auth/callback?next=/dashboard/settings/general`
+            }
+        })
+      
+      if (error) {
+        throw error;
+      }
+      
+      // set success message
+      setMessage(`Magic link has been successfully sent!\nPlease check your inbox at ${email}\nNote: you nay need to check your spam!`)
       // open modal
       setOpenModal(true)
       
@@ -39,7 +53,7 @@ const SendResetEmailForm = () => {
                   <Field>
                       <Input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                       <Button variant='outline' className="email_reset cursor-pointer" type="submit">
-                            Send Recovery Email
+                            Send Magic Link
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className=" bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
                             <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1"/>
                         </svg>

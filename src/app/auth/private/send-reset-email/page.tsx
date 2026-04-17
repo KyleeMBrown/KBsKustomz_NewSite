@@ -9,7 +9,7 @@ const page = () => {
             
       <Image alt="KB's Kustomz Logo" className="mb-[1em]" src="/images/logo.png" width={150} height={150} />
       
-          <p className="text-sm">To update your password, send a password recovery link to your email</p>
+          <p className="text-sm">To update your password, send a magic link to your email</p>
           <br></br>
             <SendResetEmailForm/>
         </div>

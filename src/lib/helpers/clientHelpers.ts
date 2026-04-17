@@ -1,6 +1,7 @@
 'use client'
 import imageCompression from 'browser-image-compression';
 import { useEffect, useState } from 'react';
+import { createClientBrowser } from '../supabase/client';
 /**
  * @file clientHelpers.ts
  * @author Kylee Brown
