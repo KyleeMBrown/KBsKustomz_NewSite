@@ -33,7 +33,6 @@ export async function GET(request: Request) {
     }
   }
 
-  // return the user to an error page with instructions
-  // TODO: create the error page
-  return NextResponse.redirect(`${origin}/auth/private/not-found`)
+  // return an error message to the user
+  return new NextResponse('Not Found - Uhoh something happened, try using another method to login or contact support', { status: 404 })
 }

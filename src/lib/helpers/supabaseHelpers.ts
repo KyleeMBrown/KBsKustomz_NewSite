@@ -134,25 +134,28 @@ export const deleteUserHelper = async (supabase:SupabaseClient, userId:string):P
 /**************************** AUTH HELPERS **************************/
 /********************************************************************/
 /**
- * Helper function to help send a password reset request email
+ * Helper function to help send a magic link email
  * @param {SupabaseClient} supabase 
- * @param {string} email - email to send the request to
- * @description - helper function used to trigger a reset email
+ * @param {string} email - email to send the link to
+ * @description - helper function used to trigger a magic link email
  * 
  * @throws any errors caught from supabase
  */
 
-export const sendPassResetRequest = async (supabase:any, email: string): Promise<void> => {
+export const sendMagicLink = async (supabase:any, email: string): Promise<void> => {
     try {
-        // send password reset email via Supabase
-        const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-            redirectTo: 'http://localhost:3000/auth/private/update-password',
+        // magic link email via Supabase
+        const { data, error } = await supabase.auth.signInWithOtp({
+            email: email,
+            options: {
+                emailRedirectTo: `${process.env.HOST}/api/auth/callback-password-reset`
+            }
         })
-
         // handle error
         if (error) {
             throw error;
         }
+
     } catch (e) {
         throw e;
     }

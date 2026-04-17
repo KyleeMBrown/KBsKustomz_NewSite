@@ -7,11 +7,11 @@
  *
  */
 
-import { createUser, deleteUserHelper, sendPassResetRequest, updateUserHelper } from "@/lib/helpers/supabaseHelpers";
+import { createUser, deleteUserHelper, sendMagicLink, updateUserHelper } from "@/lib/helpers/supabaseHelpers";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { User } from "@/lib/types/Types";
 import { createClient } from "@/lib/supabase/server";
-import { JwtPayload, SupabaseClient, SupabaseClientOptions } from "@supabase/supabase-js";
+import { JwtPayload, SupabaseClient } from "@supabase/supabase-js";
 import { revalidateTag } from "next/cache";
 import { Database } from "@/lib/types/supabaseKbs";
 
@@ -160,23 +160,24 @@ export const batchDelete = async (userIdList:string[]):Promise<{message:string}>
   }
 }
 /**
- * @name sendPasswordResetEmail
- * @description - Function that sends a password reset email
+ * @name sendMagicLinkEmail
+ * @description - Function that sends a magic login link to the users email
  * @param email
  * @async
  * SERVER ACTION
  * @role - ADMIN
  */
 
-export const sendPasswordResetEmail = async(email:string):Promise<{message:string}> => {
+export const sendMagicLinkEmail = async(email:string):Promise<{message:string}> => {
   try {
     // create the supabase client
     const supabse = await createClient();
 
-    await sendPassResetRequest(supabse, email)
+    // send the magic link
+    await sendMagicLink(supabse, email)
 
     // return a success message
-    return {message:"Email Successfully Sent! \n Be sure to check your spam!"}
+    return {message:`Magic link has been successfully sent!\nPlease check your inbox at ${email}\nNote: you nay need to check your spam!`}
   } catch (e) {
     throw e;
   }
