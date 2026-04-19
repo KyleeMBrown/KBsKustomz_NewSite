@@ -75,12 +75,39 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url)
   } 
 
+
+  /*
+  *  RBA SECURITY CHECK on route manage users - tab in dashboard
+ */
+
+  // if the cleint is trying to request the create a user page and is NOT ADMIN role and is not the MASTER_EMAIL
+  if (request.nextUrl.pathname.startsWith('/dashboard/users/manage') && role !== "ADMIN") {
+    // redirect the user to the unauthorized page
+    const url = request.nextUrl.clone()
+    url.pathname = '/dashboard/unauthorized'
+    console.log("not authorized")
+    return NextResponse.redirect(url)
+  } 
+
   /*
   *  RBA SECURITY CHECK on route upload - tab in dashboard
   */
  
   // if the client is requesting the upload page and role is not ADMIN or GENERAL
   if (request.nextUrl.pathname.startsWith('/dashboard/images/upload') && role !== "ADMIN" && role !== "GENERAL") {
+    // redirect the user to the unauthorized page
+    const url = request.nextUrl.clone()
+    url.pathname = '/dashboard/unauthorized'
+    console.log("not authorized")
+    return NextResponse.redirect(url)
+  }
+
+    /*
+  *  RBA SECURITY CHECK on route upload - tab in dashboard
+  */
+ 
+  // if the client is requesting the upload page and role is not ADMIN or GENERAL
+  if (request.nextUrl.pathname.startsWith('/dashboard/settings/general') && role !== "ADMIN" && role !== "GENERAL") {
     // redirect the user to the unauthorized page
     const url = request.nextUrl.clone()
     url.pathname = '/dashboard/unauthorized'
