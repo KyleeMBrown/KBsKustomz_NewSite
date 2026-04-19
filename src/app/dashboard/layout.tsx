@@ -25,7 +25,7 @@ export default async function RootLayout({ children }) {
     return (
       <SidebarProvider>
         <AppSidebar user={user} />
-        <SidebarInset>
+        <SidebarInset >
           <header className="flex h-[8vh] shrink-0 bg-amber-950 items-center gap-2 border-b px-4">
             <SidebarTrigger className="-ml-1 text-white" />
             <Separator

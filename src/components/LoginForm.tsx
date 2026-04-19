@@ -215,7 +215,7 @@ export function LoginForm({
                     className="bg-amber-950 cursor-pointer hover:bg-white hover:text-amber-950"
                     type="submit"
                   >
-                    {!loading ? "Login" : <Spinner className="w-5" />}
+                    {!loading ? "Login" : <Spinner className="w-5" color="#461901"  />}
                   </Button>
                   {/* Login with Google Button */}
                   <Button

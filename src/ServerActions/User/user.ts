@@ -17,6 +17,15 @@ import { Database } from "@/lib/types/supabaseKbs";
 
 type UpdateUser = Database["public"]["Tables"]["users"]["Update"]
 
+type getUser = {
+  first_name: string;
+  last_name: string;
+  email: string;
+  role: string;
+  created_by: string;
+  updated_at: string
+}
+
 /**
  * @name createNewUser
  * @description - Function that creates another user for the dashboard
@@ -48,7 +57,7 @@ export const createNewUser = async (user: User):Promise<{message:string}> => {
 
 /**
  * @name getUser
- * @description - Function that retrieves the current user object via API fetch
+ * @description - Function that retrieves the current user session object via API fetch
  * @async
  * SERVER ACTION
  * @role - All roles
@@ -81,6 +90,44 @@ export const getUser = async ():Promise<JwtPayload> => {
   }
 };
   
+
+/**
+ * @name getUserMetaData
+ * @description - Function that retrieves the current user meta data object via API fetch
+ * @async
+ * SERVER ACTION
+ * @role - All roles
+ */
+
+export const getUserMetaData = async (id:string): Promise<getUser> => {
+  try {
+    // create a supabase client
+    const supabase = await createClient();
+
+    // refresh session
+    await supabase.auth.refreshSession()
+    
+    // fetch the data using the client
+    const { data, error } = await supabase
+        .from('users')
+        .select('first_name, last_name, role, email, created_at, updated_at, created_by')
+        .eq("id", id)
+        .single()
+
+    //if error retrieving user
+    if (error) {
+      // log to console for dev
+      console.log(error)
+    }
+    // Get current user from claims
+    const user:getUser = data
+
+    return user
+  } catch (e) {
+    throw e;
+  }
+};
+
 /**
  * @name updateUser
  * @description - Function that updates a user
