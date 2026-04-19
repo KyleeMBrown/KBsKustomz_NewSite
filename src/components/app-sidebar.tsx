@@ -32,6 +32,7 @@ import {
 
 import LogoutButton from "./LogoutButton";
 import { JwtPayload } from "@supabase/supabase-js";
+import { cn } from "@/Styling configs/utils";
 
 interface Props {
   user: JwtPayload;
@@ -114,7 +115,7 @@ export function AppSidebar({ user, ...props }: Props) {
                   key={section.title}
                   open={isOpen}
                   onOpenChange={(open) => setIsOpen(open)}
-                  className="group/collapsible"
+                  className={cn(user?.user_metadata?.user_role !== "ADMIN" && section.title == "Users" && "hidden", "group/collapsible")}
                 >
                   <SidebarMenuItem>
                     <CollapsibleTrigger asChild>
@@ -126,7 +127,7 @@ export function AppSidebar({ user, ...props }: Props) {
                     </CollapsibleTrigger>
 
                     {section.items?.length ? (
-                      <CollapsibleContent className="text-white">
+                      <CollapsibleContent className="text-white" >
                         <SidebarMenuSub>
                           {section.items.map((item) => (
                             <SidebarMenuSubItem key={item.title}>

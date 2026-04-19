@@ -7,10 +7,10 @@ import Image from "next/image"
 
 const page = () => {
   return (
-      <div className="h-[85vh] w-full max-[768px]:flex-col flex text-white bg-linear-to-t from-gray-900">
+      <div className="h-[85vh] max-[420px]:h-screen w-full max-[768px]:flex-col flex text-white bg-linear-to-b from-black to-[#292727]">
           <div className="w-[50%] max-[768px]:w-full h-full flex flex-col items-center justify-center p-4 max-[768px]:pb-0">
             <h1 className="w-[80%] max-[768px]:mb-0 mb-[0.75em] text-4xl font-bold max-[768px]:text-2xl">About KB's Kustomz <br></br>Wyanet, IL</h1>
-              <p className="text-left w-[80%] font-light text-lg"><strong>KB's Kustomz</strong> was established in 2023 by Kory Brown and is located at <a target="_blank" className="underline" href="https://www.google.com/maps/place/KB's+Kustomz/@41.388281,-89.5942745,1350m/data=!3m1!1e3!4m6!3m5!1s0x88098fe3e725c8bf:0x2ae78e393bcc4d23!8m2!3d41.3879585!4d-89.5909702!16s%2Fg%2F11y522h0mc?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D">13845 1650 N Ave in Wyanet, IL</a>.
+              <p className="text-left w-[80%] font-light text-lg max-[420px]:mt-3"><strong>KB's Kustomz</strong> was established in 2023 by Kory Brown and is located at <a target="_blank" className="underline" href="https://www.google.com/maps/place/KB's+Kustomz/@41.388281,-89.5942745,1350m/data=!3m1!1e3!4m6!3m5!1s0x88098fe3e725c8bf:0x2ae78e393bcc4d23!8m2!3d41.3879585!4d-89.5909702!16s%2Fg%2F11y522h0mc?hl=en&entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3MUgBUAM%3D">13845 1650 N Ave in Wyanet, IL</a>.
                   This shop offers Custom Paint and Body Shop Services.
                   <br></br>
                   <br></br>
@@ -24,12 +24,12 @@ const page = () => {
           <div className="w-[50%] max-[768px]:w-full h-full flex flex-col items-center justify-center p-4 max-[768px]:pt-0">
               {/* Hours Table TITLE */}
               <div className="text-center text-lg border w-[80%]">
-                 <h2 className="font-normal text-xl p-2">Hours</h2>
+                 <h2 className="font-normal text-xl p-2 ">Hours</h2>
               </div>
               {/* Hours Table */}
               <table className="w-[80%] text-lg">
                  <tbody>
-                  <tr className="bg-gray-900 text-center ">
+                  <tr className="bg-[#292727] text-center ">
                       <td className="p-[.75em] font-semibold">
                           Mon-Fri 
                       </td>
@@ -45,7 +45,7 @@ const page = () => {
                           Closed
                       </td>
                   </tr>
-                  <tr className="bg-gray-900 text-center ">
+                  <tr className="bg-[#292727] text-center ">
                       <td className="p-[.75em] font-semibold">
                           Sunday
                       </td>

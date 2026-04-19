@@ -3,7 +3,7 @@ import ImageTable from "@/components/imageTable/ImageTable"
 const page = () => {
 
   return (
-      <div className="w-full h-[92vh] text-white bg-[#240d01] flex items-center justify-center">
+      <div className="w-full h-[92vh] max-[768px]:h-auto  text-white bg-[#150a04] flex items-center justify-center">
           <ImageTable/>
     </div>
   )

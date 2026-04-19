@@ -40,7 +40,7 @@ const DynamicBreadcrumbs = () => {
     <Breadcrumb>
       <BreadcrumbList className="text-white">
         {nameMap[path]?.map((name: string, index: number) => (
-          <div key={index} className="flex items-center gap-3 max-[325px]:text-[12px]">
+          <div key={index} className="flex items-center gap-3 max-[768px]:text-[12px] max-[325px]:text-[12px]">
             <BreadcrumbItem>
               {index === 1 ? (
                 <BreadcrumbPage className="text-white">{name}</BreadcrumbPage>

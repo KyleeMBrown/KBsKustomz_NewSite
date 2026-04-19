@@ -22,9 +22,9 @@ export const columns: ColumnDef<Images>[] = [
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
           aria-label="Select all"
-          className="border-white bg-[#ffffff5f] hover:bg-[#150a045e] mr-3 cursor-pointer text-white transition-all duration-350 ease-in w-5 h-5 max-[768px]:h-7 max-[768px]:w-7"
+          className="border-white max-[420px]:mt-4  bg-[#ffffff5f] hover:bg-[#150a045e] mr-3 cursor-pointer text-white transition-all duration-350 ease-in w-5 h-5 max-[768px]:h-7 max-[768px]:w-7 "
         />
-          <p className="pr-2">Select All</p>
+          <p className="pr-2 max-[420px]:pb-4">Select All</p>
         </>)
       },
     cell: ({ row }) => (

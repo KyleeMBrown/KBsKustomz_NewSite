@@ -52,7 +52,7 @@ const ImageTable = ():React.ReactElement => {
     
     return (
       <>
-            <div className="w-[90%] container mx-auto">
+            <div className="w-[90%] container mx-auto bg-[#150a04] h-screen flex flex-col justify-center">
                 <DataTable loading={loading} columns={columns} data={data} refresh={fetchImages} />
             </div>
             {/* Error Popup */}
