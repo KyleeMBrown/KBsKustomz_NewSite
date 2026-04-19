@@ -10,7 +10,7 @@ const HomeLayout = async () => {
     const user = await getUserMetaData(userId)
     
   return (
-    <div className="p-[3em] flex flex-col gap-6 max-[768px]:gap-2">
+    <div className="p-[3em] bg-amber-950 flex flex-col gap-6 max-[768px]:gap-2">
           <Header userFirstName={user?.first_name} role={user?.role} />
           <MainContent/>
     </div>

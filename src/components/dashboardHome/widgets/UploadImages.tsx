@@ -3,7 +3,7 @@ import React from 'react'
 
 const UploadImages = () => {
     return (
-       <Link href="/dashboard/upload/images" className="max-[500px]:p-2 w-[31%] max-[768px]:w-[48%] max-[768px]:h-35 max-[322px]:h-30  h-48 bg-white rounded-[1em] text-amber-950 flex flex-col items-center justify-center relative hover:scale-103 cursor-pointer">
+       <Link href="/dashboard/images/upload" className="max-[500px]:p-2 w-[31%] max-[768px]:w-[48%] max-[768px]:h-35 max-[322px]:h-30  h-48 bg-white rounded-[1em] text-amber-950 flex flex-col items-center justify-center relative hover:scale-103 cursor-pointer">
            <div className="h-10 w-10 max-[768px]:w-8 max-[325px]:h-6 max-[325px]:w-6 max-[768px]:h-8 bg-amber-950 flex items-center justify-center rounded-[100%] absolute left-3 top-3 max-[768px]:left-2 max-[768px]:top-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" className="bi bi-images max-[768px]:w-4 max-[325px]:w-3" viewBox="0 0 16 16">
                 <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
