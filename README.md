@@ -27,7 +27,7 @@ Eventually the client needed more frequent image uploads as they received more c
 # Solutions implemented on the NEW site
 1. I created a dashboard CMS 'backend' to the site that the client can use to update the images anytime and anywhere wifi is available on desktop or mobile. I leveraged NEXT server side capabailities and created api routes that handled uploads to NEXT Blob storage and Supabase
 2. I leveraged NEXT multiple page SEO capabilities by making sure each public-facing page had propper SEO. I made sure every image on the site had an ALT tag, added a `schemaMarkup` document for crawlers, and added an LLM doc as well. On private pages, I made sure search engines should not crawl the pages setting the metadata to `robots: {index: false, follow: false}`
-3. I leveraged cachng & revalidating on the client end so the data being fetched from the database are only revalidated when the client has uploaded or made changes. I also set priority attributes to low on the html tags for any assets below the fold and high for assets above the fold
+3. I leveraged cachng & revalidating on the client end so the data being fetched from the database are only revalidated when the client has uploaded or made changes. I also set priority attributes to low on the html tags for any assets below the fold and high for assets above the fold. I also made sure each image had a set height and width.
 4. Lastly, I leveraged media queries to make the mobile version UI clean, easy to navigate, and aesthetic
 
 # Security
