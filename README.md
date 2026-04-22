@@ -43,7 +43,6 @@ KBs Kustomz is a website & content management system built to advertise auto bod
 
 [<img alt="Static Badge" src="https://img.shields.io/badge/View_All_Feature_Snapshots-pink?style=for-the-badge">](FEATURE_SNAPSHOTS.md)
 
-
 ______
 # Tech Stack
 - `Next.js` (App router)
