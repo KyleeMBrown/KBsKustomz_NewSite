@@ -35,7 +35,7 @@ KBs Kustomz is a website & content management system built to advertise auto bod
 
   <tr>
     <td>Dashboard Home</td>
-    <td><img src="https://github.com/user-attachments/assets/923a46c9-bfad-4ca2-a678-32c7042c9be7" width="100%"></td>
+    <td><img width="1440" height="778" alt="Dashboard Home page (Fullscreen)" src="https://github.com/user-attachments/assets/46532e55-8946-4161-9319-131184c96ab2" /></td>
   </tr>
 
   </table>
