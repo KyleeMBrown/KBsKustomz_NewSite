@@ -1,4 +1,5 @@
 # KBs Kustomz | Feature Snapshots
+_Any sensitive information has been censored_
 
 ### CMS Dashboard
 <table>
@@ -64,12 +65,14 @@
 
   <tr>
     <td>Manage Users</td>
-    <td><img src="https://github.com/user-attachments/assets/9503fb41-b8a8-49ba-8e97-cc028b19fdcd" width="100%"></td>
+    <td><img width="1440" height="776" alt="Manage Users page" src="https://github.com/user-attachments/assets/84edac74-1927-4c27-b8a7-d40590c4fed1" />
+</td>
   </tr>
 
   <tr>
     <td>Edit User State</td>
-    <td><img src="https://github.com/user-attachments/assets/b09e06e2-b09b-4c8f-bdf9-b95b492341f8" width="100%"></td>
+    <td><img width="1440" height="776" alt="Manage Users Edit  User State" src="https://github.com/user-attachments/assets/78e9b46d-f27f-404e-b7b8-463276a5e906" />
+</td>
   </tr>
 </table>
 <br>
@@ -107,5 +110,25 @@
     <td><img src="https://github.com/user-attachments/assets/d32140c8-1a4d-48fa-b5ea-f1bc015fa8ec" width="100%"></td>
     <td><img width="243" height="480" alt="Mobile Dashboard Upload page" src="https://github.com/user-attachments/assets/e3756b1b-e736-43b4-8224-6495eeffba45" /></td>
   </tr>
+    <tr>
+    <td>Manage Images</td>
+    <td><img src="https://github.com/user-attachments/assets/928f7dfc-ade8-47c0-b76c-18ee560df8ba" width="100%"></td>
+    <td><img width="241" height="481" alt="Mobile Dashboard Manage images page" src="https://github.com/user-attachments/assets/2229804c-5e58-46c7-8ef3-f9dad5e6f83d" /></td>
+  </tr>
+   <tr>
+    <td>Manage Users</td>
+     <td><img width="1440" height="776" alt="Manage Users page" src="https://github.com/user-attachments/assets/84edac74-1927-4c27-b8a7-d40590c4fed1" />
+    </td>
+    <td><img width="247" height="483" alt="Mobile Dashboard Manage Users" src="https://github.com/user-attachments/assets/84993fdb-a50e-48eb-8729-f562db215dca" />
+    </td>
+  </tr>
+  <tr>
+    <td>Edit Users</td>
+     <td><img width="1440" height="776" alt="Manage Users Edit  User State" src="https://github.com/user-attachments/assets/f4952a1c-8f7a-4b66-8bb9-55d5f9917d9d" /></td>
+    <td><img width="241" height="488" alt="Manage Users Mobile" src="https://github.com/user-attachments/assets/db10a287-600e-4b2a-8df2-82da5703cd9e" />
+</td>
+  </tr>
+
+
 
 </table>
