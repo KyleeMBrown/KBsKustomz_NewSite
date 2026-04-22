@@ -44,10 +44,15 @@ ______
 - **Created a dashboard CMS** 'backend' that the client can use to manage the images anytime and anywhere. Using `NEXT` server-side capabilities, I created api routes that handled uploads to `NEXT` Blob storage and `Supabase.`
   - Solved the problem of manually adding the images to the site files]
   - converted the `SPA` (Single Page Application) to a `full-stack` web app
+    <br>
+    
 - **leveraged caching & revalidating** to lighten the request load on the server and database API. added `fetchpriority` attributes to the appropriate HTML elements
   - Improved desktop and mobile site speed, first contentful paint (FCP), and largest contentful paint times
+    <br>
+    
 - **Used media queries** to make the mobile UI clean, easy to navigate, and aesthetic
   - Solved the problem of the mobile site not formatting properly and made the mobile experience seamless
+    <br>
 - **implemented NEXT SEO capabilities** by making sure each public-facing page had SEO metadata (description, title), I made sure every image on the site had an ALT tag, added a `schemaMarkup` document for crawlers, and added an LLM doc as well for AI models. On private pages, I made sure search engines should not crawl the pages, setting the metadata to `robots: {index: false, follow: false}`
   - solved the challenge of making sure the site had sufficient SEO so the site could appear higher up on search engines like Google when crawled 
 
