@@ -13,7 +13,7 @@
 KBs Kustomz is a website & content management system built to advertise auto body and painting services for KB's Kustomz located in Wyanet, IL. The website features a gallery, about us page, services page, and a contact us page, as well as a cms dashboard to eliminate manual content updates and allow the client to manage their own site.
 
 
-### Before & After Images
+### Before and After Images
 
 <img width="1280" height="720" alt="1" src="https://github.com/user-attachments/assets/00f80532-d798-4012-b403-e722b593278f" />
 <br>
@@ -63,19 +63,19 @@ ______
   - converted the `SPA` (Single Page Application) to a `full-stack` web app
     <br>
     
-- **leveraged caching & revalidating** to lighten the request load on the server and database API. added `fetchpriority` attributes to the appropriate HTML elements
+- **Leveraged caching & revalidating** to lighten the request load on the server and database API. added `fetchpriority` attributes to the appropriate HTML elements
   - Improved desktop and mobile site speed, first contentful paint (FCP), and largest contentful paint times
     <br>
     
 - **Used media queries** to make the mobile UI clean, easy to navigate, and aesthetic
   - Solved the problem of the mobile site not formatting properly and made the mobile experience seamless
     <br>
-- **implemented NEXT SEO capabilities** by making sure each public-facing page had SEO metadata (description, title), I made sure every image on the site had an ALT tag, added a `schemaMarkup` document for crawlers, and added an LLM doc as well for AI models. On private pages, I made sure search engines should not crawl the pages, setting the metadata to `robots: {index: false, follow: false}`
+- **Utilized NEXT SEO capabilities** by making sure each public-facing page had SEO metadata (description, title), and I made sure every image on the site had an ALT tag, added a <a href="/src/SEO/schemaMarkup.ts">`schemaMarkup`</a> document for crawlers, and added an LLM doc as well for AI models.
   - solved the challenge of making sure the site had sufficient SEO so the site could appear higher up on search engines like Google when crawled 
 
 # Security Improvements
-- Enabled row-level security (`RLS`) and created policies that dictate who is allowed to alter tables in `supabase.`
-- Used server-side cookies to securely set and store user session tokens as opposed to being exposed on the client side
-- whitelisted content sent from the client as a request in the middleware to combat injection attacks
-- ran vulnerability scans periodically and updated to the most recently patched version of the compromised/deprecated library
+- Enabled **row-level security** (`RLS`) and created policies that dictate who is allowed to alter tables in `supabase.`
+- Used **server-side cookies** to securely set and store user session tokens as opposed to being exposed on the client side
+- **whitelisted** content sent from the client as a request in the middleware to combat injection attacks
+- ran **vulnerability scans** periodically and updated to the most recently patched version of the compromised/deprecated library
 - Enforced access control by setting up role-based access (RBA) to the database (`GENERAL` vs `ADMIN`) and using the **rule of least privilege**  
