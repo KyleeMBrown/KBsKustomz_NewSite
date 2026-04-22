@@ -6,7 +6,7 @@
 ### Modern full-stack website + CMS built for an auto body shop to manage content without developer involvement
 
 <div>
-  <a><img alt="Static Badge" src="https://img.shields.io/badge/Live_Site-%23dbffc3?style=for-the-badge"></a>
+  <a href="https://kbs-kustomz.vercel.app/"><img alt="Static Badge" src="https://img.shields.io/badge/Live_Site-%23dbffc3?style=for-the-badge"></a>
 <a href="https://github.com/TechFataleFreelance/KB-s-Kustomz"><img alt="Static Badge" src="https://img.shields.io/badge/Old_Version_Repo-%23ababab?style=for-the-badge"></a>
   
 # Description
@@ -35,7 +35,7 @@ KBs Kustomz is a website & content management system built to advertise auto bod
 
   <tr>
     <td>Dashboard Home</td>
-    <td><img src="https://github.com/user-attachments/assets/923a46c9-bfad-4ca2-a678-32c7042c9be7" width="100%"></td>
+    <td><img width="1440" height="778" alt="Dashboard Home page (Fullscreen)" src="https://github.com/user-attachments/assets/46532e55-8946-4161-9319-131184c96ab2" /></td>
   </tr>
 
   </table>
