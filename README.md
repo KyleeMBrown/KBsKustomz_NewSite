@@ -17,7 +17,8 @@ KBs Kustomz is a website & content management system built to advertise auto bod
 
 <img width="1280" height="720" alt="1" src="https://github.com/user-attachments/assets/00f80532-d798-4012-b403-e722b593278f" />
 <br>
-<a href="BEFORE_AND_AFTER_IMAGES.md"><img alt="Static Badge" src="https://img.shields.io/badge/View_More_Images-pink?style=for-the-badge"></a>
+<a href="BEFORE_AND_AFTER_IMAGES.md"><img alt="Static Badge" src="https://img.shields.io/badge/View_All_Before_And_After_Images-pink?style=for-the-badge">
+</a>
 
 # Features
 - Client-managed CMS dashboard (upload/delete images)
