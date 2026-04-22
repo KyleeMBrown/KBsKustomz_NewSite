@@ -24,6 +24,7 @@ KBs Kustomz is a website & content management system built to advertise auto bod
 - SEO-optimized multi-page structure
 - Fully responsive mobile UI
 
+[View Feature Snapshot here](FEATURE_SNAPSHOT.md)
 ______
 # Tech Stack
 - `Next.js` (App router)
