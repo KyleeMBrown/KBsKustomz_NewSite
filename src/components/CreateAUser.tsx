@@ -1,6 +1,7 @@
 "use client";
 /**
  * @returns Component used to create a new user for the KB's Kustomz Dashboard
+ * @used_in /dashboard/users/create -> page.tsx
  * @description Set users name, role, email, and password
  */
 import { Input } from "./ui/input";
@@ -9,11 +10,12 @@ import { Button } from "./ui/button";
 import { Dispatch, SetStateAction, useState } from "react";
 import { cn } from "@/Styling configs/utils";
 import DropDownSelect from "./MultiSelect";
-import { getUser } from "@/DataLayer/User/user";
+import { createNewUser, getUser } from "@/ServerActions/User/user";
 import ModalPopup from "./ModalPopup";
 import { AuthApiError } from "@supabase/supabase-js";
 import Spinner from "./Spinner";
 import SuccessfulSubmission from "./SuccessfulSubmission";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 const CreateUser = () => {
   const [firstName, setFirstName]: [string, Dispatch<SetStateAction<string>>] =
@@ -52,6 +54,9 @@ const CreateUser = () => {
     Dispatch<SetStateAction<string>>
   ] = useState<string>("");
 
+  const [toolOpen, setToolOpen]: [boolean, Dispatch<SetStateAction<boolean>>] =
+    useState<boolean>(false);
+
   const formFilled: boolean =
     (lastName && email && confirmEmail && password && confirmPass && role) !=
     "";
@@ -67,10 +72,10 @@ const CreateUser = () => {
 
       // if the email and password have been successfully confirmed
       if (emailMatch && passMatch) {
-
         // request the user from api
         const user = await getUser();
 
+        // build the user object
         const userObj = {
           first_name: firstName,
           last_name: lastName,
@@ -78,20 +83,10 @@ const CreateUser = () => {
           password: password,
           role: role,
           created_by: user?.email,
-        }
-    
-       // send a request to create a user
-        const response = await fetch(`/api/user`, {
-          method: "POST",
-          body: JSON.stringify(userObj),
-        });
+        };
 
-        const data = await response.json();
-
-        // if the response status is 400
-        if (response.status === 400) {
-          throw new Error(data.message);
-        }
+        // use the server action to create a user
+        const data = await createNewUser(userObj);
 
         //log the response to the console
         console.log(data.message);
@@ -126,7 +121,7 @@ const CreateUser = () => {
     <div className="w-full h-full">
       {!loading ? (
         <div className={cn(success && "hidden")}>
-          <center className="p-6 max-[768px]:pb-2">
+          <center className="pt-6 max-[768px]:pt-4">
             <h1 className="text-white uppercase">Create a User</h1>
           </center>
           <form
@@ -172,6 +167,7 @@ const CreateUser = () => {
             ></Input>
             <br></br>
             {/* Role Select Dropdown Input*/}
+            <div className="flex gap-2">
             <DropDownSelect
               options={[
                 { name: "Admin", value: "ADMIN" },
@@ -182,6 +178,31 @@ const CreateUser = () => {
               className="border-white text-white"
               placeholder="Select a Role"
             />
+              
+               <Tooltip open={toolOpen} onOpenChange={setToolOpen}>
+              <TooltipTrigger className="cursor-help">
+                <svg
+                  onClick={() => {
+                    setToolOpen(true);
+                  }}
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="white"
+                  className="ml-3 bi bi-info-circle"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
+                </svg>
+              </TooltipTrigger>
+              <TooltipContent className="bg-white text-black">
+                  <span className="font-semibold">ADMIN: </span>Full Access<br></br>
+                  <span className="font-semibold">GENERAL: </span>Cannot create/manage users 
+              </TooltipContent>
+            </Tooltip>
+            </div>
+         
             {/* Email Input*/}
             <Label
               htmlFor="email"
@@ -274,6 +295,7 @@ const CreateUser = () => {
             >
               Create User
             </Button>
+            
           </form>
         </div>
       ) : (
@@ -283,7 +305,7 @@ const CreateUser = () => {
       )}
       {success ? (
         <SuccessfulSubmission
-          message={successMessage || "User has beem successfully created!"}
+          message={successMessage || "User has been successfully created!"}
           successURL="/dashboard/users/create"
         />
       ) : null}

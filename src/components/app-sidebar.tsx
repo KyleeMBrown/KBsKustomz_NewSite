@@ -1,12 +1,21 @@
+"use client"
+
+/**
+ * Dashboard Sidebar
+ */
 
 import { Minus, Plus } from "lucide-react";
-import { SearchForm } from "@/Components/search-form";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/Components/ui/collapsible";
+} from "@/components/ui/collapsible";
+
 import {
   Sidebar,
   SidebarContent,
@@ -19,72 +28,46 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   SidebarRail,
-} from "@/Components/ui/sidebar";
+} from "@/components/ui/sidebar";
 
 import LogoutButton from "./LogoutButton";
 import { JwtPayload } from "@supabase/supabase-js";
+import { cn } from "@/Styling configs/utils";
 
 interface Props {
   user: JwtPayload;
 }
 
-// This is sample data.
+// Sidebar data
 const data = {
   navMain: [
     {
       title: "Images",
       url: "#",
       items: [
-        {
-          title: "Upload",
-          url: "/dashboard/images/upload",
-        },
-        {
-          title: "Manage",
-          url: "/dashboard/images/manage",
-        },
+        { title: "Upload", url: "/dashboard/images/upload" },
+        { title: "Manage", url: "/dashboard/images/manage" },
       ],
     },
-
     {
       title: "Users",
       url: "#",
       items: [
-        {
-          title: "Create New User",
-          url: "/dashboard/users/create",
-        },
-        {
-          title: "Manage Users",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Site Analytics",
-      url: "#",
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
+        { title: "Create New User", url: "/dashboard/users/create" },
+        { title: "Manage", url: "/dashboard/users/manage" },
       ],
     },
     {
       title: "Settings",
       url: "#",
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-      ],
+      items: [{ title: "General", url: "/dashboard/settings/general" }],
     },
   ],
 };
 
-export function AppSidebar ({ user, ...props }: Props) {
-  
+export function AppSidebar({ user, ...props }: Props) {
+  const pathName = usePathname();
+
   return (
     <Sidebar {...props} className="bg-amber-950">
       <SidebarHeader className="bg-amber-950 text-white">
@@ -92,60 +75,86 @@ export function AppSidebar ({ user, ...props }: Props) {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <div>
-                <a href="/dashboard" className="cursor-pointer">
-                  <Image width={80} height={80} src="/images/logo.png" alt="KB's Kustomz Logo" fetchPriority="high"/>
-                </a>
+                <Link href="/dashboard" className="cursor-pointer">
+                  <Image
+                    width={80}
+                    height={80}
+                    src="/images/logo.png"
+                    alt="KB's Kustomz Logo"
+                    fetchPriority="high"
+                  />
+                </Link>
                 <div className="flex flex-col gap-1 leading-none w-full">
-                  <h2 className="font-medium text-[14px] w-full">KB's Kustomz Dashboard</h2>
-                  <p className="">
-                    v1.0.0
-                  </p>
-                 
+                  <h2 className="font-medium text-[14px] w-full">
+                    KB's Kustomz Dashboard
+                  </h2>
+                  <p className="">v1.0.0</p>
                 </div>
               </div>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
-        <SearchForm />
       </SidebarHeader>
+
       <SidebarContent className="bg-amber-950 text-white">
         <SidebarGroup>
           <SidebarMenu>
-            {data.navMain.map((item, index) => (
-              <Collapsible
-                key={item.title}
-                defaultOpen={index === 0}
-                className="group/collapsible"
-              >
-                <SidebarMenuItem>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuButton>
-                      {item.title}{" "}
-                      <Plus className="ml-auto group-data-[state=open]/collapsible:hidden" />
-                      <Minus className="ml-auto group-data-[state=closed]/collapsible:hidden" />
-                    </SidebarMenuButton>
-                  </CollapsibleTrigger>
-                  {item.items?.length ? (
-                    <CollapsibleContent className="text-white">
-                      <SidebarMenuSub>
-                        {item.items.map((item) => (
-                          <SidebarMenuSubItem key={item.title}>
-                            <SidebarMenuSubButton asChild isActive={null}>
-                              <a className="text-white" href={item.url}>
-                                {item.title}
-                              </a>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        ))}
-                      </SidebarMenuSub>
-                    </CollapsibleContent>
-                  ) : null}
-                </SidebarMenuItem>
-              </Collapsible>
-            ))}
+            {data.navMain.map((section) => {
+              const [isOpen, setIsOpen] = useState(false);
+
+              // Automatically open the section if pathname matches
+              useEffect(() => {
+                const shouldBeOpen = section.items.some((item) =>
+                  pathName.startsWith(item.url)
+                );
+                setIsOpen(shouldBeOpen);
+              }, [pathName, section.items]);
+
+              return (
+                <Collapsible
+                  key={section.title}
+                  open={isOpen}
+                  onOpenChange={(open) => setIsOpen(open)}
+                  className={cn(user?.user_metadata?.user_role !== "ADMIN" && section.title == "Users" && "hidden", "group/collapsible")}
+                >
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton>
+                        {section.title}
+                        <Plus className="ml-auto group-data-[state=open]/collapsible:hidden" />
+                        <Minus className="ml-auto group-data-[state=closed]/collapsible:hidden" />
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+
+                    {section.items?.length ? (
+                      <CollapsibleContent className="text-white" >
+                        <SidebarMenuSub>
+                          {section.items.map((item) => (
+                            <SidebarMenuSubItem key={item.title}>
+                              <SidebarMenuSubButton
+                                asChild
+                                isActive={pathName === item.url}
+                              >
+                                <Link
+                                  href={item.url}
+                                  className="text-white"
+                                >
+                                  {item.title}
+                                </Link>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          ))}
+                        </SidebarMenuSub>
+                      </CollapsibleContent>
+                    ) : null}
+                  </SidebarMenuItem>
+                </Collapsible>
+              );
+            })}
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
+
       <SidebarRail />
       <LogoutButton user={user} />
     </Sidebar>

@@ -1,7 +1,8 @@
-import { Sidebar } from "@/Components/ui/sidebar";
-import { Database } from "./supabaseKbs";
-import React from 'react'
-import { AuthUser, UserResponse } from "@supabase/supabase-js";
+/********************************************************************/
+/***************************** Custom Types *************************/
+/********************************************************************/
+import { Dispatch, SetStateAction } from "react"
+import { Database } from "./supabaseKbs"
 
 export type User =
     {
@@ -13,6 +14,13 @@ export type User =
         created_by:string
     }
 
-export type AppSidebarProps = React.ComponentProps<typeof Sidebar> & {
-        user: AuthUser
+export type Images = Database["public"]["Tables"]["images"]["Row"]
+export type Users = Database["public"]["Tables"]["users"]["Row"]
+ 
+import { RowData } from "@tanstack/react-table";
+
+declare module "@tanstack/react-table" {
+  interface TableMeta<TData extends RowData> {
+    setDeleteOpen: Dispatch<SetStateAction<boolean>>
+  }
 }

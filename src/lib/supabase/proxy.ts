@@ -9,7 +9,7 @@
 
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
-import { whitelistColumns } from '../helpers/helpers'
+import { whitelistColumns } from '../helpers/serverHelpers'
 import { JwtPayload } from '@supabase/supabase-js'
 
 export async function updateSession(request: NextRequest) {
@@ -44,11 +44,14 @@ export async function updateSession(request: NextRequest) {
 
   // IMPORTANT: If you remove getClaims() and you use server-side rendering
   // with the Supabase client, your users may be randomly logged out.
+  // refresh session
+  await supabase.auth.refreshSession()
+
+  // get user claims
   const { data } = await supabase.auth.getClaims()
 
   const user:JwtPayload = data?.claims // the user object
   const role: string = user?.user_metadata?.user_role // the role the user was assigned
-  const email: string = user?.email // the user email
   
   if (!user && request.nextUrl.pathname.startsWith('/dashboard')) {
     // no user, potentially respond by redirecting the user to the login page
@@ -60,18 +63,56 @@ export async function updateSession(request: NextRequest) {
 
 
   /*
-  *  RBA SECURITY CHECK on route create a user tab in dashboard
+  *  RBA SECURITY CHECK on route create a user - tab in dashboard
  */
 
-  // if the user is trying to request the create a user page and is NOT ADMIN role and is not the MASTER_EMAIL
+  // if the cleint is trying to request the create a user page and is NOT ADMIN role and is not the MASTER_EMAIL
   if (request.nextUrl.pathname.startsWith('/dashboard/users/create') && role !== "ADMIN") {
     // redirect the user to the unauthorized page
     const url = request.nextUrl.clone()
     url.pathname = '/dashboard/unauthorized'
     console.log("not authorized")
     return NextResponse.redirect(url)
-  } else {
+  } 
 
+
+  /*
+  *  RBA SECURITY CHECK on route manage users - tab in dashboard
+ */
+
+  // if the cleint is trying to request the create a user page and is NOT ADMIN role and is not the MASTER_EMAIL
+  if (request.nextUrl.pathname.startsWith('/dashboard/users/manage') && role !== "ADMIN") {
+    // redirect the user to the unauthorized page
+    const url = request.nextUrl.clone()
+    url.pathname = '/dashboard/unauthorized'
+    console.log("not authorized")
+    return NextResponse.redirect(url)
+  } 
+
+  /*
+  *  RBA SECURITY CHECK on route upload - tab in dashboard
+  */
+ 
+  // if the client is requesting the upload page and role is not ADMIN or GENERAL
+  if (request.nextUrl.pathname.startsWith('/dashboard/images/upload') && role !== "ADMIN" && role !== "GENERAL") {
+    // redirect the user to the unauthorized page
+    const url = request.nextUrl.clone()
+    url.pathname = '/dashboard/unauthorized'
+    console.log("not authorized")
+    return NextResponse.redirect(url)
+  }
+
+    /*
+  *  RBA SECURITY CHECK on route upload - tab in dashboard
+  */
+ 
+  // if the client is requesting the upload page and role is not ADMIN or GENERAL
+  if (request.nextUrl.pathname.startsWith('/dashboard/settings/general') && role !== "ADMIN" && role !== "GENERAL") {
+    // redirect the user to the unauthorized page
+    const url = request.nextUrl.clone()
+    url.pathname = '/dashboard/unauthorized'
+    console.log("not authorized")
+    return NextResponse.redirect(url)
   }
 
   /*
@@ -96,6 +137,7 @@ export async function updateSession(request: NextRequest) {
         }
     }
   }
+
   // IMPORTANT: You *must* return the supabaseResponse object as it is. If you're
   // creating a new response object with NextResponse.next() make sure to:
   // 1. Pass the request in it, like so:

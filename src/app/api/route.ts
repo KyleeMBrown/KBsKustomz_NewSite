@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from "next/server"
 
 /**
- * Health check route for the API
+ * HEALTH CHECK route for the API
  * @returns a JSON message indicating the API server is running
  */
 

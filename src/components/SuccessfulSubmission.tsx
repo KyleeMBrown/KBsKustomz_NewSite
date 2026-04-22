@@ -1,4 +1,9 @@
-
+/**
+ * @returns Success Page
+ * @used_in /dashboard/users/create
+ * @description Success page user receives when a creater has successfully been made
+ * @screen_size < 786px
+ */
 
 const SuccessfulSubmission = ({ successURL = "null", message=null }) => {
   return (

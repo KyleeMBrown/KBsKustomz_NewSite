@@ -2,11 +2,12 @@ import Image from "next/image"
 
 /**
  * The Contact page for KB's Kustomz
+ * @author Kylee Brown
  */
 
 const page = () => {
   return (
-    <div className="w-full text-white h-[85vh] max-[768px]:h-auto max-[768px]:mt-8 max-[768px]:mb-8 max-[768px]:flex-col flex items-center justify-center bg-black">
+    <div className="w-full text-white h-[85vh] max-[768px]:h-full max-[768px]:pt-8 max-[768px]:pb-8 max-[768px]:flex-col flex items-center justify-center bg-black">
       <div className="w-[50%] max-[768px]:w-full gap-[1em] flex flex-col items-center justify-center">
         <div className="w-[80%]" >
         <h1 className=" w-full max-[768px]:mb-[0.15em] mb-[0.25em] text-[2.55em] font-bold max-[768px]:text-2xl">Contact KB's Kustomz <br></br>Wyanet, IL</h1>

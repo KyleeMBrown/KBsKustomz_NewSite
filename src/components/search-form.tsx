@@ -1,11 +1,17 @@
+/**
+ * @returns Dashboard side bar search
+ * @used_in @Components/app-sidebar.tsx
+ * @description website navigation menu for mobile only users
+ */
+
 import { Search } from "lucide-react";
 
-import { Label } from "@/Components/ui/label";
+import { Label } from "@/components/ui/label";
 import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarInput,
-} from "@/Components/ui/sidebar";
+} from "@/components/ui/sidebar";
 
 export function SearchForm({ ...props }: React.ComponentProps<"form">) {
   return (

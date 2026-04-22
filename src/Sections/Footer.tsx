@@ -1,4 +1,11 @@
 "use client";
+
+/**
+ * @returns Footer 
+ * @used_in / -> layout.tsx
+ * CLIENT COMPONENT
+ */
+
 import { cn } from "@/Styling configs/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,7 +17,7 @@ const Footer = () => {
   return (
     <div
       className={cn(
-        "w-full p-[2em] text-white max-[768px]:h-[9.5em] h-[8em] flex flex-col items-center justify-center  gap-1 border-t border-white",
+        "w-full p-[2em] text-white max-[768px]:h-[9.5em] h-[8em] flex flex-col items-center justify-center  gap-1 border-t border-white bg-black",
         hideFooter && "hidden"
       )}
     >
@@ -55,8 +62,8 @@ const Footer = () => {
           </h4>
         </div>
       </a>
-      <p className="text-[0.75em] font-thin">
-        © 2023 KB’s Kustomz. All rights reserved.
+      <p className="text-[0.75em] font-thin max-[768px]:text-[0.5em]">
+        © 2023 KB’s Kustomz. All rights reserved | Website developed by <a target="blank" className="font-medium underline text-[#ffffffc4]" href="https://www.linkedin.com/in/kylee-brown-7167b9274/">Kylee</a>
       </p>
     </div>
   );

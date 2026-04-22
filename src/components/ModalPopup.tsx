@@ -1,4 +1,7 @@
-/* Modal Popup for handling Errors, Saves, etc */
+/**
+ * @returns Modal Popup
+ * @description Modal Popup for handling Errors, Saves, etc
+ */
 
 import {
   Dialog,
@@ -8,8 +11,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/Components/ui/dialog";
-import { Button } from "./ui/button";
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/Styling configs/utils";
 
 const ModalPopup = ({
@@ -24,12 +27,16 @@ const ModalPopup = ({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className={cn(className)}>
+        {/* Header */}
         <DialogHeader>
+          {/* Title */}
           <DialogTitle>{title}</DialogTitle>
+          {/* Description */}
           <DialogDescription className="text-white">
             {description}
           </DialogDescription>
         </DialogHeader>
+        {/* Footer */}
         <DialogFooter>
           <DialogClose asChild>
             {customClose === null ? (

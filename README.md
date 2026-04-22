@@ -1,53 +1,80 @@
+
 *Author and Developer: [Kylee Brown](https://www.linkedin.com/in/kylee-brown-7167b9274/)*
 
+# KB's Kustomz Website (Remodel)
 
-# Summary
-This is a remodeling of an original website I created for a client a little over a year ago while freelancing ([Link to old repo here](https://github.com/TechFataleFreelance/KB-s-Kustomz)). My client needed a website to advertise his Car services and wanted to send me assets to update the site periodically. Using this information, I opted to create a static, single page application (SPA) using React.js as the Library and Vite as the build tool. 
+### Modern full-stack website + CMS built for an auto body shop to manage content without developer involvement
 
-Eventually the client needed more frequent image uploads as they received more clients themselves, and the process of sending me the images started to become more difficult as both of our schedules were busy. This exact issue is what lead me to remodel the website to create a site that allows my client to login and update site assets themselves using a backend content management system I developed. 
+<div>
+  <a><img alt="Static Badge" src="https://img.shields.io/badge/Live_Site-%23dbffc3?style=for-the-badge"></a>
+<a href="https://github.com/TechFataleFreelance/KB-s-Kustomz"><img alt="Static Badge" src="https://img.shields.io/badge/Old_Version_Repo-%23ababab?style=for-the-badge"></a>
+  
+# Description
+KBs Kustomz is a website & content management system built to advertise auto body and painting services for KB's Kustomz located in Wyanet, IL. The website features a gallery, about us page, services page, and a contact us page, as well as a cms dashboard to eliminate manual content updates and allow the client to manage their own site.
 
+
+### Before and After Images
+
+<img width="1280" height="720" alt="1" src="https://github.com/user-attachments/assets/00f80532-d798-4012-b403-e722b593278f" />
+<br>
+<a href="BEFORE_AND_AFTER_IMAGES.md"><img alt="Static Badge" src="https://img.shields.io/badge/View_All_Before_And_After_Images-pink?style=for-the-badge">
+</a>
+
+# Features
+- Client-managed CMS dashboard (upload/delete images)
+- Role-based authentication (Admin vs General users)
+- Image storage with Vercel Blob
+- SEO-optimized multi-page structure
+- Fully responsive [mobile UI](FEATURE_SNAPSHOTS.md#responsive-design)
+
+<table>
+  <tr>
+    <th>Page</th>
+    <th>View</th>
+  </tr>
+
+  <tr>
+    <td>Dashboard Home</td>
+    <td><img src="https://github.com/user-attachments/assets/923a46c9-bfad-4ca2-a678-32c7042c9be7" width="100%"></td>
+  </tr>
+
+  </table>
+<br>
+
+[<img alt="Static Badge" src="https://img.shields.io/badge/View_All_Feature_Snapshots-pink?style=for-the-badge">](FEATURE_SNAPSHOTS.md)
+
+______
 # Tech Stack
 - `Next.js` (App router)
-  - Framework used for creating the fullstack website
+  - Framework used for creating the full-stack website
 - `Next.js Blobs` (Storage)
-  - Storage offered by vercel used to store the images my client updates (I hope to upgrade to cloudinary if more storage is needed)
+  - Storage offered by Vercel is used to store the images my client updates (I hope to upgrade to Cloudinary if more storage is needed)
 - `Supabase Database + OAuth`
-  - Database used to authenticate and hold user information and roles as well as image metadata + URLs
-  - Integrated Google Auth for quicker sign in
+  - Database used to authenticate and hold user information and roles, as well as image metadata + URLs
+  - Integrated Google Auth for quicker sign-in
 - `Tailwind CSS` + `ShadCN` User Interface Library
   - Used for quick & uniform styling and component building
+______
 
-# Challenges with the OLD site
+# Key Improvements
+- **Created a dashboard CMS** 'backend' that the client can use to manage the images anytime and anywhere. Using `NEXT` server-side capabilities, I created api routes that handled uploads to `NEXT` Blob storage and `Supabase.`
+  - Solved the problem of manually adding the images to the site files]
+  - converted the `SPA` (Single Page Application) to a `full-stack` web app
+    <br>
+    
+- **Leveraged caching & revalidating** to lighten the request load on the server and database API. added `fetchpriority` attributes to the appropriate HTML elements
+  - Improved desktop and mobile site speed, first contentful paint (FCP), and largest contentful paint times
+    <br>
+    
+- **Used media queries** to make the [mobile UI](FEATURE_SNAPSHOTS.md#responsive-design) clean, easy to navigate, and aesthetic
+  - Solved the problem of the mobile site not formatting properly and made the mobile experience seamless
+    <br>
+- **Utilized NEXT SEO capabilities** by making sure each public-facing page had SEO metadata (description, title), and I made sure every image on the site had an ALT tag, added a <a href="/src/SEO/schemaMarkup.ts">`schemaMarkup`</a> document for crawlers, and added an LLM doc as well for AI models.
+  - solved the challenge of making sure the site had sufficient SEO so the site could appear higher up on search engines like Google when crawled 
 
-1. The first callenge that occured after the old site went into production was the time it took to upload the images the client had sent me. I had to drag each asset into the project and update the gallery HTML by hand adding the new images.
-2. The second challenge was making sure the site had the sufficient SEO so the site could appear higher up on search engines like Google when crawled
-3. The third challenge was site speed, the pages were loading at a decent rate but updates needed to be made to improve it
-6. Lastly, the mobile site UI could definately be more clean anaesthetically pleasing 
-
-# Solutions implemented on the NEW site
-1. I created a dashboard CMS 'backend' to the site that the client can use to update the images anytime and anywhere wifi is available on desktop or mobile. I leveraged NEXT server side capabailities and created api routes that handled uploads to NEXT Blob storage and Supabase
-2. I leveraged NEXT multiple page SEO capabilities by making sure each public-facing page had propper SEO. I made sure every image on the site had an ALT tag, added a `schemaMarkup` document for crawlers, and added an LLM doc as well. On private pages, I made sure search engines should not crawl the pages setting the metadata to `robots: {index: false, follow: false}`
-3. I leveraged cachng & revalidating on the client end so the data being fetched from the database are only revalidated when the client has uploaded or made changes. I also set priority attributes to low on the html tags for any assets below the fold and high for assets above the fold. I also made sure each image had a set height and width.
-4. Lastly, I leveraged media queries to make the mobile version UI clean, easy to navigate, and aesthetic
-
-# Security
-
-- Enabled row level security (`RLS`) and created policies that dictate who is able to alter tables in `supabase`
-- whitelisted content sent from client as a request in the middleware to combat against injection attacks
-- ran vulnerablility scans periodically and update to the most recently patched version of the compromised/depricated library
-- Enforced access control by setting up role based access (RBA) to the database (`GENERAL` vs `ADMIN`) and using the **rule of least privleged**
-- Required `2FA` for users
-
-# Scaling
-
-1. Add an analytics dashboard tracking website traffic, click paths, etc.
-2. Upgrade storage plans, or providers if needed (possibly cloudinary), if the storage limit is reached for NEXT Blobs
-3. Upgrade Supabase plan if website traffic increasses to increase the amount of Egress and Egress caching
-4. Upgrade to a paid custom domain
-
-# Production
-- Hosting is a CI/CD process using `Github` + `Vercel`
-
-# Conclusion
-- I continue to monitor the site and update any libraries as needed. 
-- I frequently view the Supabase logs of the API calls being made to check for any descrepencies. The client is still able to freely contact me if any errors are occuring.  
+# Security Improvements
+- Enabled **row-level security** (`RLS`) and created policies that dictate who is allowed to alter tables in `supabase.`
+- Used **server-side cookies** to securely set and store user session tokens as opposed to being exposed on the client side
+- **whitelisted** content sent from the client as a request in the middleware to combat injection attacks
+- ran **vulnerability scans** periodically and updated to the most recently patched version of the compromised/deprecated library
+- Enforced access control by setting up role-based access (RBA) to the database (`GENERAL` vs `ADMIN`) and using the **rule of least privilege**  

@@ -1,9 +1,15 @@
 "use client"
 
+/**
+ * @returns Hero section of the homepage
+ * @used_in / -> page.tsx
+ * CLIENT COMPONENT
+ */
+
 const Hero = (): React.JSX.Element => {
 
   return (
-    <div className='w-full h-[85vh] max-[768px]:flex-col text-white flex items-center justify-center'>
+    <div className='w-full h-[85vh] max-[768px]:flex-col text-white flex items-center justify-center bg-black'>
           {/* LEFT */}
           <div className='w-[50%] max-[768px]:h-[24em] max-[768px]:w-full flex flex-col items-center justify-center h-full'>
               <h1 className='text-[5.5em] max-[768px]:text-[3em]'>KB's Kustomz</h1>

@@ -1,6 +1,10 @@
+/********************************************************************/
+/************* Callback Func that handles Google Signup *************/
+/********************************************************************/
+
 import { NextResponse } from 'next/server'
 // The client you created from the Server-Side Auth instructions
-import { createClient } from '@/Lib/supabase/server'
+import { createClient } from '@/lib/supabase/server'
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url)
@@ -29,6 +33,6 @@ export async function GET(request: Request) {
     }
   }
 
-  // return the user to an error page with instructions
-  return NextResponse.redirect(`${origin}/auth/auth-code-error`)
+  // return an error message to the user
+  return new NextResponse('Not Found - Uhoh something happened, try using another method to login or contact support', { status: 404 })
 }

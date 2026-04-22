@@ -5,7 +5,12 @@
  * @description File to hold all SUPABASE helpers
  */
 
+import { SupabaseClient } from "@supabase/supabase-js";
 import { User } from "../types/Types";
+import { Database } from "@/lib/types/supabaseKbs";
+
+type UpdateUser = Database["public"]["Tables"]["users"]["Update"]
+
 
 /********************************************************************/
 /**************************** USER HELPERS **************************/
@@ -51,11 +56,109 @@ export const createUser = async (supabase:any, user:User) => {
         .select()
         .single()
         
+        // if error throw error
         if (err) { throw err }
         
     } catch (err) {
+        // throw error
         throw err
     }
     
 
 }
+
+/**
+ * Helper function to help update a user
+ * @param supabase 
+ * @param user 
+ * @param userId 
+ * @description - helper function used to update a user in supabase
+ * 
+ * @throws any errors caught from supabase
+ */
+export const updateUserHelper = async (supabase:SupabaseClient<Database>, user:UpdateUser, userId:string):Promise<void> => {
+    try { 
+        // update the user in the AUTH table first
+        const { data, error } = await supabase.auth.admin.updateUserById(
+            userId,
+            {
+                email:user.email,
+                user_metadata: {
+                user_role: user.role
+                }
+            }
+        )
+
+        // if error throw error
+        if (error) { throw error }
+        
+        // update the user in the users table
+        const { data:userData, error:userError } = await supabase
+        .from('users')
+        .update(user)
+        .eq("id", userId)
+        
+        // if error throw error
+        if(userError){throw userError}
+        
+    } catch (e) {
+        // throw error
+        throw e;
+    }
+}
+
+/**
+ * Helper function to help delete a user
+ * @param supabase 
+ * @param userId 
+ * @description - helper function used to delete a user from the application 
+ * 
+ * @throws any errors caught from supabase
+ */
+
+export const deleteUserHelper = async (supabase:SupabaseClient, userId:string):Promise<void> => {
+    try {
+        const { data, error } = await supabase.auth.admin.deleteUser(
+            userId
+        )
+
+        if (error) {
+            throw error;
+        }
+    } catch (err) {
+        throw(err)
+    }
+}
+ 
+/********************************************************************/
+/**************************** AUTH HELPERS **************************/
+/********************************************************************/
+/**
+ * Helper function to help send a magic link email
+ * @param {SupabaseClient} supabase 
+ * @param {string} email - email to send the link to
+ * @description - helper function used to trigger a magic link email
+ * 
+ * @throws any errors caught from supabase
+ */
+
+export const sendMagicLink = async (supabase:any, email: string): Promise<void> => {
+    try {
+        // magic link email via Supabase
+        const { data, error } = await supabase.auth.signInWithOtp({
+            email: email,
+            options: {
+                emailRedirectTo: `${process.env.HOST}/api/auth/callback-password-reset`
+            }
+        })
+        // handle error
+        if (error) {
+            throw error;
+        }
+
+    } catch (e) {
+        throw e;
+    }
+}
+
+

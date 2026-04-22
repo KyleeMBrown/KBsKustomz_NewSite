@@ -1,3 +1,10 @@
+/**
+ * @returns Mobile Only hamburger Nav
+ * @used_in @Component/Navbar.tsx
+ * @description website navigation menu for mobile only users
+ * @screen_size < 786px
+ */
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -5,13 +12,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/Components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 
 const MobileNavbar = (): React.ReactElement => {
   return (
     <>
       <DropdownMenu>
-        <DropdownMenuTrigger className="bg-black cursor-pointer hover:scale-102 active:scale-100 rounded hidden max-[768px]:block mr-1">
+        <DropdownMenuTrigger suppressHydrationWarning className="bg-black cursor-pointer hover:scale-102 active:scale-100 rounded hidden max-[768px]:block mr-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="45"
@@ -27,7 +34,7 @@ const MobileNavbar = (): React.ReactElement => {
           </svg>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mr-[.75em] bg-black text-white">
-          <DropdownMenuLabel>Menu</DropdownMenuLabel>
+          <DropdownMenuLabel className="text-center bg-linear-to-t from-black from-15% to-90% to-[#3e3e3e]">Menu</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <a href="/">
             <DropdownMenuItem className="cursor-pointer">Home</DropdownMenuItem>
@@ -42,11 +49,17 @@ const MobileNavbar = (): React.ReactElement => {
               About
             </DropdownMenuItem>
           </a>
+          <a href="/#gallery">
+            <DropdownMenuItem className="cursor-pointer">
+              Gallery
+            </DropdownMenuItem>
+          </a>
           <a href="/contact">
             <DropdownMenuItem className="cursor-pointer">
               Contact Us
             </DropdownMenuItem>
           </a>
+
         </DropdownMenuContent>
       </DropdownMenu>
     </>

@@ -1,7 +1,8 @@
 /**
- * @file helpers.ts
+ * @file serverHelpers.ts
  * @author Kylee Brown
- * @description File to hold all helper functions
+ * @description File to hold all server helper functions
+ * SERVER HELPERS
  */
 
 
@@ -12,8 +13,8 @@
  */
 
 export const generateLocalURL = (file: File):string => { 
-    const url = URL.createObjectURL(file);
-    return url;
+  const url = URL.createObjectURL(file);
+  return url;
 }
 
 /**
