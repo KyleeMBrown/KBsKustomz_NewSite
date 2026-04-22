@@ -25,7 +25,7 @@ KBs Kustomz is a website & content management system built to advertise auto bod
 - Role-based authentication (Admin vs General users)
 - Image storage with Vercel Blob
 - SEO-optimized multi-page structure
-- Fully responsive mobile UI
+- Fully responsive [mobile UI](FEATURE_SNAPSHOTS.md#responsive-design)
 
 <table>
   <tr>
@@ -67,7 +67,7 @@ ______
   - Improved desktop and mobile site speed, first contentful paint (FCP), and largest contentful paint times
     <br>
     
-- **Used media queries** to make the mobile UI clean, easy to navigate, and aesthetic
+- **Used media queries** to make the [mobile UI](FEATURE_SNAPSHOTS.md#responsive-design) clean, easy to navigate, and aesthetic
   - Solved the problem of the mobile site not formatting properly and made the mobile experience seamless
     <br>
 - **Utilized NEXT SEO capabilities** by making sure each public-facing page had SEO metadata (description, title), and I made sure every image on the site had an ALT tag, added a <a href="/src/SEO/schemaMarkup.ts">`schemaMarkup`</a> document for crawlers, and added an LLM doc as well for AI models.
