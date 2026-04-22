@@ -10,7 +10,8 @@ _Any sensitive information has been censored_
 
   <tr>
     <td>Dashboard Home</td>
-    <td><img src="https://github.com/user-attachments/assets/923a46c9-bfad-4ca2-a678-32c7042c9be7" width="100%"></td>
+    <td><img width="1440" height="777" alt="Dashboard Home page" src="https://github.com/user-attachments/assets/37b95491-8c90-40da-a94f-faf7d78adcab" />
+</td>
   </tr>
 
   <tr>
@@ -19,12 +20,13 @@ _Any sensitive information has been censored_
   </tr>
     <tr>
     <td>User Settings</td>
-    <td><img width="1439" height="778" alt="General User Settings Page" src="https://github.com/user-attachments/assets/4fb66e3b-cd81-49d2-acdd-de87127c016f" />
+    <td><img width="1439" height="775" alt="General User Settings page (Fullscreen)" src="https://github.com/user-attachments/assets/155a4aac-6fe3-46fd-b69c-db6a19959b70" /></td>
 </td>
   </tr>
   <tr>
     <td>Log Out State</td>
-    <td><img width="1440" height="777" alt="Logout Modal Popup" src="https://github.com/user-attachments/assets/3e713c93-dd2b-4ec5-9746-dd0f1deca346" /></td>
+    <td><img width="1440" height="777" alt="Logout Modal Popup" src="https://github.com/user-attachments/assets/53985e33-a94f-46dc-bcba-d5b5f841e8ba" />
+</td>
   </tr>
 
   </table>
@@ -40,12 +42,14 @@ _Any sensitive information has been censored_
 
   <tr>
     <td>Upload Images</td>
-    <td><img src="https://github.com/user-attachments/assets/d32140c8-1a4d-48fa-b5ea-f1bc015fa8ec" width="100%"></td>
+    <td><img width="1438" height="769" alt="Upload Images page (Fullscreen)" src="https://github.com/user-attachments/assets/0939c16a-40c0-4391-8baa-7548c3d8e94b" />
+</td>
   </tr>
 
   <tr>
     <td>Manage Images</td>
-    <td><img src="https://github.com/user-attachments/assets/928f7dfc-ade8-47c0-b76c-18ee560df8ba" width="100%"></td>
+    <td><img width="1440" height="776" alt="Manage Images page (Fullscreen)" src="https://github.com/user-attachments/assets/218317a8-7ed6-4ae7-9c18-a3c12515b341" />
+</td>
   </tr>
 </table>
 <br>
@@ -60,12 +64,13 @@ _Any sensitive information has been censored_
 
   <tr>
     <td>Create User</td>
-    <td><img src="https://github.com/user-attachments/assets/bbf1b79b-80c8-46d7-b6dd-49db412a4b1f" width="100%"></td>
+    <td><img width="1438" height="773" alt="Create a User page (Fullscreen)" src="https://github.com/user-attachments/assets/34e4ea84-2bee-4036-beeb-fc4f145f238a" />
+</td>
   </tr>
 
   <tr>
     <td>Manage Users</td>
-    <td><img width="1440" height="776" alt="Manage Users page" src="https://github.com/user-attachments/assets/84edac74-1927-4c27-b8a7-d40590c4fed1" />
+    <td><img width="1440" height="776" alt="Manage Users page" src="https://github.com/user-attachments/assets/e782dc1b-7ef7-4555-82cc-400e139bef06" />
 </td>
   </tr>
 
@@ -102,29 +107,31 @@ _Any sensitive information has been censored_
 
   <tr>
     <td>Dashboard Home</td>
-    <td><img src="https://github.com/user-attachments/assets/923a46c9-bfad-4ca2-a678-32c7042c9be7" width="100%"></td>
+    <td><img width="1440" height="777" alt="Dashboard Home page" src="https://github.com/user-attachments/assets/37b95491-8c90-40da-a94f-faf7d78adcab" /></td>
     <td><img width="241" height="483" alt="Mobile Dashboard Home" src="https://github.com/user-attachments/assets/d8f183ec-eff6-40db-81b8-2ebb1dec0078" /></td>
   </tr>
   <tr>
     <td>Upload Images</td>
-    <td><img src="https://github.com/user-attachments/assets/d32140c8-1a4d-48fa-b5ea-f1bc015fa8ec" width="100%"></td>
+    <td><img width="1438" height="769" alt="Upload Images page (Fullscreen)" src="https://github.com/user-attachments/assets/a88e1222-7b02-43a4-9ccb-6ac6ad78811f" />
+</td>
     <td><img width="243" height="480" alt="Mobile Dashboard Upload page" src="https://github.com/user-attachments/assets/e3756b1b-e736-43b4-8224-6495eeffba45" /></td>
   </tr>
     <tr>
     <td>Manage Images</td>
-    <td><img src="https://github.com/user-attachments/assets/928f7dfc-ade8-47c0-b76c-18ee560df8ba" width="100%"></td>
+    <td><img width="1440" height="776" alt="Manage Images page (Fullscreen)" src="https://github.com/user-attachments/assets/57b10f71-deab-4e4c-bf5c-83a9b4789ae2" />
+</td>
     <td><img width="241" height="481" alt="Mobile Dashboard Manage images page" src="https://github.com/user-attachments/assets/2229804c-5e58-46c7-8ef3-f9dad5e6f83d" /></td>
   </tr>
    <tr>
     <td>Manage Users</td>
-     <td><img width="1440" height="776" alt="Manage Users page" src="https://github.com/user-attachments/assets/84edac74-1927-4c27-b8a7-d40590c4fed1" />
-    </td>
+     <td><img width="1440" height="776" alt="Manage Users page" src="https://github.com/user-attachments/assets/e782dc1b-7ef7-4555-82cc-400e139bef06" /></td>
     <td><img width="247" height="483" alt="Mobile Dashboard Manage Users" src="https://github.com/user-attachments/assets/84993fdb-a50e-48eb-8729-f562db215dca" />
     </td>
   </tr>
   <tr>
     <td>Edit Users</td>
-     <td><img width="1440" height="776" alt="Manage Users Edit  User State" src="https://github.com/user-attachments/assets/f4952a1c-8f7a-4b66-8bb9-55d5f9917d9d" /></td>
+     <td><img width="1440" height="776" alt="Manage Users Edit  User State" src="https://github.com/user-attachments/assets/2731137d-a219-445c-b777-e644eb28b24c" />
+</td>
     <td><img width="241" height="488" alt="Manage Users Mobile" src="https://github.com/user-attachments/assets/db10a287-600e-4b2a-8df2-82da5703cd9e" />
 </td>
   </tr>
