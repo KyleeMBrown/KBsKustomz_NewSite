@@ -24,7 +24,21 @@ KBs Kustomz is a website & content management system built to advertise auto bod
 - SEO-optimized multi-page structure
 - Fully responsive mobile UI
 
-[<img alt="Static Badge" src="https://img.shields.io/badge/View_Feature_Snapshots-pink?style=for-the-badge">](FEATURE_SNAPSHOTS.md)
+<table>
+  <tr>
+    <th>Page</th>
+    <th>View</th>
+  </tr>
+
+  <tr>
+    <td>Dashboard Home</td>
+    <td><img src="https://github.com/user-attachments/assets/923a46c9-bfad-4ca2-a678-32c7042c9be7" width="100%"></td>
+  </tr>
+
+  </table>
+<br>
+
+[<img alt="Static Badge" src="https://img.shields.io/badge/View_All_Feature_Snapshots-pink?style=for-the-badge">](FEATURE_SNAPSHOTS.md)
 
 
 ______
