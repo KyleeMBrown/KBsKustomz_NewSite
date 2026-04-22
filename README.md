@@ -6,7 +6,7 @@
 ### Modern full-stack website + CMS built for an auto body shop to manage content without developer involvement
 
 <div>
-  <a><img alt="Static Badge" src="https://img.shields.io/badge/Live_Site-%23dbffc3?style=for-the-badge"></a>
+  <a href="https://kbs-kustomz.vercel.app/"><img alt="Static Badge" src="https://img.shields.io/badge/Live_Site-%23dbffc3?style=for-the-badge"></a>
 <a href="https://github.com/TechFataleFreelance/KB-s-Kustomz"><img alt="Static Badge" src="https://img.shields.io/badge/Old_Version_Repo-%23ababab?style=for-the-badge"></a>
   
 # Description
