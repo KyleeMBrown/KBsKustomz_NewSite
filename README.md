@@ -4,9 +4,10 @@
 
 ### Modern full-stack website + CMS built for an auto body shop to manage content without developer involvement
 
-### [Live Site](#)  
-### [Old Version Repo](https://github.com/TechFataleFreelance/KB-s-Kustomz)
-
+<div>
+  <a><img alt="Static Badge" src="https://img.shields.io/badge/Live_Site-%23dbffc3?style=for-the-badge"></a>
+<a href="https://github.com/TechFataleFreelance/KB-s-Kustomz"><img alt="Static Badge" src="https://img.shields.io/badge/Old_Version_Repo-%23ababab?style=for-the-badge"></a>
+  
 # Description
 KBs Kustomz is a website & content management system built to advertise auto body and painting services for KB's Kustomz located in Wyanet, IL. The website features a gallery, about us page, services page, and a contact us page, as well as a cms dashboard to eliminate manual content updates and allow the client to manage their own site.
 
