@@ -1,13 +1,23 @@
 *Author and Developer: [Kylee Brown](https://www.linkedin.com/in/kylee-brown-7167b9274/)*
-<br><br>
-![Static Badge](https://img.shields.io/badge/In%20Development-8A2BE2)
 
+# KB's Kustomz Website (Remodel)
 
-# Summary
-This is a remodeling of an original website I created for a client a little over a year ago while freelancing ([Link to old repo here](https://github.com/TechFataleFreelance/KB-s-Kustomz)). My client needed a website to advertise his Car services and wanted to send me assets to update the site periodically. Using this information, I opted to create a static, single page application (SPA) using React.js as the Library and Vite as the build tool. 
+### Modern fullstack website + CMS built for an auto body shop to manage content without developer involvement
 
-Eventually the client needed more frequent image uploads as they received more clients themselves, and the process of sending me the images started to become more difficult as both of our schedules were busy. This exact issue is what lead me to remodel the website to create a site that allows my client to login and update site assets themselves using a backend content management system I developed. 
+### [Live Site](#)  
+### [Old Version Repo](https://github.com/TechFataleFreelance/KB-s-Kustomz)
 
+# Description
+KBs Kustomz is a website & content management system built to advertise auto body and painting services for KB's Kustomz located in Wyanet, IL. The website features a gallery, about us page, services page, and a contact us page as well as a cms dashboard to eliminate manual content updates and allow the client to manage their own site.
+
+# Fearures
+- Client-managed CMS dashboard (upload/delete images)
+- Role-based authentication (Admin vs General users)
+- Image storage with Vercel Blob
+- SEO-optimized multi-page structure
+- Fully responsive mobile UI
+
+______
 # Tech Stack
 - `Next.js` (App router)
   - Framework used for creating the fullstack website
@@ -18,41 +28,37 @@ Eventually the client needed more frequent image uploads as they received more c
   - Integrated Google Auth for quicker sign in
 - `Tailwind CSS` + `ShadCN` User Interface Library
   - Used for quick & uniform styling and component building
+______
 
-# Challenges with the OLD site
+# Key Improvements
+- **Created a dashboard CMS** 'backend' that the client can use to manage the images anytime and anywhere wifi is availablee. Using `NEXT` server side capabailities, I created api routes that handled uploads to `NEXT` Blob storage and `Supabase`
+  - Solved the proplem of manually adding the images to the site files]
+  - converted the `SPA` (Single Page Application) to a `fullstack` web app
+- **leveraged cachng & revalidating** to lighten the request load on the server and database API. added `fetchpriority` attributes to the appropriate HTML elements
+  - Improved desktop and mobile site speed, first contentful paint (FCP) and largest contentful paint times
+- **Used media queries** to make the mobile version UI clean, easy to navigate, and aesthetic
+  - Solved the problem of the mobile site not formatting properly and made the mobile experience seanless
+- **implemented NEXT SEO capabilities** by making sure each public-facing page had SEO meta data (description, title), I made sure every image on the site had an ALT tag, added a `schemaMarkup` document for crawlers, and added an LLM doc as well for AI models. On private pages, I made sure search engines should not crawl the pages setting the metadata to `robots: {index: false, follow: false}`
+  - solved the challenge of making sure the site had the sufficient SEO so the site could appear higher up on search engines like Google when crawled 
 
-1. The first callenge that occured after the old site went into production, was that it tooke a long time to upload the images the client had sent me. I had to drag each asset into the project and update the gallery source code by hand.
-2. The second challenge was making sure the site had the sufficient SEO so the site could appear higher up on search engines like Google when crawled
-3. The third challenge was site speed, the pages were loading at a decent rate but updates needed to be made to improve it
-4. There was not a way in showing the client analytics about their site other than from their google business account
-6. Lastly, the mobile site UI could definately be more clean and aesthetically pleasing 
 
-# Solutions implemented on the NEW site
-
-1. I created a dashboard CMS 'backend' to the site that the client can use to update the images anytime and anywhere wifi is available on desktop or mobile. I leveraged NEXT server side capabailities and created api routes that handled uploads to NEXT Blob storage and Supabase
-2. I leveraged NEXT multiple page SEO capabilities by making sure each public-facing page had propper SEO. I made sure every image on the site had an ALT tag, added a `schemaMarkup` document for crawlers, and added an LLM doc as well. On private pages, I made sure search engines should not crawl the pages setting the metadata to `robots: {index: false, follow: false}`
-3. I leveraged cachng & revalidating on the client end so the images being fetched from the database are only revalidated when the client has uploaded. I also set priority attributes to low for any assets below the fold and high for assets above
-4. I added a section in the dashboard where the user can view their site analytics easily (such as what page has the most views? what images have the most clicks? how many people called? how many people emailed? etc.)
-5. Lastly, I leveraged media queries to make the mobile version UI clean, easy to navigate, and aesthetic
-
-# Security
-
-- Enabled row level security (`RLS`) and created policies that dictate who is able to upload image and user data
+# Security Improvements
+- Enabled row level security (`RLS`) and created policies that dictate who is allowed to alter tables in `supabase`
+- Used Server side to securely cookies to set and store user session tokens as opposed to being exposed on the clinet side
 - whitelisted content sent from client as a request in the middleware to combat against injection attacks
-- run vulnerablility scans periodically and update to the most recently patched version of the compromised/depricated library
-- Enforced access control by setting up role based access (RBA) to the database and using the **rule of least privleged**
-- Required `2FA` for users
+- ran vulnerablility scans periodically and updated to the most recently patched version of the compromised/depricated library
+- Enforced access control by setting up role based access (RBA) to the database (`GENERAL` vs `ADMIN`) and using the **rule of least privleged**
 
-# Scaling
 
-1. Upgrade storage plans, or providers if needed (possibly cloudinary), if the storage limit is reached for NEXT Blobs
-2. Upgrade Supabase plan if website traffic increasses to increase the amount of Egress and Egress caching
-3. Upgrade to a paid custom domain and add that domain with vercel
+# Future Goals
+1. Add an analytics dashboard tracking website traffic, click paths, etc.
+2. Upgrade storage plans, or providers if needed (possibly cloudinary), if the storage limit is reached for `NEXT` Blobs
+3. Upgrade Supabase plan if website traffic increasses to increase the amount of `Egress` and `Egress caching`
+4. Upgrade to a paid custom domain
 
 # Production
-- Hosting is a CI/CD process using `Github` + `Vercel`
-- Eventually I would like to incoorporate `Github Actions + Github Projects`
+- Hosting is through a CI/CD process using `Github` + `Vercel`
 
-# Conclusion
+# Currently...
 - I continue to monitor the site and update any libraries as needed. 
 - I frequently view the Supabase logs of the API calls being made to check for any descrepencies. The client is still able to freely contact me if any errors are occuring.  
