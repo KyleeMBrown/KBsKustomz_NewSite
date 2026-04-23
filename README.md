@@ -70,11 +70,20 @@ ______
   - Solved the problem of the mobile site not formatting properly and made the mobile experience seamless
     <br>
 - **Utilized NEXT SEO capabilities** by making sure each public-facing page had SEO metadata (description, title), and I made sure every image on the site had an ALT tag, added a <a href="/src/SEO/schemaMarkup.ts">`schemaMarkup`</a> document for crawlers, and added an LLM doc as well for AI models.
-  - solved the challenge of making sure the site had sufficient SEO so the site could appear higher up on search engines like Google when crawled 
+  - solved the challenge of making sure the site had sufficient SEO so the site could appear higher up on search engines like Google when crawled
+ 
+# Databaase Entity Relationship Diagram
+<img width="2224" height="1300" alt="supabase-schema-vpmwnlffbbnzkymbjyts" src="https://github.com/user-attachments/assets/c6dc5b4a-3145-4702-88ee-078848a8ff86" />
+
 
 # Security Improvements
 - Enabled **row-level security** (`RLS`) and created policies that dictate who is allowed to alter tables in `supabase.`
 - Used **server-side cookies** to securely set and store user session tokens as opposed to being exposed on the client side
 - **whitelisted** content sent from the client as a request in the middleware to combat injection attacks
 - ran **vulnerability scans** periodically and updated to the most recently patched version of the compromised/deprecated library
-- Enforced access control by setting up role-based access (RBA) to the database (`GENERAL` vs `ADMIN`) and using the **rule of least privilege**  
+- Enforced access control by setting up role-based access (RBA) to the database (`GENERAL` vs `ADMIN`) and using the **rule of least privilege**
+
+# Scaling and Future Improvements
+- With an influx of users comes a need to use a dedicated CDN for the images like AWS S3 or Cloudinary
+- In the more near future,  will enable 2FA and add another form of authentication such as Google, or Authenticator APP
+- Lastly, I plan to add a site analytics dashboard that tracks potential customer leads possibly integrating with 3rd parties like Google Analytics
