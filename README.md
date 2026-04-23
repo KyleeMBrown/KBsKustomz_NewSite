@@ -1,3 +1,5 @@
+![GitHub Release](https://img.shields.io/github/v/release/KyleeMBrown/KBsKustomz_NewSite?labelColor=white&color=pink)
+
 *Author and Developer: [Kylee Brown](https://www.linkedin.com/in/kylee-brown-7167b9274/)*
 
 # KB's Kustomz Website (Remodel)
