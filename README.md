@@ -1,4 +1,3 @@
-
 *Author and Developer: [Kylee Brown](https://www.linkedin.com/in/kylee-brown-7167b9274/)*
 
 # KB's Kustomz Website (Remodel)
@@ -8,6 +7,16 @@
 <div>
   <a href="https://kbs-kustomz.vercel.app/"><img alt="Static Badge" src="https://img.shields.io/badge/Live_Site-%23dbffc3?style=for-the-badge"></a>
 <a href="https://github.com/TechFataleFreelance/KB-s-Kustomz"><img alt="Static Badge" src="https://img.shields.io/badge/Old_Version_Repo-%23ababab?style=for-the-badge"></a>
+<br>
+  <table>
+    <tr>
+      <td>
+        <img width="400" height="216" alt="Screen Recording 2026-04-19 at 6 05 09 PM" src="https://github.com/user-attachments/assets/331afc1a-cc42-438b-9b47-2a62546206f4" />
+        <img width="400" height="216" alt="Screen Recording 2026-04-19 at 6 08 52 PM (1)" src="https://github.com/user-attachments/assets/b1f25f9b-7a7e-4d81-8f13-6b1a53447993" />
+      </td>
+    </tr>
+  </table>
+
   
 # Description
 KBs Kustomz is a website & content management system built to advertise auto body and painting services for KB's Kustomz located in Wyanet, IL. The website features a gallery, about us page, services page, and a contact us page, as well as a cms dashboard to eliminate manual content updates and allow the client to manage their own site.
