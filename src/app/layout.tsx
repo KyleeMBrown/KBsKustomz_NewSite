@@ -32,6 +32,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <Head>
         {/* Load the Schema Markup JSON-LD */}
+        <meta name="google-site-verification" content="stU_xqlTi051F72vnmmHFxYeaa-rDqkWylYjKXnWfyI" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
