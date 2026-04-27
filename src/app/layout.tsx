@@ -23,6 +23,9 @@ export const metadata = {
                 enhancements tailored to your vision. Whether you’re looking for a custom paint job, 
                 bodywork repairs, or a complete vehicle transformation, KB’s Kustomz delivers high-quality 
                 craftsmanship and attention to detail you can trust.`,
+  verification: {
+     google: "stU_xqlTi051F72vnmmHFxYeaa-rDqkWylYjKXnWfyI",
+  }
 };
 
 
@@ -32,7 +35,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <Head>
         {/* Load the Schema Markup JSON-LD */}
-        <meta name="google-site-verification" content="stU_xqlTi051F72vnmmHFxYeaa-rDqkWylYjKXnWfyI" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
