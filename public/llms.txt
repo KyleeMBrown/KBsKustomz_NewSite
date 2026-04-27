@@ -1,0 +1,30 @@
+# kbs-kustomz.vercel.app
+
+> KB’s Kustomz is a locally owned custom paint and body shop in Wyanet, IL, 
+                owned and operated by Kory Brown. Conveniently located at 13845 1650 N Ave, Wyanet, IL, 
+                KB’s Kustomz specializes in custom automotive paint, auto body repair, and custom vehicle 
+                enhancements tailored to your vision. Whether you’re looking for a custom paint job, 
+                bodywork repairs, or a complete vehicle transformation, KB’s Kustomz delivers high-quality 
+                craftsmanship and attention to detail you can trust.
+
+## Home
+
+[KB's Kustomz | Custom Paint and Body Shop| Wyanet, IL](https://kbs-kustomz.vercel.app/): KB’s Kustomz is a locally owned custom paint and body shop in Wyanet, IL, 
+                owned and operated by Kory Brown. Conveniently located at 13845 1650 N Ave, Wyanet, IL, 
+                KB’s Kustomz specializes in custom automotive paint, auto body repair, and custom vehicle 
+                enhancements tailored to your vision. Whether you’re looking for a custom paint job, 
+                bodywork repairs, or a complete vehicle transformation, KB’s Kustomz delivers high-quality 
+                craftsmanship and attention to detail you can trust.
+
+## About
+
+[About KB’s Kustomz | Custom Paint & Auto Body Shop in Wyanet, IL](https://kbs-kustomz.vercel.app/about): KB’s Kustomz is a Wyanet, IL auto body shop specializing in custom paint and body repair.Free quotes available.
+
+## Services
+
+[Custom Paint & Auto Body Services in Wyanet, IL | KB’s Kustomz](https://kbs-kustomz.vercel.app/services): KB’s Kustomz offers professional custom paint, auto body repair, and vehicle restoration services in Wyanet, IL. Call today for a free quote.
+
+## Contact
+
+[Contact KB’s Kustomz | Auto Body & Custom Paint | Wyanet, IL](https://kbs-kustomz.vercel.app/contact): Contact KB’s Kustomz in Wyanet, IL for custom paint and auto body services. Call today for a free quote
+
